@@ -4,35 +4,41 @@ interface CounterAnimationProps {
   target: number;
   duration?: number;
   suffix?: string;
+  prefix?: string;
 }
 
 const CounterAnimation: React.FC<CounterAnimationProps> = ({ 
   target, 
   duration = 2000, 
-  suffix = '' 
+  suffix = '', 
+  prefix = ''
 }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    let start: number | null = null;
     const increment = target / (duration / 16);
-    let current = 0;
     
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
+    const animate = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      
+      if (progress < duration) {
+        setCount(Math.min(increment * (progress / 16), target));
+        requestAnimationFrame(animate);
       } else {
-        setCount(Math.floor(current));
+        setCount(target);
       }
-    }, 16);
-
-    return () => clearInterval(timer);
+    };
+    
+    requestAnimationFrame(animate);
   }, [target, duration]);
 
   return (
-    <div className="text-4xl md:text-5xl font-bold font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">
-      {count}{suffix}
+    <div className="text-4xl md:text-5xl font-bold font-montserrat gradient-text tilt-3d">
+      {prefix}
+      {Math.floor(count).toLocaleString()}
+      {suffix}
     </div>
   );
 };

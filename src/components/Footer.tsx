@@ -29,13 +29,15 @@ const Footer = () => {
             <div className="flex items-center gap-4">
               <a 
                 href="https://linkedin.com/company/kgill-media"
-                className="w-12 h-12 bg-slate-800 hover:bg-gradient-to-br hover:from-marigold hover:to-terracotta rounded-lg flex items-center justify-center transition-all duration-300 group"
+                className="w-12 h-12 bg-slate-800 hover:bg-gradient-to-br hover:from-marigold hover:to-terracotta rounded-lg flex items-center justify-center transition-all duration-300 group tilt-3d focus:outline-none focus:ring-2 focus:ring-marigold/50"
+                aria-label="Visit our LinkedIn page"
               >
                 <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-charcoal" />
               </a>
               <a 
                 href="mailto:hello@kgillmedia.co.ke"
-                className="w-12 h-12 bg-slate-800 hover:bg-gradient-to-br hover:from-cyan hover:to-slate-blue rounded-lg flex items-center justify-center transition-all duration-300 group"
+                className="w-12 h-12 bg-slate-800 hover:bg-gradient-to-br hover:from-cyan hover:to-slate-blue rounded-lg flex items-center justify-center transition-all duration-300 group tilt-3d focus:outline-none focus:ring-2 focus:ring-cyan/50"
+                aria-label="Send us an email"
               >
                 <Mail className="w-5 h-5 text-gray-400 group-hover:text-white" />
               </a>
@@ -56,7 +58,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-400 hover:text-marigold transition-colors font-inter"
+                    className="text-gray-400 hover:text-marigold transition-colors font-inter tilt-3d focus:outline-none focus:text-marigold focus:underline"
                   >
                     {link.label}
                   </a>
@@ -75,7 +77,7 @@ const Footer = () => {
                   <p className="text-gray-400 font-inter text-sm">Email</p>
                   <a 
                     href="mailto:hello@kgillmedia.co.ke"
-                    className="text-white hover:text-marigold transition-colors font-inter"
+                    className="text-white hover:text-marigold transition-colors font-inter tilt-3d focus:outline-none focus:text-marigold focus:underline"
                   >
                     hello@kgillmedia.co.ke
                   </a>

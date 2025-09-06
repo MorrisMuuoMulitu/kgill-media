@@ -7,7 +7,7 @@ import SocialProofTicker from '../components/SocialProofTicker';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useParticles } from '../hooks/useParticles';
 
-const Home = () => {
+const EnhancedHeroSection: React.FC = () => {
   const [userIntent, setUserIntent] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [followersCount, setFollowersCount] = useState(470);
@@ -187,7 +187,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Impact Numbers with African-Inspired Design */}
+      {/* Rest of the sections remain the same */}
+      {/* Impact Numbers */}
       <section ref={impactRef} className="py-20 bg-section-gradient relative overflow-hidden opacity-0">
         <div className="absolute inset-0 opacity-5">
           <div className="w-full h-full bg-repeat" style={{
@@ -222,7 +223,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Preview with Enhanced Cards */}
+      {/* Services Preview */}
       <section ref={servicesRef} className="py-20 bg-slate-900 relative opacity-0">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -259,7 +260,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Stories with Enhanced Layout */}
+      {/* Featured Stories */}
       <section ref={storiesRef} className="py-20 bg-charcoal texture-subtle opacity-0">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -288,7 +289,7 @@ const Home = () => {
       {/* Social Proof Ticker */}
       <SocialProofTicker followersCount={followersCount} />
 
-      {/* User Intent Modal with Enhanced Design */}
+      {/* User Intent Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="glass-effect rounded-2xl p-8 max-w-md w-full border border-slate-600 animate-fade-in">
@@ -358,4 +359,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default EnhancedHeroSection;

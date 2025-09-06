@@ -17,16 +17,21 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   projects = "View Projects" 
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      className="relative h-80 cursor-pointer group"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      className="relative h-96 cursor-pointer group tilt-3d"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsHovered(true)}
+      onBlur={() => setIsHovered(false)}
+      tabIndex={0}
+      aria-label={`View details for ${title}`}
     >
-      <div className={`flip-card-inner h-full ${isFlipped ? 'rotate-y-180' : ''} transition-transform duration-700`}>
+      <div className={`flip-card-inner h-full transition-all duration-700 ${isFlipped ? 'rotate-y-180' : ''} ${isHovered ? 'scale-105' : ''}`}>
         {/* Front of card */}
-        <div className={`flip-card-front bg-gradient-to-br ${gradient} p-8 flex flex-col items-center justify-center text-center relative overflow-hidden`}>
+        <div className={`flip-card-front bg-gradient-to-br ${gradient} p-8 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-300`}>
           {/* African-inspired pattern overlay */}
           <div className="absolute inset-0 opacity-10">
             <div className="w-full h-full bg-repeat-round" style={{
@@ -46,7 +51,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
         
         {/* Back of card */}
-        <div className="flip-card-back bg-slate-800 p-8 flex flex-col justify-between border border-slate-700 relative overflow-hidden">
+        <div className="flip-card-back bg-slate-800 p-8 flex flex-col justify-between border border-slate-700 relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
           {/* Subtle gradient overlay */}
           <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-5`}></div>
           
@@ -61,7 +66,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               <ExternalLink className="w-4 h-4 text-gray-500" />
             </div>
             
-            <button className="w-full flex items-center justify-center gap-2 text-marigold font-inter font-semibold hover:text-terracotta transition-colors group border border-marigold/30 rounded-lg py-3 hover:border-terracotta/30">
+            <button className="w-full flex items-center justify-center gap-2 text-marigold font-inter font-semibold hover:text-terracotta transition-colors group border border-marigold/30 rounded-lg py-3 hover:border-terracotta/30 tilt-3d focus:outline-none focus:ring-2 focus:ring-marigold/50">
               View Portfolio 
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Users, Heart, Camera } from 'lucide-react';
+import { Menu, X, Users, Heart, Camera, Moon, Sun } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { darkMode, toggleDarkMode } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,17 +60,33 @@ const Navigation = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-marigold transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
+            <button 
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? <Sun className="w-5 h-5 text-marigold" /> : <Moon className="w-5 h-5 text-cyan" />}
+            </button>
             <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-2 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
               Join The Hub
             </button>
           </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center md:hidden">
+            <button 
+              onClick={toggleDarkMode}
+              className="p-2 mr-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-colors"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? <Sun className="w-5 h-5 text-marigold" /> : <Moon className="w-5 h-5 text-cyan" />}
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-10 h-10 flex items-center justify-center"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
