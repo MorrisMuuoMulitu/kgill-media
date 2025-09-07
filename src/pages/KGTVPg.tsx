@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Play, Clock, Eye, Star, ChevronRight, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LoadingState from '../components/LoadingState';
+import OptimizedImage from '../components/OptimizedImage';
 
 const KGTVPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -111,10 +112,11 @@ const KGTVPg = () => {
       {/* Hero Section - Netflix Style */}
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
+          <OptimizedImage 
             src={featuredShow.thumbnail} 
             alt={featuredShow.title}
             className="w-full h-full object-cover"
+            lazy={false}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/95"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent"></div>
@@ -202,7 +204,7 @@ const KGTVPg = () => {
                   className="flex-shrink-0 w-64 premium-card premium-hover-gold group"
                 >
                   <div className="relative rounded-lg overflow-hidden mb-4">
-                    <img 
+                    <OptimizedImage 
                       src={show.thumbnail} 
                       alt={show.title}
                       className="w-full h-36 object-cover transition-transform duration-300 group-hover:scale-105"
@@ -253,7 +255,7 @@ const KGTVPg = () => {
                   className="flex-shrink-0 w-64 premium-card premium-hover-gold group"
                 >
                   <div className="relative rounded-lg overflow-hidden mb-4">
-                    <img 
+                    <OptimizedImage 
                       src={show.thumbnail} 
                       alt={show.title}
                       className="w-full h-36 object-cover transition-transform duration-300 group-hover:scale-105"
@@ -304,7 +306,7 @@ const KGTVPg = () => {
                   className="flex-shrink-0 w-64 premium-card premium-hover-gold group"
                 >
                   <div className="relative rounded-lg overflow-hidden mb-4">
-                    <img 
+                    <OptimizedImage 
                       src={show.thumbnail} 
                       alt={show.title}
                       className="w-full h-36 object-cover transition-transform duration-300 group-hover:scale-105"
@@ -385,7 +387,7 @@ const KGTVPg = () => {
                 className="premium-card premium-hover-gold"
               >
                 <div className="relative rounded-xl overflow-hidden mb-4">
-                  <img 
+                  <OptimizedImage 
                     src={show.thumbnail} 
                     alt={show.title}
                     className="w-full h-48 object-cover"
