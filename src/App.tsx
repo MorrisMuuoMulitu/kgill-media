@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from './context/ThemeContext';
-import { AccessibilityProvider } from './components/AccessibilityProvider';
+import { ThemeProvider } from './providers/ThemeProvider';
+import { AccessibilityProvider } from './providers/AccessibilityProvider';
 import PerformanceOptimizer from './components/PerformanceOptimizer';
 import AccessibilityMenu from './components/AccessibilityMenu';
 import SkipLink from './components/SkipLink';
@@ -19,7 +19,6 @@ import WorkshopsPg from './pages/WorkshopsPg';
 import BlogPage from './pages/BlogPage';
 import BlogPostDetail from './pages/BlogPostDetail';
 import SocialProofTicker from './components/SocialProofTicker';
-import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import './index.css';
@@ -27,7 +26,6 @@ import './index.css';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
       <AccessibilityProvider>
         <PerformanceOptimizer>
           <Router>
@@ -63,5 +61,3 @@ function App() {
 }
 
 export default App;
-  )
-}

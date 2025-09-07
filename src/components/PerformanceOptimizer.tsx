@@ -4,19 +4,31 @@ interface PerformanceOptimizerProps {
   children: React.ReactNode;
 }
 
+// Define the connection type
+interface NetworkInformation extends EventTarget {
+  effectiveType: 'slow-2g' | '2g' | '3g' | '4g';
+}
+
+interface NavigatorWithConnection extends Navigator {
+  connection?: NetworkInformation;
+  mozConnection?: NetworkInformation;
+  webkitConnection?: NetworkInformation;
+}
+
 const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children }) => {
   const [isSlowConnection, setIsSlowConnection] = useState(false);
 
   useEffect(() => {
     // Detect slow connections
-    const connection = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
+    const nav = navigator as NavigatorWithConnection;
+    const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
     
     if (connection) {
-      const isSlowConnection = connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
-      setIsSlowConnection(isSlowConnection);
+      const slowConnection = connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
+      setIsSlowConnection(slowConnection);
       
       // Apply performance optimizations for slow connections
-      if (isSlowConnection) {
+      if (slowConnection) {
         document.documentElement.classList.add('slow-connection');
       }
     }
@@ -66,14 +78,12 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
 
     // Monitor Core Web Vitals
     const reportWebVitals = () => {
-      if ('web-vital' in window) {
-        // This would integrate with a real analytics service
-        console.log('Web Vitals monitoring active');
-      }
+      // This would integrate with a real analytics service
+      console.log('Web Vitals monitoring active');
     };
 
     reportWebVitals();
-  }, []);
+  }, [isSlowConnection]);
 
   return (
     <>

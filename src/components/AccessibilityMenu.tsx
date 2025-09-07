@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Settings, Type, Eye, Zap, X } from 'lucide-react';
-import { useAccessibility } from './AccessibilityProvider';
+import { useAccessibility } from '../context/AccessibilityContext';
 
 const AccessibilityMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -11,7 +11,6 @@ const EnhancedHeroSection: React.FC = () => {
   const [userIntent, setUserIntent] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [followersCount, setFollowersCount] = useState(470);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Scroll animation refs
   const heroRef = useScrollAnimation();

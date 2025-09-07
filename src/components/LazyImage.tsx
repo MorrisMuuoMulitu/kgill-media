@@ -6,7 +6,6 @@ interface LazyImageProps {
   className?: string;
   width?: number;
   height?: number;
-  placeholder?: string;
   onLoad?: () => void;
   onError?: () => void;
 }
@@ -17,7 +16,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
   className = '',
   width,
   height,
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMUExQTFBIi8+Cjwvc3ZnPgo=',
   onLoad,
   onError
 }) => {
