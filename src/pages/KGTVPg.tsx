@@ -281,7 +281,7 @@ const KGTVPg = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-transparent to-transparent"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="w-16 h-16 rounded-full bg-gold-gradient flex items-center justify-center premium-hover-gold">
+                      <button className="w-16 h-16 rounded-full bg-gold-gradient flex items-center justify-center premium-hover-gold shadow-2xl">
                         <Play className="w-6 h-6 text-charcoal ml-1" />
                       </button>
                     </div>
@@ -357,7 +357,7 @@ const KGTVPg = () => {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <button className="w-10 h-10 rounded-full bg-gold-gradient flex items-center justify-center">
+                        <button className="w-10 h-10 rounded-full bg-gold-gradient flex items-center justify-center shadow-lg">
                           <Play className="w-4 h-4 text-charcoal ml-1" />
                         </button>
                       </div>
@@ -385,7 +385,7 @@ const KGTVPg = () => {
                         <span className="px-2 py-1 bg-charcoal/50 text-gray-400 rounded-full text-xs">
                           {show.category}
                         </span>
-                        <button className="btn-secondary px-3 py-1 flex items-center gap-1 text-xs premium-hover-gold">
+                        <button className="bg-white/10 border border-white/20 text-white px-3 py-1 rounded-lg text-xs font-inter font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-1 premium-hover-gold">
                           <Play className="w-3 h-3" />
                           <span>Play</span>
                         </button>
