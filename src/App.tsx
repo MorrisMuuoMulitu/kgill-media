@@ -46,7 +46,6 @@ function App() {
                   <Route path="/get-involved" element={<GetInvolved />} />
                   <Route path="/kgill-tv" element={<KGTVPg />} />
                   <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
-                  <Route path="/studio" element={<KgillStudioPage />} />
                   <Route path="/workshops" element={<WorkshopsPg />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:id" element={<BlogPostDetail />} />

@@ -21,14 +21,15 @@ const Navigation = () => {
   const mainNavLinks = [
     { path: '/our-story', label: 'Our Story' },
     { path: '/what-we-do', label: 'What We Do' },
-    { path: '/the-movement', label: 'The Movement' }
+    { path: '/photography-videography', label: 'Photography & Video' },
+    { path: '/kgill-tv', label: 'KGILL TV' }
   ];
 
   const dropdownLinks = [
     { path: '/our-leaders', label: 'Our Leaders' },
     { path: '/the-feed', label: 'The Feed' },
     { path: '/get-involved', label: 'Get Involved' },
-    { path: '/photography-videography', label: 'Photography & Video' }
+    { path: '/the-movement', label: 'The Movement' }
   ];
 
   // Close mobile menu when route changes
