@@ -6,6 +6,7 @@ import PerformanceOptimizer from './components/PerformanceOptimizer';
 import AccessibilityMenu from './components/AccessibilityMenu';
 import SkipLink from './components/SkipLink';
 import Navigation from './components/Navigation';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import OurStory from './pages/OurStory';
 import OurLeaders from './pages/OurLeaders';
@@ -33,6 +34,7 @@ function App() {
               <SkipLink />
               <CustomCursor />
               <Navigation />
+              <ScrollToTop />
               <main id="main-content" role="main">
                 <Routes>
                   <Route path="/" element={<Home />} />
