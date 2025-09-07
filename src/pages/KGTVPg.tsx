@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, Clock, Eye, Star, ChevronRight, Camera, TrendingUp, Users, Award, Search, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LoadingState from '../components/LoadingState';
@@ -9,6 +9,8 @@ const KGTVPg = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('popular');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const trendingInterval = useRef<NodeJS.Timeout | null>(null);
 
   // Sample show data
   const shows = [
@@ -145,12 +147,31 @@ const KGTVPg = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Setup automatic sliding for trending shows
+  useEffect(() => {
+    const startSliding = () => {
+      trendingInterval.current = setInterval(() => {
+        setCurrentIndex(prevIndex => (prevIndex + 1) % Math.ceil(trendingShows.length / 2));
+      }, 4000);
+    };
+
+    startSliding();
+
+    return () => {
+      if (trendingInterval.current) {
+        clearInterval(trendingInterval.current);
+      }
+    };
+  }, [trendingShows.length]);
+
   if (loading) {
     return <LoadingState type="page" />;
   }
 
   const featuredShow = shows.find(show => show.featured) || shows[0];
-  
+  const featuredShows = shows.filter(show => show.featured || show.rating >= 4.7);
+  const trendingShows = [...shows].sort((a, b) => parseInt(b.views) - parseInt(a.views)).slice(0, 6);
+
   const filteredShows = shows.filter(show => {
     const matchesCategory = activeCategory === 'all' || show.category === activeCategory;
     const matchesSearch = show.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -169,8 +190,18 @@ const KGTVPg = () => {
     }
   });
 
-  const featuredShows = shows.filter(show => show.featured || show.rating >= 4.7);
-  const trendingShows = [...shows].sort((a, b) => parseInt(b.views) - parseInt(a.views)).slice(0, 4);
+  // Handle manual navigation for trending carousel
+  const goToSlide = (index: number) => {
+    if (trendingInterval.current) {
+      clearInterval(trendingInterval.current);
+    }
+    setCurrentIndex(index);
+    
+    // Restart automatic sliding
+    trendingInterval.current = setInterval(() => {
+      setCurrentIndex(prevIndex => (prevIndex + 1) % Math.ceil(trendingShows.length / 2));
+    }, 4000);
+  };
 
   return (
     <div className="min-h-screen bg-charcoal">
@@ -248,7 +279,7 @@ const KGTVPg = () => {
               <h3 className="font-bold font-montserrat text-white text-sm">Studio Services</h3>
               <p className="text-xs text-gray-400">Professional production</p>
             </div>
-            <ChevronRight className="w-4 h-4 text-blue-gradient-start" />
+            <ChevronRight className="w-5 h-5 text-blue-gradient-start" />
           </Link>
         </div>
       </section>
@@ -315,7 +346,7 @@ const KGTVPg = () => {
                         <span>{show.views}</span>
                       </div>
                     </div>
-                    <button className="btn-secondary px-4 py-2 flex items-center gap-2 text-xs premium-hover-gold">
+                    <button className="btn-secondary px-4 py-2 flex items-center gap-2 text-sm premium-hover-gold">
                       <Play className="w-4 h-4" />
                       <span>Watch</span>
                     </button>
@@ -327,7 +358,7 @@ const KGTVPg = () => {
         </div>
       </section>
 
-      {/* Trending Now */}
+      {/* Trending Now with Sliding Motion */}
       <section className="py-16 bg-charcoal">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex justify-between items-center mb-10">
@@ -341,12 +372,17 @@ const KGTVPg = () => {
             </div>
           </div>
           
-          <div className="relative">
-            <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-hide">
-              {trendingShows.map((show) => (
+          <div className="relative overflow-hidden py-4">
+            {/* Sliding Carousel */}
+            <div 
+              className="flex gap-6 transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {/* Duplicate items for seamless looping */}
+              {[...trendingShows, ...trendingShows].map((show, index) => (
                 <div 
-                  key={show.id} 
-                  className="flex-shrink-0 w-80 premium-card premium-hover-gold group rounded-2xl"
+                  key={`${show.id}-${Math.floor(index / trendingShows.length)}`} 
+                  className="flex-shrink-0 w-[calc(100%/2-12px)] premium-card premium-hover-gold group rounded-2xl"
                 >
                   <div className="flex gap-4">
                     <div className="relative rounded-xl overflow-hidden flex-shrink-0">
@@ -393,6 +429,21 @@ const KGTVPg = () => {
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+            
+            {/* Navigation Dots */}
+            <div className="flex justify-center mt-8 gap-2">
+              {Array.from({ length: Math.ceil(trendingShows.length / 2) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentIndex === index 
+                      ? 'bg-gold-gradient w-8' 
+                      : 'bg-charcoal/50 hover:bg-charcoal/70'
+                  }`}
+                />
               ))}
             </div>
           </div>
