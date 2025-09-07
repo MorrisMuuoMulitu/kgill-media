@@ -4,8 +4,8 @@ import { Camera, Linkedin, Mail, MapPin, Heart } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-charcoal border-t border-slate-800">
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
@@ -72,7 +72,7 @@ const Footer = () => {
             <h3 className="font-inter font-semibold text-white mb-6">Get In Touch</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-terracotta mt-0.5" />
+                <Mail className="w-5 h-5 text-terracotta mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-400 font-inter text-sm">Email</p>
                   <a 
@@ -84,7 +84,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-cyan mt-0.5" />
+                <MapPin className="w-5 h-5 text-cyan mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-400 font-inter text-sm">Location</p>
                   <p className="text-white font-inter">
@@ -98,8 +98,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 font-inter text-sm">
+        <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 font-inter text-sm text-center sm:text-left">
             © 2024 Kgill+ Media Creative & Innovation Hub. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-gray-500 text-sm font-inter">

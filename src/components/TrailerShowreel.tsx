@@ -84,7 +84,7 @@ const TrailerShowreel = () => {
   const current = trailers[currentTrailer];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden premium-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden premium-bg pt-20 md:pt-0">
       {/* Background video */}
       <div className="absolute inset-0 z-0">
         <video

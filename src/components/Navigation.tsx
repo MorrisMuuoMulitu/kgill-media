@@ -144,6 +144,7 @@ const Navigation = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="w-10 h-10 flex items-center justify-center premium-hover-gold"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -152,64 +153,93 @@ const Navigation = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden transition-all duration-500 ${
-        isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+      <div className={`md:hidden transition-all duration-500 ease-in-out ${
+        isOpen ? 'max-h-[calc(100vh-80px)] opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden bg-charcoal/95 backdrop-blur-xl`}>
-        <div className="px-4 py-6 space-y-4">
-          {mainNavLinks.map((link) => (
-            link.path.startsWith('/#') ? (
-              <a
-                key={link.path}
-                href={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block py-3 font-inter font-bold transition-colors ${
-                  location.pathname === '/' && window.location.hash === link.path.split('#')[1] 
-                    ? 'text-gold-gradient-start' : 'text-white hover:text-gold-gradient-start'
-                }`}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block py-3 font-inter font-bold transition-colors ${
-                  location.pathname === link.path ? 'text-gold-gradient-start' : 'text-white hover:text-gold-gradient-start'
-                }`}
-              >
-                {link.label}
-              </Link>
-            )
-          ))}
+        <div className="px-4 py-6 space-y-6">
+          {/* Mobile Brand Section */}
+          <div className="flex items-center space-x-3 pb-4 border-b border-white/10">
+            <div className="relative">
+              <div className="w-10 h-10 bg-gold-gradient rounded-lg flex items-center justify-center">
+                <Camera className="w-6 h-6 text-charcoal" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-cyan rounded-full animate-pulse"></div>
+            </div>
+            <div>
+              <h2 className="text-xl font-bold font-montserrat text-white">
+                KGILL+ MEDIA
+              </h2>
+              <p className="text-xs text-slate-blue font-inter">Creative & Innovation Hub</p>
+            </div>
+          </div>
           
-          {/* Secondary Links */}
-          {secondaryNavLinks.map((link) => (
-            link.path.startsWith('/#') ? (
-              <a
-                key={link.path}
-                href={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block py-3 font-inter font-bold transition-colors ${
-                  location.pathname === '/' && window.location.hash === link.path.split('#')[1] 
-                    ? 'text-gold-gradient-start' : 'text-white hover:text-gold-gradient-start'
-                }`}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block py-3 font-inter font-bold transition-colors ${
-                  location.pathname === link.path ? 'text-gold-gradient-start' : 'text-white hover:text-gold-gradient-start'
-                }`}
-              >
-                {link.label}
-              </Link>
-            )
-          ))}
+          <div className="space-y-8">
+            {/* Main Links Section */}
+            <div>
+              <h3 className="text-sm font-semibold text-marigold uppercase tracking-wider mb-3">Main</h3>
+              <div className="space-y-2">
+                {mainNavLinks.map((link) => (
+                  link.path.startsWith('/#') ? (
+                    <a
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-3 px-4 rounded-lg font-inter font-bold transition-colors ${
+                        location.pathname === '/' && window.location.hash === link.path.split('#')[1] 
+                          ? 'text-gold-gradient-start bg-white/5' : 'text-white hover:text-gold-gradient-start hover:bg-white/5'
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-3 px-4 rounded-lg font-inter font-bold transition-colors ${
+                        location.pathname === link.path ? 'text-gold-gradient-start bg-white/5' : 'text-white hover:text-gold-gradient-start hover:bg-white/5'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                ))}
+              </div>
+            </div>
+            
+            {/* More Links Section */}
+            <div>
+              <h3 className="text-sm font-semibold text-marigold uppercase tracking-wider mb-3">More</h3>
+              <div className="space-y-2">
+                {secondaryNavLinks.map((link) => (
+                  link.path.startsWith('/#') ? (
+                    <a
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-3 px-4 rounded-lg font-inter font-bold transition-colors ${
+                        location.pathname === '/' && window.location.hash === link.path.split('#')[1] 
+                          ? 'text-gold-gradient-start bg-white/5' : 'text-white hover:text-gold-gradient-start hover:bg-white/5'
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block py-3 px-4 rounded-lg font-inter font-bold transition-colors ${
+                        location.pathname === link.path ? 'text-gold-gradient-start bg-white/5' : 'text-white hover:text-gold-gradient-start hover:bg-white/5'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                ))}
+              </div>
+            </div>
+          </div>
           
           <button className="w-full btn-primary py-3 premium-hover-gold mt-4">
             Join The Hub

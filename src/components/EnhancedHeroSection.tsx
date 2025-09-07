@@ -110,7 +110,7 @@ const EnhancedHeroSection: React.FC = () => {
   return (
     <>
       {/* Hero Section with Dynamic Background */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden texture-subtle opacity-0">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden texture-subtle opacity-0 pt-20 md:pt-0">
         {/* Particle Background */}
         <canvas 
           ref={particleCanvasRef} 
