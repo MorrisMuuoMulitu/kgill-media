@@ -19,7 +19,6 @@ const Navigation = () => {
   }, []);
 
   const mainNavLinks = [
-    { path: '/', label: 'Home' },
     { path: '/our-story', label: 'Our Story' },
     { path: '/what-we-do', label: 'What We Do' },
     { path: '/the-movement', label: 'The Movement' }
