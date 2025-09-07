@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Clock, Eye, Star, ChevronRight, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import LoadingState from '../components/LoadingState';
 
 const KGTVPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(true);
 
   // Sample show data
   const shows = [
@@ -85,6 +87,19 @@ const KGTVPg = () => {
     { key: 'Technology', label: 'Technology' },
     { key: 'Environment', label: 'Environment' }
   ];
+
+  // Simulate loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingState type="page" />;
+  }
 
   const featuredShow = shows.find(show => show.featured) || shows[0];
   const documentaries = shows.filter(show => show.category === 'Documentary');
