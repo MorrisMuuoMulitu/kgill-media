@@ -27,7 +27,8 @@ const Navigation = () => {
   const dropdownLinks = [
     { path: '/our-leaders', label: 'Our Leaders' },
     { path: '/the-feed', label: 'The Feed' },
-    { path: '/get-involved', label: 'Get Involved' }
+    { path: '/get-involved', label: 'Get Involved' },
+    { path: '/studio', label: 'KGILL+ Studio' }
   ];
 
   // Close mobile menu when route changes

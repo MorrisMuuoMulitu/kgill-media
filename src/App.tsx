@@ -16,6 +16,7 @@ import TheFeed from './pages/TheFeed';
 import GetInvolved from './pages/GetInvolved';
 import KGTVPg from './pages/KGTVPg';
 import PhotographyVideographyPg from './pages/PhotographyVideographyPg';
+import KgillStudioPage from './pages/KgillStudioPage';
 import WorkshopsPg from './pages/WorkshopsPg';
 import BlogPage from './pages/BlogPage';
 import BlogPostDetail from './pages/BlogPostDetail';
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/get-involved" element={<GetInvolved />} />
                   <Route path="/kgill-tv" element={<KGTVPg />} />
                   <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
+                  <Route path="/studio" element={<KgillStudioPage />} />
                   <Route path="/workshops" element={<WorkshopsPg />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:id" element={<BlogPostDetail />} />

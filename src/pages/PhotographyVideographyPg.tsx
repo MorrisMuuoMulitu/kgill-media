@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Camera, Video, Award, ArrowRight, Star, Play } from 'lucide-react';
+import { Camera, Video, Award, ArrowRight, Star, Play, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const PhotographyVideographyPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -72,23 +73,23 @@ const PhotographyVideographyPg = () => {
   const services = [
     {
       icon: <Camera className="w-8 h-8" />,
-      title: "Photography",
-      description: "Professional photography services for events, portraits, and commercial projects",
+      title: "Commercial Photography",
+      description: "Professional photography services for brands, products, and marketing campaigns",
       features: [
-        "Event Photography",
-        "Portrait Sessions",
         "Product Photography",
-        "Commercial Shoots"
+        "Brand Campaigns",
+        "Architectural Photography",
+        "Food & Lifestyle"
       ]
     },
     {
       icon: <Video className="w-8 h-8" />,
-      title: "Videography",
-      description: "High-quality video production for documentaries, commercials, and events",
+      title: "Video Production",
+      description: "End-to-end video production services for storytelling and brand communication",
       features: [
         "Documentary Production",
         "Commercial Videos",
-        "Event Coverage",
+        "Corporate Videos",
         "Music Videos"
       ]
     },
@@ -149,7 +150,7 @@ const PhotographyVideographyPg = () => {
           <div className="text-center max-w-4xl mx-auto">
             <div className="mb-6">
               <span className="inline-block px-4 py-2 bg-gold-gradient text-charcoal rounded-full text-sm font-bold tracking-wider">
-                PROFESSIONAL SERVICES
+                CREATIVE SERVICES
               </span>
             </div>
             
@@ -159,7 +160,7 @@ const PhotographyVideographyPg = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 font-inter mb-10 max-w-3xl mx-auto">
-              Capturing moments and creating visual legacies that tell your story with authenticity and impact.
+              Capturing moments and creating visual legacies that tell your story with authenticity and impact through our professional media services.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
@@ -168,9 +169,10 @@ const PhotographyVideographyPg = () => {
                 <ArrowRight className="w-5 h-5" />
               </button>
               
-              <button className="btn-secondary flex items-center gap-3 premium-hover-gold">
-                <span>View Portfolio</span>
-              </button>
+              <Link to="/studio" className="btn-secondary flex items-center gap-3 premium-hover-gold">
+                <span>KGILL+ STUDIO</span>
+                <ExternalLink className="w-5 h-5" />
+              </Link>
             </div>
           </div>
         </div>
@@ -308,8 +310,22 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Studio CTA Section */}
       <section className="py-20 bg-slate-900">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <h2 className="display-2 font-montserrat mb-6 epic-text">KGILL+ STUDIO</h2>
+          <p className="text-2xl text-gray-400 font-inter mb-10 max-w-3xl mx-auto">
+            For professional portrait sessions, event coverage, and specialized photography services, visit our dedicated studio page.
+          </p>
+          <Link to="/studio" className="btn-primary px-8 py-4 premium-hover-gold inline-flex items-center gap-3">
+            <span>Visit KGILL+ STUDIO</span>
+            <ExternalLink className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-charcoal texture-subtle">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="display-2 font-montserrat mb-6 epic-text">Client Testimonials</h2>
@@ -348,7 +364,7 @@ const PhotographyVideographyPg = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-charcoal texture-subtle">
+      <section className="py-20 bg-slate-900">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="display-2 font-montserrat mb-6 epic-text">Ready to Tell Your Story?</h2>
           <p className="text-2xl text-gray-400 font-inter mb-10 max-w-3xl mx-auto">
