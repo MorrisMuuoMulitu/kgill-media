@@ -60,39 +60,118 @@
     <!-- Critical CSS for above-the-fold content -->
     <style>
       /* Critical styles for immediate rendering */
-      body { 
-        margin: 0; 
-        background-color: #1A1A1A; 
-        color: white; 
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      body {
+        margin: 0;
+        background-color: #0a0a0a;
+        color: white;
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
-      .hero-loading { 
-        min-height: 100vh; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        background: linear-gradient(135deg, #1A1A1A 0%, rgba(26, 26, 26, 0.9) 50%);
+      
+      .hero-loading {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0a0a0a 0%, rgba(10, 10, 10, 0.95) 50%);
+        position: relative;
+        overflow: hidden;
       }
+      
+      .hero-loading::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+          radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.05) 0%, transparent 25%),
+          radial-gradient(circle at 75% 75%, rgba(255, 107, 53, 0.05) 0%, transparent 25%);
+        pointer-events: none;
+      }
+      
       .loader {
-        width: 50px;
-        height: 50px;
-        border: 3px solid #4A5568;
-        border-top: 3px solid #FFC72C;
+        width: 60px;
+        height: 60px;
+        border: 4px solid #334155;
+        border-top: 4px solid #FFD700;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: spin 1.2s linear infinite;
+        position: relative;
+        z-index: 10;
       }
+      
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
+      
+      /* Prevent flash of unstyled content */
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.5s ease-in-out forwards;
+      }
+      
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+      
+      /* Critical font loading */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.woff2') format('woff2');
+      }
+      
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2') format('woff2');
+      }
     </style>
+    
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//images.pexels.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   </head>
   <body>
     <div id="root">
-      <div class="hero-loading">
+      <div class="hero-loading fade-in">
         <div class="loader"></div>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Basic Core Web Vitals monitoring
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.entryType === 'largest-contentful-paint') {
+              console.log('LCP:', entry.startTime);
+            }
+            if (entry.entryType === 'first-input') {
+              console.log('FID:', entry.processingStart - entry.startTime);
+            }
+            if (entry.entryType === 'layout-shift') {
+              if (!entry.hadRecentInput) {
+                console.log('CLS:', entry.value);
+              }
+            }
+          }
+        });
+        
+        observer.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+      }
+    </script>
   </body>
 </html>

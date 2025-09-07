@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, ArrowRight, Users, Camera, Mic, Heart, Linkedin, TrendingUp } from 'lucide-react';
+import { Play, ArrowRight, Users, Camera, Mic, Heart, Linkedin, TrendingUp, X } from 'lucide-react';
 import CounterAnimation from '../components/CounterAnimation';
 import ServiceCard from '../components/ServiceCard';
 import FeaturedStory from '../components/FeaturedStory';
@@ -11,6 +11,7 @@ const EnhancedHeroSection: React.FC = () => {
   const [userIntent, setUserIntent] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [followersCount, setFollowersCount] = useState(470);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Scroll animation refs
   const heroRef = useScrollAnimation();
@@ -38,6 +39,13 @@ const EnhancedHeroSection: React.FC = () => {
     }, 30000);
 
     return () => clearInterval(interval);
+  }, []);
+
+  // Preload hero video for better performance
+  useEffect(() => {
+    const video = document.createElement('video');
+    video.src = 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4';
+    video.onloadeddata = () => setIsVideoLoaded(true);
   }, []);
 
   const handleIntentSelect = (intent: string) => {
@@ -110,24 +118,26 @@ const EnhancedHeroSection: React.FC = () => {
   return (
     <>
       {/* Hero Section with Dynamic Background */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden texture-subtle opacity-0 pt-20 md:pt-0">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden texture-subtle opacity-0 pt-16 md:pt-20 lg:pt-0">
         {/* Particle Background */}
         <canvas 
           ref={particleCanvasRef} 
-          className="absolute inset-0 w-full h-full z-5"
+          className="absolute inset-0 w-full h-full z-10"
+          aria-hidden="true"
         />
         
         {/* Dynamic Video/Image Background */}
-        <div className="absolute inset-0">
-          <div className="w-full h-full bg-hero-gradient z-10 absolute"></div>
-          <div className="w-full h-full bg-gradient-to-t from-charcoal/80 via-transparent to-transparent z-10 absolute"></div>
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-hero-gradient z-20 absolute"></div>
+          <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent z-20 absolute"></div>
           <img 
             src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="Creative Workshop"
             className="w-full h-full object-cover scale-110 animate-slow-zoom"
+            loading="eager"
           />
           {/* African-inspired geometric overlay */}
-          <div className="absolute inset-0 z-10 opacity-10">
+          <div className="absolute inset-0 z-15 opacity-10" aria-hidden="true">
             <div className="w-full h-full" style={{
               background: `
                 radial-gradient(circle at 20% 20%, var(--marigold) 0%, transparent 25%),
@@ -138,29 +148,29 @@ const EnhancedHeroSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative z-20 text-center max-w-5xl mx-auto px-4">
+        <div className="relative z-30 text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <h1 className="text-hero font-bold font-montserrat leading-none tracking-tight mb-6">
-              <span className="block">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
-              <span className="block gradient-text animate-pulse">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-montserrat leading-none tracking-tight mb-6">
+              <span className="block text-white">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
+              <span className="block gradient-text">
                 {personalizedContent.headline.split(' ').slice(3).join(' ')}
               </span>
             </h1>
-            <div className="pattern-divider w-32 mx-auto mb-6"></div>
-            <p className="text-xl md:text-2xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <div className="pattern-divider w-24 sm:w-32 mx-auto mb-6"></div>
+            <p className="text-lg sm:text-xl md:text-2xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
               {personalizedContent.subtext}
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-            <button className="btn-primary pulse-glow tilt-3d">
-              <span className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12">
+            <button className="btn-primary pulse-glow tilt-3d w-full sm:w-auto min-w-[200px]">
+              <span className="flex items-center justify-center gap-3">
                 {getCTAText()}
                 <ArrowRight className="w-6 h-6" />
               </span>
             </button>
-            <button className="btn-secondary group tilt-3d">
-              <span className="flex items-center gap-3">
+            <button className="btn-secondary group tilt-3d w-full sm:w-auto min-w-[200px]">
+              <span className="flex items-center justify-center gap-3">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Watch Our Story
               </span>
@@ -168,12 +178,13 @@ const EnhancedHeroSection: React.FC = () => {
           </div>
 
           {/* Live Social Proof */}
-          <div className="glass-effect rounded-full px-6 py-3 inline-flex items-center gap-3 text-sm font-inter">
+          <div className="glass-effect rounded-full px-4 sm:px-6 py-3 inline-flex items-center gap-2 sm:gap-3 text-sm font-inter">
             <div className="flex items-center gap-2">
               <Linkedin className="w-4 h-4 text-marigold" />
-              <span className="text-gray-300">Join</span>
+              <span className="text-gray-300 hidden sm:inline">Join</span>
               <CounterAnimation target={followersCount} duration={1000} />
-              <span className="text-gray-300">Changemakers</span>
+              <span className="text-gray-300 hidden sm:inline">Changemakers</span>
+              <span className="text-gray-300 sm:hidden">Followers</span>
             </div>
             <div className="w-1 h-1 bg-cyan rounded-full animate-pulse"></div>
             <TrendingUp className="w-4 h-4 text-green-400" />
@@ -181,7 +192,7 @@ const EnhancedHeroSection: React.FC = () => {
         </div>
 
         {/* Animated Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 float-animation">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 float-animation hidden md:block" aria-hidden="true">
           <div className="w-1 h-16 bg-gradient-to-b from-marigold to-transparent rounded-full"></div>
           <div className="w-3 h-3 bg-marigold rounded-full mx-auto mt-2 animate-bounce"></div>
         </div>
@@ -189,22 +200,22 @@ const EnhancedHeroSection: React.FC = () => {
 
       {/* Rest of the sections remain the same */}
       {/* Impact Numbers */}
-      <section ref={impactRef} className="py-20 bg-section-gradient relative overflow-hidden opacity-0">
+      <section ref={impactRef} className="py-12 sm:py-16 md:py-20 bg-section-gradient relative overflow-hidden opacity-0">
         <div className="absolute inset-0 opacity-5">
           <div className="w-full h-full bg-repeat" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFC72C' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm0 0l-15 15h30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
         </div>
         
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-4 gradient-text">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-4 gradient-text">
               IMPACT BY THE NUMBERS
             </h2>
-            <p className="text-xl text-gray-400 font-inter">Real change, measured results</p>
+            <p className="text-lg sm:text-xl text-gray-400 font-inter">Real change, measured results</p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { icon: Users, value: 250, suffix: '+', label: 'Young Creatives Empowered', color: 'marigold' },
               { icon: Camera, value: 150, suffix: '+', label: 'Stories Told', color: 'cyan' },
@@ -212,11 +223,11 @@ const EnhancedHeroSection: React.FC = () => {
               { icon: Heart, value: 25, suffix: '+', label: 'Community Projects', color: 'slate-blue' }
             ].map((stat, index) => (
               <div key={index} className="text-center group hover-lift tilt-3d">
-                <div className={`w-20 h-20 bg-gradient-to-br from-${stat.color} to-terracotta rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 tilt-3d`}>
-                  <stat.icon className="w-10 h-10 text-charcoal" />
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-${stat.color} to-terracotta rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 tilt-3d shadow-lg`}>
+                  <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-charcoal" />
                 </div>
                 <CounterAnimation target={stat.value} suffix={stat.suffix} />
-                <p className="text-gray-400 font-inter mt-2 leading-tight">{stat.label}</p>
+                <p className="text-sm sm:text-base text-gray-400 font-inter mt-2 leading-tight px-2">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -224,17 +235,17 @@ const EnhancedHeroSection: React.FC = () => {
       </section>
 
       {/* Services Preview */}
-      <section ref={servicesRef} className="py-20 bg-slate-900 relative opacity-0">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-display font-bold font-montserrat mb-6">
+      <section ref={servicesRef} className="py-12 sm:py-16 md:py-20 bg-slate-900 relative opacity-0">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-6">
               WHAT WE CREATE
             </h2>
-            <p className="text-xl text-gray-400 font-inter max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 font-inter max-w-2xl mx-auto">
               From powerful documentaries to innovative podcasts, we craft stories that inspire change.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <ServiceCard 
               title="Film Production"
               description="Documentary films that amplify youth voices and social causes"
@@ -261,24 +272,24 @@ const EnhancedHeroSection: React.FC = () => {
       </section>
 
       {/* Featured Stories */}
-      <section ref={storiesRef} className="py-20 bg-charcoal texture-subtle opacity-0">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-display font-bold font-montserrat mb-6">
+      <section ref={storiesRef} className="py-12 sm:py-16 md:py-20 bg-charcoal texture-subtle opacity-0">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-6">
               FEATURED STORIES
             </h2>
-            <p className="text-xl text-gray-400 font-inter max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 font-inter max-w-2xl mx-auto">
               Discover the impactful projects reshaping narratives across Kenya.
             </p>
           </div>
           
           {/* Featured Story */}
-          <div className="mb-12">
+          <div className="mb-8 sm:mb-12">
             <FeaturedStory {...featuredStories[0]} />
           </div>
           
           {/* Regular Stories Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {featuredStories.slice(1).map((story, index) => (
               <FeaturedStory key={index} {...story} />
             ))}
@@ -291,16 +302,29 @@ const EnhancedHeroSection: React.FC = () => {
 
       {/* User Intent Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="glass-effect rounded-2xl p-8 max-w-md w-full border border-slate-600 animate-fade-in">
+        <div 
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="intent-modal-title"
+        >
+          <div className="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full border border-slate-600 animate-fade-in relative">
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-gray-400" />
+            </button>
+            
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-gradient-to-br from-marigold to-terracotta rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-charcoal" />
               </div>
-              <h3 className="text-2xl font-bold font-montserrat gradient-text mb-2">
+              <h3 id="intent-modal-title" className="text-xl sm:text-2xl font-bold font-montserrat gradient-text mb-2">
                 Welcome to the Movement!
               </h3>
-              <p className="text-gray-400 font-inter">
+              <p className="text-sm sm:text-base text-gray-400 font-inter">
                 What brings you to our creative hub today?
               </p>
             </div>
@@ -338,17 +362,17 @@ const EnhancedHeroSection: React.FC = () => {
                 <button
                   key={option.intent}
                   onClick={() => handleIntentSelect(option.intent)}
-                  className={`w-full p-4 bg-gradient-to-r ${option.gradient} border ${option.border} rounded-lg text-left ${option.hover} transition-all duration-300 hover:scale-105 tilt-3d`}
+                  className={`w-full p-4 bg-gradient-to-r ${option.gradient} border ${option.border} rounded-xl text-left ${option.hover} transition-all duration-300 hover:scale-105 tilt-3d focus:outline-none focus:ring-2 focus:ring-marigold/50`}
                 >
-                  <h4 className={`font-inter font-semibold ${option.textColor} mb-1`}>{option.title}</h4>
-                  <p className="text-sm text-gray-400">{option.description}</p>
+                  <h4 className={`font-inter font-semibold text-base ${option.textColor} mb-1`}>{option.title}</h4>
+                  <p className="text-sm text-gray-400 leading-relaxed">{option.description}</p>
                 </button>
               ))}
             </div>
             
             <button
               onClick={() => setShowModal(false)}
-              className="w-full mt-6 text-gray-500 hover:text-gray-300 transition-colors font-inter"
+              className="w-full mt-6 text-gray-500 hover:text-gray-300 transition-colors font-inter text-sm underline focus:outline-none focus:text-gray-300"
             >
               Skip for now
             </button>
