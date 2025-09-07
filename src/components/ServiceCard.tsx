@@ -16,7 +16,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   gradient, 
   projects = "View Projects" 
 }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isFlipped] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   return (

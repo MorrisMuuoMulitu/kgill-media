@@ -30,7 +30,7 @@ export const useUserPreferences = () => {
     });
   }, []);
 
-  const updatePreference = (key: keyof UserPreferences, value: any) => {
+  const updatePreference = (key: keyof UserPreferences, value: string | boolean) => {
     setPreferences(prev => {
       const updated = { ...prev, [key]: value };
       localStorage.setItem(key, String(value));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Calendar, Eye, Play, BookmarkPlus } from 'lucide-react';
+import { ArrowRight, Eye, Play, BookmarkPlus } from 'lucide-react';
 
 interface FeaturedStoryProps {
   title: string;

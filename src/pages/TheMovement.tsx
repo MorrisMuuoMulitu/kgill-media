@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Users, Filter, Play } from 'lucide-react';
+import { Calendar, MapPin, Users } from 'lucide-react';
 
 const TheMovement = () => {
   const [activeFilter, setActiveFilter] = useState('all');

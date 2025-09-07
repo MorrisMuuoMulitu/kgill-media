@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
+import { Calendar, User, ArrowRight } from 'lucide-react';
 
 const TheFeed = () => {
   const [activeCategory, setActiveCategory] = useState('all');
