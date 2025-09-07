@@ -29,6 +29,7 @@ const Navigation = () => {
     { path: '/kgill-tv', label: 'KGILL TV' },
     { path: '/photography-videography', label: 'Services' },
     { path: '/workshops', label: 'Workshops' },
+    { path: '/blog', label: 'Blog' },
     { path: '/our-story', label: 'Our Story' },
     { path: '/get-involved', label: 'Get Involved' }
   ];

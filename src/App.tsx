@@ -12,6 +12,8 @@ import GetInvolved from './pages/GetInvolved';
 import KGTVPg from './pages/KGTVPg';
 import PhotographyVideographyPg from './pages/PhotographyVideographyPg';
 import WorkshopsPg from './pages/WorkshopsPg';
+import BlogPage from './pages/BlogPage';
+import BlogPostDetail from './pages/BlogPostDetail';
 import SocialProofTicker from './components/SocialProofTicker';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './components/Footer';
@@ -37,6 +39,8 @@ function App() {
             <Route path="/kgill-tv" element={<KGTVPg />} />
             <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
             <Route path="/workshops" element={<WorkshopsPg />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostDetail />} />
           </Routes>
           <SocialProofTicker />
           <Footer />
