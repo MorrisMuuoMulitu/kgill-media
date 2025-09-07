@@ -102,7 +102,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-slate-800 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 font-inter text-xs sm:text-sm text-center sm:text-left">
-            © 2024 Kgill+ Media Creative & Innovation Hub. All rights reserved.
+            © 2025 Kgill+ Media Creative & Innovation Hub. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm font-inter">
             Made with <Heart className="w-4 h-4 text-terracotta" /> in Kenya
