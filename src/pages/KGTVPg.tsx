@@ -384,7 +384,7 @@ const KGTVPg = () => {
                         <span className="px-2 py-1 bg-charcoal/50 text-gray-400 rounded-full text-xs">
                           {show.category}
                         </span>
-                        <button className="bg-white/10 border border-white/20 text-white px-3 py-1 rounded-lg text-xs font-inter font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-1 premium-hover-gold">
+                        <button className="btn-small premium-hover-gold">
                           <Play className="w-3 h-3" />
                           <span>Play</span>
                         </button>
