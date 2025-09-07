@@ -16,7 +16,6 @@ import TheFeed from './pages/TheFeed';
 import GetInvolved from './pages/GetInvolved';
 import KGTVPg from './pages/KGTVPg';
 import PhotographyVideographyPg from './pages/PhotographyVideographyPg';
-import KgillStudioPage from './pages/KgillStudioPage';
 import WorkshopsPg from './pages/WorkshopsPg';
 import BlogPage from './pages/BlogPage';
 import BlogPostDetail from './pages/BlogPostDetail';
