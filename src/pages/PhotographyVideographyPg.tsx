@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, Video, Users, Heart, Star, Play, Calendar, MapPin, Mail, Phone, Portrait, Home, Award, ArrowRight, ExternalLink } from 'lucide-react';
+import { Camera, Video, Users, Heart, Star, Play, Calendar, MapPin, Mail, Phone, User, Home, Award, ArrowRight, ExternalLink } from 'lucide-react';
 
 const PhotographyVideographyPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -310,7 +310,7 @@ const PhotographyVideographyPg = () => {
             <div className="premium-card premium-hover-gold">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0">
-                  <Portrait className="w-6 h-6 text-charcoal" />
+                  <User className="w-6 h-6 text-charcoal" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-montserrat">Portrait Headshots</h3>
