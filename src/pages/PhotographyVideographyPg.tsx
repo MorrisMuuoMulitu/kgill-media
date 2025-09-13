@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Video, Users, Heart, Star, Play, Calendar, MapPin, Mail, Phone, User, Home, Award, ArrowRight, ExternalLink, X, Menu, Sparkles, Crown, Target, Zap } from 'lucide-react';
+import { Camera, Video, Users, Heart, Star, Play, Calendar, MapPin, Mail, Phone, User, Home, Award, ArrowRight, ExternalLink, X, Menu, Sparkles, Crown, Target, Zap, Clock } from 'lucide-react';
 
 const PhotographyVideographyPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
