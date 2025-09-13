@@ -19,6 +19,7 @@ import PhotographyVideographyPg from './pages/PhotographyVideographyPg';
 import WorkshopsPg from './pages/WorkshopsPg';
 import BlogPage from './pages/BlogPage';
 import BlogPostDetail from './pages/BlogPostDetail';
+import StudioPage from './pages/StudioPage';
 import SocialProofTicker from './components/SocialProofTicker';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
@@ -46,6 +47,7 @@ function App() {
                   <Route path="/get-involved" element={<GetInvolved />} />
                   <Route path="/kgill-tv" element={<KGTVPg />} />
                   <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
+                  <Route path="/studio" element={<StudioPage />} />
                   <Route path="/workshops" element={<WorkshopsPg />} />
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:id" element={<BlogPostDetail />} />
