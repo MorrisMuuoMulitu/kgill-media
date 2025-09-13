@@ -343,6 +343,199 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
+      {/* Supreme Portrait Headshots Gallery - Royal Treatment */}
+      <section className="py-32 bg-gradient-to-br from-slate-900 via-charcoal to-slate-900 relative overflow-hidden">
+        {/* Royal Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.05)_0%,transparent_70%)]"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gold-gradient blur-3xl opacity-15 animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-marigold blur-3xl opacity-10 animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center justify-center mb-6">
+              <Crown className="w-10 h-10 text-gold-gradient mr-4" />
+              <span className="px-8 py-4 bg-gold-gradient text-charcoal rounded-full text-xl font-bold tracking-wider shadow-2xl">
+                ROYAL PORTRAITURE
+              </span>
+              <Crown className="w-10 h-10 text-gold-gradient ml-4" />
+            </div>
+            
+            <h2 className="display-2 font-serif mb-8 text-white leading-tight">
+              Supreme <span className="text-gold-gradient">Headshots</span>
+            </h2>
+            
+            <p className="text-3xl text-gray-300 font-inter max-w-4xl mx-auto leading-relaxed">
+              Professional portraits that elevate your personal brand and command attention
+            </p>
+          </div>
+          
+          {/* Supreme Headshots Showcase - Museum-Quality Display */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Featured Headshot - Largest Display */}
+            <div 
+              className="premium-card premium-hover-gold group relative overflow-hidden rounded-4xl cursor-pointer transform transition-all duration-700 hover:-translate-y-6 shadow-3xl hover:shadow-4xl"
+              onClick={() => {
+                setSelectedImage({
+                  title: "Executive Leadership Portrait",
+                  image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110",
+                  type: "Executive Portrait",
+                  year: "2024"
+                });
+                setShowModal(true);
+              }}
+            >
+              {/* Supreme Background Image - Full Resolution */}
+              <div 
+                className="w-full h-[700px] bg-cover bg-center bg-no-repeat rounded-4xl transition-all duration-1000 group-hover:scale-110"
+                style={{ backgroundImage: `url(https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110)` }}
+              ></div>
+              
+              {/* Supreme Light Effect - Museum Quality */}
+              <div className="absolute inset-0 rounded-4xl opacity-0 group-hover:opacity-40 transition-opacity duration-700">
+                <div className="w-full h-full rounded-4xl border-8 border-transparent bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 blur-3xl opacity-0 group-hover:opacity-80 animate-pulse"></div>
+              </div>
+              
+              {/* Supreme Overlay - Professional Finish */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/70 to-transparent opacity-90 group-hover:opacity-70 transition-all duration-700 ease-out rounded-4xl"></div>
+              
+              {/* Supreme Information Panel */}
+              <div className="absolute bottom-0 left-0 right-0 p-12 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-300">
+                <div className="max-w-2xl">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-4 h-4 rounded-full bg-gold-gradient"></div>
+                    <span className="text-2xl font-bold text-gold-gradient tracking-wider">FEATURED PORTRAIT</span>
+                  </div>
+                  
+                  <h3 className="text-5xl font-bold font-serif text-white mb-6 drop-shadow-2xl leading-tight">
+                    Executive Leadership Portrait
+                  </h3>
+                  
+                  <div className="flex flex-wrap gap-8 text-gray-300">
+                    <span className="flex items-center gap-3">
+                      <User className="w-6 h-6 text-gold-gradient" />
+                      <span className="text-2xl font-bold">Executive Portrait</span>
+                    </span>
+                    <span className="flex items-center gap-3">
+                      <Calendar className="w-6 h-6 text-gold-gradient" />
+                      <span className="text-2xl font-bold">2024</span>
+                    </span>
+                  </div>
+                  
+                  <div className="absolute top-8 right-8">
+                    <div className="px-6 py-3 bg-gold-gradient text-charcoal rounded-full text-lg font-bold shadow-2xl">
+                      <span className="flex items-center gap-2">
+                        <Zap className="w-5 h-5" />
+                        <span>Premium</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Supreme Hover Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/40 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-4xl"></div>
+            </div>
+            
+            {/* Secondary Headshots Grid - Curated Selection */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {[
+                { 
+                  id: 2, 
+                  src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276", 
+                  title: "Corporate Professional", 
+                  type: "Business Portrait" 
+                },
+                { 
+                  id: 3, 
+                  src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859", 
+                  title: "Creative Director", 
+                  type: "Artistic Portrait" 
+                },
+                { 
+                  id: 4, 
+                  src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251", 
+                  title: "Senior Executive", 
+                  type: "Leadership Portrait" 
+                },
+                { 
+                  id: 5, 
+                  src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300", 
+                  title: "Professional Artist", 
+                  type: "Creative Portrait" 
+                }
+              ].map((headshot) => (
+                <div 
+                  key={headshot.id}
+                  className="premium-card premium-hover-gold group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-500 hover:-translate-y-3 shadow-2xl hover:shadow-3xl"
+                  onClick={() => {
+                    setSelectedImage({
+                      title: headshot.title,
+                      image: headshot.src,
+                      type: headshot.type,
+                      year: "2024"
+                    });
+                    setShowModal(true);
+                  }}
+                >
+                  {/* Secondary Image Container */}
+                  <div 
+                    className="w-full h-80 bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${headshot.src})` }}
+                  ></div>
+                  
+                  {/* Secondary Light Effect */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                    <div className="w-full h-full rounded-3xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-0 group-hover:opacity-60 animate-pulse"></div>
+                  </div>
+                  
+                  {/* Secondary Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500 ease-out rounded-3xl"></div>
+                  
+                  {/* Secondary Information */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <h3 className="text-2xl font-bold font-serif text-white mb-3 drop-shadow-xl">
+                      {headshot.title}
+                    </h3>
+                    <div className="flex justify-between items-center text-gray-300">
+                      <span className="text-lg font-bold">{headshot.type}</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-gold-gradient"></span>
+                        <span className="text-lg font-bold">2024</span>
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Secondary Hover Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-3xl"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Supreme CTA - Exclusive Offer */}
+          <div className="text-center mt-24">
+            <div className="relative inline-block">
+              <div className="absolute -inset-8 bg-gold-gradient blur-2xl opacity-75 rounded-full animate-pulse"></div>
+              <button 
+                className="btn-primary px-12 py-6 premium-hover-gold relative flex items-center gap-4 text-2xl font-bold shadow-2xl hover:shadow-3xl"
+                onClick={() => {
+                  // Scroll to contact section or open modal
+                }}
+              >
+                <span>Schedule Your Supreme Session</span>
+                <ArrowRight className="w-8 h-8" />
+              </button>
+            </div>
+            
+            <p className="text-2xl text-gray-400 font-inter mt-8 max-w-3xl mx-auto">
+              Limited slots available for premium portrait sessions. Book now to secure your place in our royal clientele roster.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Divine Portfolio - Sacred Gallery */}
       <section className="py-32 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
