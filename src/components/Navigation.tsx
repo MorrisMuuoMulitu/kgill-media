@@ -21,7 +21,7 @@ const Navigation = () => {
   const mainNavLinks = [
     { path: '/our-story', label: 'Our Story' },
     { path: '/what-we-do', label: 'What We Do' },
-    { path: '/photography-videography', label: 'Photography & Video' },
+    { path: '/photography-videography', label: 'Kgill Studio' },
     { path: '/kgill-tv', label: 'KGILL TV' }
   ];
 

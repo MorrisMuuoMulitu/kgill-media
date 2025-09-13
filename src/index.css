@@ -1276,3 +1276,23 @@ select:focus-visible {
     display: none !important;
   }
 }
+
+/* Add to your global CSS */
+@keyframes sparkles {
+  0% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.animate-bounce {
+  animation: sparkles 1.5s infinite;
+}
+
+.shadow-gold {
+  box-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.25);
+}
+
+/* Optional: Add smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
