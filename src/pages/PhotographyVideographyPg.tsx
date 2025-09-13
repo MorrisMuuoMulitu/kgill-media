@@ -161,7 +161,7 @@ const PhotographyVideographyPg = () => {
           </div>
           
           {/* Studio Sessions Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 lg:gap-12 p-4 md:p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 p-4 md:p-6">
             {/* Each card is now a masterpiece */}
             {[
               { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg?updatedAt=1757778687521", title: "Midnight Bass" },
@@ -173,13 +173,7 @@ const PhotographyVideographyPg = () => {
             ].map((session) => (
               <div
                 key={session.id}
-                className="group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 hover:rotate-[1deg] shadow-xl hover:shadow-2xl hover:shadow-gold/10 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border border-slate-700/30"
-                style={{
-                  backgroundImage: `url(${session.src})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: '450px', // Base height
-                }}
+                className="group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 hover:-rotate-1 shadow-2xl hover:shadow-3xl hover:shadow-gold/20 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
                 onClick={() => {
                   setSelectedImage({
                     title: session.title,
@@ -190,67 +184,79 @@ const PhotographyVideographyPg = () => {
                   setShowModal(true);
                 }}
               >
+                {/* Background Image Container - Full size, not cropped */}
+                <div 
+                  className="w-full h-96 md:h-[500px] bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${session.src})` }}
+                ></div>
+                
                 {/* Animated Gold Border Glow (Pulsing) */}
                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="w-full h-full rounded-3xl border-2 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-0 group-hover:opacity-60 animate-pulse"></div>
+                  <div className="w-full h-full rounded-3xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-2xl opacity-0 group-hover:opacity-70 animate-pulse"></div>
                 </div>
 
                 {/* Subtle Audio Waveform Overlay (SVG Background) */}
-                <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-700">
+                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-                    <path d="M0,50 C20,30 40,70 60,40 C80,10 100,60 100,50 L100,100 L0,100 Z" fill="currentColor" className="text-yellow-300/20" />
+                    <path d="M0,50 C20,30 40,70 60,40 C80,10 100,60 100,50 L100,100 L0,100 Z" fill="currentColor" className="text-yellow-300/30" />
                   </svg>
                 </div>
 
                 {/* Dark Overlay with Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-all duration-600 ease-out"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-600 ease-out rounded-3xl"></div>
 
                 {/* Floating Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-200">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white tracking-wide mb-1 drop-shadow-lg">
+                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-200">
+                  <h3 className="text-3xl md:text-4xl font-bold text-white tracking-wide mb-2 drop-shadow-2xl">
                     {session.title}
                   </h3>
-                  <p className="text-yellow-200 text-sm font-light tracking-wide drop-shadow">
+                  <p className="text-yellow-200 text-lg font-light tracking-wide drop-shadow-lg">
                     Studio Session • Immersive Sound Design
                   </p>
                 </div>
 
                 {/* Sparkling Camera Icon */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300 scale-75 group-hover:scale-125">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300 scale-90 group-hover:scale-150">
                   <div className="relative">
-                    <Camera className="w-12 h-12 md:w-16 md:h-16 text-white drop-shadow-lg" />
+                    <Camera className="w-16 h-16 md:w-20 md:h-20 text-white drop-shadow-2xl" />
                     {/* Animated Sparkles */}
-                    {[...Array(5)].map((_, i) => (
+                    {[...Array(8)].map((_, i) => (
                       <div
                         key={i}
-                        className="absolute w-1 h-1 bg-yellow-300 rounded-full animate-bounce"
+                        className="absolute w-2 h-2 bg-yellow-300 rounded-full animate-bounce"
                         style={{
-                          top: `${-10 + Math.random() * 20}%`,
-                          left: `${-10 + Math.random() * 20}%`,
-                          animationDelay: `${i * 0.2}s`,
-                          animationDuration: '1.5s',
+                          top: `${-20 + Math.random() * 40}%`,
+                          left: `${-20 + Math.random() * 40}%`,
+                          animationDelay: `${i * 0.15}s`,
+                          animationDuration: '2s',
                         }}
                       ></div>
                     ))}
                   </div>
                 </div>
 
-                {/* Parallax Depth Layer (Subtle Movement) */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-800"
-                  style={{
-                    backgroundImage: `radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.1) 100%)`,
-                  }}
-                ></div>
+                {/* Rating Stars */}
+                <div className="absolute top-6 right-6 flex items-center gap-2 bg-black/40 backdrop-blur-sm rounded-full px-3 py-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                  <span className="text-white text-sm ml-2 font-bold">5.0</span>
+                </div>
+
+                {/* Hover Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-3xl"></div>
               </div>
             ))}
           </div>
           
-          <div className="text-center mt-12">
-            <button className="btn-primary px-8 py-4 premium-hover-gold flex items-center gap-3 mx-auto">
-              <span>View Full Portfolio</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
+          <div className="text-center mt-16">
+            <div className="relative inline-block">
+              <div className="absolute -inset-4 bg-gold-gradient blur-lg opacity-75 rounded-full animate-pulse"></div>
+              <button className="btn-primary px-10 py-5 premium-hover-gold relative flex items-center gap-3 text-xl font-bold">
+                <span>View Full Portfolio</span>
+                <ArrowRight className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
