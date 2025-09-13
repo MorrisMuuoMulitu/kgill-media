@@ -235,14 +235,6 @@ const PhotographyVideographyPg = () => {
                   </div>
                 </div>
 
-                {/* Rating Stars */}
-                <div className="absolute top-6 right-6 flex items-center gap-2 bg-black/40 backdrop-blur-sm rounded-full px-3 py-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
-                  <span className="text-white text-sm ml-2 font-bold">5.0</span>
-                </div>
-
                 {/* Hover Effect Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-3xl"></div>
               </div>
@@ -334,8 +326,8 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Headshots Gallery */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-8">
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:-rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Professional Headshot',
@@ -348,17 +340,21 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110" 
                     alt="Professional Headshot 1"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Portrait
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Professional Headshot</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
                 
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Corporate Headshot',
@@ -371,17 +367,21 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276" 
                     alt="Corporate Headshot"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Corporate
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Corporate Headshot</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
                 
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:-rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Business Headshot',
@@ -394,17 +394,21 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859" 
                     alt="Business Headshot"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Business
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Business Headshot</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
                 
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Executive Headshot',
@@ -417,17 +421,21 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251" 
                     alt="Executive Headshot"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Executive
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Executive Headshot</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
                 
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:-rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Professional Portrait',
@@ -440,17 +448,21 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300" 
                     alt="Professional Portrait"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Portrait
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Professional Portrait</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
                 
-                <div className="relative rounded-lg overflow-hidden aspect-[3/4] cursor-pointer group" 
+                <div className="relative rounded-xl overflow-hidden aspect-[3/4] cursor-pointer group transform transition-all duration-500 hover:scale-105 hover:rotate-1 shadow-xl hover:shadow-2xl" 
                      onClick={() => {
                        setSelectedImage({
                          title: 'Headshot Session',
@@ -463,14 +475,18 @@ const PhotographyVideographyPg = () => {
                   <img 
                     src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot5.jpg?updatedAt=1757781884664" 
                     alt="Headshot Session"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
                       Session
                     </span>
                   </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-100 group-hover:opacity-100 transition-all duration-500">
+                    <p className="text-lg font-bold drop-shadow-xl">Headshot Session</p>
+                  </div>
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-gold-gradient rounded-xl transition-all duration-500"></div>
                 </div>
               </div>
             </div>
