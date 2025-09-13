@@ -375,7 +375,7 @@ const PhotographyVideographyPg = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Featured Headshot - Largest Display */}
             <div 
-              className="premium-card premium-hover-gold group relative overflow-hidden rounded-4xl cursor-pointer transform transition-all duration-700 hover:-translate-y-6 shadow-3xl hover:shadow-4xl"
+              className="premium-card premium-hover-gold group relative overflow-hidden rounded-4xl cursor-pointer transform transition-all duration-700 hover:-translate-y-8 shadow-4xl hover:shadow-5xl"
               onClick={() => {
                 setSelectedImage({
                   title: "Executive Leadership Portrait",
@@ -388,27 +388,29 @@ const PhotographyVideographyPg = () => {
             >
               {/* Supreme Background Image - Full Resolution */}
               <div 
-                className="w-full h-[700px] bg-cover bg-center bg-no-repeat rounded-4xl transition-all duration-1000 group-hover:scale-110"
+                className="w-full h-[750px] bg-cover bg-center bg-no-repeat rounded-4xl transition-all duration-1000 group-hover:scale-110 filter group-hover:brightness-110"
                 style={{ backgroundImage: `url(https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110)` }}
               ></div>
               
               {/* Supreme Light Effect - Museum Quality */}
-              <div className="absolute inset-0 rounded-4xl opacity-0 group-hover:opacity-40 transition-opacity duration-700">
-                <div className="w-full h-full rounded-4xl border-8 border-transparent bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 blur-3xl opacity-0 group-hover:opacity-80 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-4xl opacity-0 group-hover:opacity-50 transition-opacity duration-700">
+                <div className="w-full h-full rounded-4xl border-8 border-transparent bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 blur-3xl opacity-0 group-hover:opacity-90 animate-pulse"></div>
               </div>
               
               {/* Supreme Overlay - Professional Finish */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/70 to-transparent opacity-90 group-hover:opacity-70 transition-all duration-700 ease-out rounded-4xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/80 to-transparent opacity-95 group-hover:opacity-80 transition-all duration-700 ease-out rounded-4xl"></div>
               
               {/* Supreme Information Panel */}
               <div className="absolute bottom-0 left-0 right-0 p-12 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-300">
                 <div className="max-w-2xl">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-4 h-4 rounded-full bg-gold-gradient"></div>
-                    <span className="text-2xl font-bold text-gold-gradient tracking-wider">FEATURED PORTRAIT</span>
+                    <div className="w-6 h-6 rounded-full bg-gold-gradient flex items-center justify-center animate-pulse">
+                      <Crown className="w-4 h-4 text-charcoal" />
+                    </div>
+                    <span className="text-2xl font-bold text-gold-gradient tracking-wider animate-pulse">FEATURED ROYAL PORTRAIT</span>
                   </div>
                   
-                  <h3 className="text-5xl font-bold font-serif text-white mb-6 drop-shadow-2xl leading-tight">
+                  <h3 className="text-5xl font-bold font-serif text-white mb-6 drop-shadow-2xl leading-tight animate-fade-in-up">
                     Executive Leadership Portrait
                   </h3>
                   
@@ -424,7 +426,7 @@ const PhotographyVideographyPg = () => {
                   </div>
                   
                   <div className="absolute top-8 right-8">
-                    <div className="px-6 py-3 bg-gold-gradient text-charcoal rounded-full text-lg font-bold shadow-2xl">
+                    <div className="px-6 py-3 bg-gold-gradient text-charcoal rounded-full text-lg font-bold shadow-2xl animate-bounce">
                       <span className="flex items-center gap-2">
                         <Zap className="w-5 h-5" />
                         <span>Premium</span>
@@ -435,7 +437,23 @@ const PhotographyVideographyPg = () => {
               </div>
               
               {/* Supreme Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/40 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-4xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-gold/50 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-700 rounded-4xl"></div>
+              
+              {/* Floating Sparkles */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-3 h-3 rounded-full bg-gold-gradient animate-bounce"
+                    style={{
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      animationDelay: `${i * 0.2}s`,
+                      animationDuration: `${2 + Math.random() * 3}s`,
+                    }}
+                  ></div>
+                ))}
+              </div>
             </div>
             
             {/* Secondary Headshots Grid - Curated Selection */}
@@ -465,10 +483,10 @@ const PhotographyVideographyPg = () => {
                   title: "Professional Artist", 
                   type: "Creative Portrait" 
                 }
-              ].map((headshot) => (
+              ].map((headshot, index) => (
                 <div 
                   key={headshot.id}
-                  className="premium-card premium-hover-gold group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-500 hover:-translate-y-3 shadow-2xl hover:shadow-3xl"
+                  className="premium-card premium-hover-gold group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-500 hover:-translate-y-4 shadow-2xl hover:shadow-3xl"
                   onClick={() => {
                     setSelectedImage({
                       title: headshot.title,
@@ -478,20 +496,23 @@ const PhotographyVideographyPg = () => {
                     });
                     setShowModal(true);
                   }}
+                  style={{
+                    animationDelay: `${index * 0.1}s`
+                  }}
                 >
                   {/* Secondary Image Container */}
                   <div 
-                    className="w-full h-80 bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-700 group-hover:scale-105"
+                    className="w-full h-80 bg-cover bg-center bg-no-repeat rounded-3xl transition-all duration-700 group-hover:scale-110 filter group-hover:brightness-110"
                     style={{ backgroundImage: `url(${headshot.src})` }}
                   ></div>
                   
                   {/* Secondary Light Effect */}
-                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-                    <div className="w-full h-full rounded-3xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-0 group-hover:opacity-60 animate-pulse"></div>
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+                    <div className="w-full h-full rounded-3xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-2xl opacity-0 group-hover:opacity-70 animate-pulse"></div>
                   </div>
                   
                   {/* Secondary Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-500 ease-out rounded-3xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/60 to-transparent opacity-85 group-hover:opacity-70 transition-all duration-500 ease-out rounded-3xl"></div>
                   
                   {/* Secondary Information */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
@@ -508,7 +529,23 @@ const PhotographyVideographyPg = () => {
                   </div>
                   
                   {/* Secondary Hover Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-3xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/40 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-3xl"></div>
+                  
+                  {/* Floating Sparkles */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700">
+                    {[...Array(6)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-2 h-2 rounded-full bg-gold-gradient animate-bounce"
+                        style={{
+                          top: `${Math.random() * 100}%`,
+                          left: `${Math.random() * 100}%`,
+                          animationDelay: `${i * 0.3}s`,
+                          animationDuration: `${1.5 + Math.random() * 2}s`,
+                        }}
+                      ></div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -885,41 +922,6 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
-      {/* Divine Footer - Eternal Blessing */}
-      <footer className="py-20 bg-charcoal border-t border-gold-gradient/20">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center">
-            <div className="mb-10">
-              <div className="inline-flex items-center justify-center mb-6">
-                <Crown className="w-12 h-12 text-gold-gradient mr-4" />
-                <h2 className="text-4xl font-bold font-serif text-white">KGILL STUDIO</h2>
-                <Crown className="w-12 h-12 text-gold-gradient ml-4" />
-              </div>
-              <p className="text-2xl text-gray-400 font-inter max-w-2xl mx-auto">
-                Where divine vision meets eternal artistry
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap justify-center gap-8 mb-12">
-              {['Home', 'About', 'Services', 'Portfolio', 'Contact'].map((item) => (
-                <a 
-                  key={item}
-                  href="#" 
-                  className="text-xl text-gray-400 hover:text-gold-gradient transition-colors duration-300"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-            
-            <div className="border-t border-gold-gradient/20 pt-10">
-              <p className="text-gray-500 text-lg">
-                © 2024 KGILL STUDIO. All divine rights reserved. Crafted with celestial love.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Divine Lightbox Modal */}
       {showModal && (
