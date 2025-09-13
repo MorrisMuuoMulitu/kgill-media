@@ -212,10 +212,10 @@ const StudioPage = () => {
                 
                 {/* Information Panel */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                  <h3 className="text-xl font-bold font-inter text-white mb-2 drop-shadow-lg">{item.title}</h3>
+                  <h3 className="text-xl font-bold font-serif text-white mb-2 drop-shadow-lg">{item.title}</h3>
                   <div className="flex justify-between items-center text-gray-300">
-                    <span className="text-sm font-medium uppercase tracking-wider">{item.type}</span>
-                    <span className="text-sm">{item.year}</span>
+                    <span className="text-sm font-medium uppercase tracking-wider font-inter">{item.type}</span>
+                    <span className="text-sm font-inter">{item.year}</span>
                   </div>
                 </div>
                 
@@ -237,7 +237,7 @@ const StudioPage = () => {
           <div className="w-8 h-8 rounded-full bg-gold-gradient flex items-center justify-center">
             <ImageIcon className="w-4 h-4 text-charcoal" />
           </div>
-          <span className="text-white font-bold text-lg">KGILL STUDIO</span>
+          <span className="text-white font-bold text-lg font-serif">KGILL STUDIO</span>
         </div>
       </div>
 
@@ -291,21 +291,21 @@ const StudioPage = () => {
               {/* Image Information */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/95 via-charcoal/80 to-transparent p-8 backdrop-blur-sm">
                 <div className="max-w-5xl mx-auto">
-                  <h2 className="text-3xl md:text-4xl font-bold font-inter text-white mb-4 drop-shadow-2xl">
+                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-white mb-4 drop-shadow-2xl">
                     {selectedImage.title}
                   </h2>
                   <div className="flex flex-wrap gap-6 text-gray-300">
                     <span className="flex items-center gap-3">
                       <span className="w-3 h-3 rounded-full bg-gold-gradient"></span>
-                      <span className="font-bold text-lg">{selectedImage.type}</span>
+                      <span className="font-bold text-lg font-inter">{selectedImage.type}</span>
                     </span>
                     <span className="flex items-center gap-3">
                       <Calendar className="w-5 h-5 text-gold-gradient" />
-                      <span className="font-bold text-lg">{selectedImage.year}</span>
+                      <span className="font-bold text-lg font-inter">{selectedImage.year}</span>
                     </span>
                     <span className="flex items-center gap-3">
                       <User className="w-5 h-5 text-gold-gradient" />
-                      <span className="font-bold text-lg">{selectedImage.client}</span>
+                      <span className="font-bold text-lg font-inter">{selectedImage.client}</span>
                     </span>
                   </div>
                 </div>
