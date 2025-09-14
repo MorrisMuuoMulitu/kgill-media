@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, ChevronLeft, ChevronRight, Grid, Image as ImageIcon, User, ShoppingBag, Calendar, Award } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Grid, Image as ImageIcon, User, ShoppingBag, Calendar, Award, Menu, Sparkles, Crown, Target, Zap, Clock } from 'lucide-react';
 
 const StudioPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -188,17 +188,20 @@ const StudioPage = () => {
       {/* Main Gallery */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-12">
         <div className="masonry-grid">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, index) => (
             <div 
               key={item.id}
               className="masonry-item group relative overflow-hidden rounded-2xl cursor-pointer"
               onClick={() => setSelectedImage(item)}
+              style={{
+                animationDelay: `${index * 0.1}s`
+              }}
             >
               <div className="relative overflow-hidden rounded-2xl">
                 <img 
                   src={item.image} 
                   alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter group-hover:brightness-110"
                   loading="lazy"
                 />
                 
@@ -207,21 +210,21 @@ const StudioPage = () => {
                 
                 {/* Chrome Border Effect */}
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="w-full h-full rounded-2xl border-2 border-transparent bg-gradient-to-r from-chrome via-gold-gradient to-chrome blur-sm opacity-0 group-hover:opacity-70 animate-pulse"></div>
+                  <div className="w-full h-full rounded-2xl border-2 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-0 group-hover:opacity-60 animate-pulse"></div>
                 </div>
                 
                 {/* Information Panel */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+                <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-200">
                   <h3 className="text-xl font-bold font-serif text-white mb-2 drop-shadow-lg">{item.title}</h3>
-                  <div className="flex justify-between items-center text-gray-300">
-                    <span className="text-sm font-medium uppercase tracking-wider font-inter">{item.type}</span>
-                    <span className="text-sm font-inter">{item.year}</span>
+                  <div className="flex justify-between items-center text-sm text-gray-300">
+                    <span className="font-inter">{item.type}</span>
+                    <span className="font-inter">{item.year}</span>
                   </div>
                 </div>
                 
                 {/* Category Badge */}
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="px-3 py-1 bg-charcoal/80 backdrop-blur-sm text-white rounded-full text-xs font-bold uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-charcoal/80 backdrop-blur-sm text-white rounded-full text-xs font-bold font-inter uppercase tracking-wider">
                     {item.type}
                   </span>
                 </div>
@@ -256,7 +259,7 @@ const StudioPage = () => {
               onClick={() => setSelectedImage(null)}
               className="absolute -top-16 right-0 text-white hover:text-gold-gradient transition-colors z-10 p-3 rounded-full bg-charcoal/50 hover:bg-charcoal/80 backdrop-blur-lg"
             >
-              <X className="w-8 h-8" />
+              <X className="w-10 h-10" />
             </button>
             
             {/* Navigation Arrows */}
