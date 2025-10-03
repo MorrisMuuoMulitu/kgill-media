@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, MapPin, Mail, Phone, User, ArrowRight, X, Heart, Users } from 'lucide-react';
+import { Aperture, Bike, Building2, CalendarDays, Camera, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
 import BlogList from '../components/BlogList';
+import Carousel from '../components/Carousel';
+import LazyImage from '../components/LazyImage';
+import SkeletonLoader from '../components/SkeletonLoader';
 
 const PhotographyVideographyPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -13,30 +16,16 @@ const PhotographyVideographyPg = () => {
   const [bookingDate, setBookingDate] = useState('');
   const [bookingTime, setBookingTime] = useState('');
   const [openFAQs, setOpenFAQs] = useState(Array(8).fill(false));
+  const [loading, setLoading] = useState(true);
 
-  // Add keyboard event listener for ESC key to close modal
   useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') { // ESC key
-        setShowModal(false);
-        setShowFullCollectionModal(false);
-      }
-    };
-    
-    if (showModal || showFullCollectionModal) {
-      document.addEventListener('keydown', handleEsc);
-    }
-    
-    return () => {
-      document.removeEventListener('keydown', handleEsc);
-    };
-  }, [showModal, showFullCollectionModal]);
-
-  // Helper function to get higher resolution image URLs for lightbox
-  const getHighResImageUrl = (url) => {
-    // Replace w=800 with w=1920 for higher resolution
-    return url.replace('w=800', 'w=1920');
-  };
+    console.log("Component mounted, setting loading to true");
+    const timer = setTimeout(() => {
+      setLoading(false);
+      console.log("Loading complete, setting loading to false");
+    }, 1500); // Simulate loading for 1.5 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   // Services data
   const services = [
@@ -44,7 +33,7 @@ const PhotographyVideographyPg = () => {
       id: 'studio',
       category: 'Personal',
       title: 'Studio Photography',
-      icon: <Camera className="w-8 h-8" />,
+      icon: <Aperture className="w-8 h-8" />,
       description: 'Professional in-studio portrait and commercial photography',
       features: [
         'Portrait Headshots',
@@ -58,7 +47,7 @@ const PhotographyVideographyPg = () => {
       id: 'wedding',
       category: 'Celeations',
       title: 'Wedding Photography & Videography',
-      icon: <Heart className="w-8 h-8" />,
+      icon: <HeartHandshake className="w-8 h-8" />,
       description: 'Full-day wedding coverage with customizable packages',
       features: [
         'Pre-wedding Shoots',
@@ -72,7 +61,7 @@ const PhotographyVideographyPg = () => {
       id: 'corporate',
       category: 'Business',
       title: 'Corporate Photography',
-      icon: <Users className="w-8 h-8" />,
+      icon: <Building2 className="w-8 h-8" />,
       description: 'Professional business photography for brands and teams',
       features: [
         'Headshots',
@@ -86,7 +75,7 @@ const PhotographyVideographyPg = () => {
       id: 'fashion',
       category: 'Creative',
       title: 'Fashion Photography',
-      icon: <User className="w-8 h-8" />,
+      icon: <Shirt className="w-8 h-8" />,
       description: 'Fashion shoots highlighting diverse styles and cultural expressions',
       features: [
         'Designer Collaborations',
@@ -100,7 +89,7 @@ const PhotographyVideographyPg = () => {
       id: 'real-estate',
       category: 'Commercial',
       title: 'Real Estate Photography',
-      icon: <MapPin className="w-8 h-8" />,
+      icon: <Home className="w-8 h-8" />,
       description: 'Professional property listing photos that sell',
       features: [
         'Interior Photography',
@@ -114,7 +103,7 @@ const PhotographyVideographyPg = () => {
       id: 'events',
       category: 'Entertainment',
       title: 'Event Coverage',
-      icon: <ArrowRight className="w-8 h-8" />,
+      icon: <CalendarDays className="w-8 h-8" />,
       description: 'Comprehensive coverage of festivals, galas, and cultural events',
       features: [
         'Award Shows',
@@ -128,7 +117,7 @@ const PhotographyVideographyPg = () => {
       id: 'sports',
       category: 'Specialized',
       title: 'Sports Photography',
-      icon: <Camera className="w-8 h-8" />,
+      icon: <Bike className="w-8 h-8" />,
       description: 'Action shots capturing sports and competition moments',
       features: [
         'Motorsports Coverage',
@@ -333,12 +322,6 @@ const PhotographyVideographyPg = () => {
         
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-gold-gradient text-charcoal rounded-full text-sm font-bold tracking-wider">
-                KGILL+ STUDIO
-              </span>
-            </div>
-            
             <h1 className="display-1 font-orbitron mb-6 leading-tight text-cyan animate-fade-in-up">
               <span className="block">KGILL+ STUDIO</span>
             </h1>
@@ -382,10 +365,6 @@ const PhotographyVideographyPg = () => {
                 State-of-the-art equipment and editing software for quality images.
               </p>
               
-              <button className="btn-primary px-8 py-4 premium-hover-gold flex items-center gap-3">
-                <span>Book Your Studio Session</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
             </div>
             
             <div className="relative rounded-2xl overflow-hidden">
@@ -423,7 +402,7 @@ const PhotographyVideographyPg = () => {
         
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Our Services</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Capture Your Moments, Tell Your Story</h2>
             <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto">
               Professional photography services tailored to your unique needs
             </p>
@@ -553,7 +532,7 @@ const PhotographyVideographyPg = () => {
       <section className="py-20 bg-charcoal texture-subtle">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Studio Sessions</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Craft Your Image, Define Your Brand</h2>
             <p className="text-2xl text-gray-400 font-inter max-w-3xl mx-auto">
               Create a strong professional brand image that showcases your unique style and personality
             </p>
@@ -577,10 +556,6 @@ const PhotographyVideographyPg = () => {
                 From LinkedIn headshots to e-commerce product photos, we've got you covered with professional guidance.
               </p>
               
-              <button className="btn-primary px-8 py-4 premium-hover-gold flex items-center gap-3">
-                <span>Book Your Studio Session</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
             </div>
             
             <div className="relative rounded-2xl overflow-hidden">
@@ -605,7 +580,7 @@ const PhotographyVideographyPg = () => {
           {/* Studio Sessions Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 p-2 sm:p-4">
             {/* Each card is now a masterpiece */}
-            {[
+            {[ 
               { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg?updatedAt=1757778687521", title: "Midnight Bass" },
               { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg?updatedAt=1757778686276", title: "Vocal Layers" },
               { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg?updatedAt=1757778686459", title: "Synth Dreams" },
@@ -716,7 +691,7 @@ const PhotographyVideographyPg = () => {
         </svg>
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="display-2 font-montserrat mb-6 epic-text bg-gradient-to-r from-gold-gradient-start via-terracotta to-marigold bg-clip-text text-transparent animate-gradient-move">Specialized Services</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text bg-gradient-to-r from-gold-gradient-start via-terracotta to-marigold bg-clip-text text-transparent animate-gradient-move">Expertise for Every Occasion</h2>
             <p className="text-2xl text-gray-300 font-inter max-w-3xl mx-auto animate-fade-in-up">
               Expertise in capturing life's most important moments
             </p>
@@ -739,64 +714,22 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
                 A valuable tool for creating a strong first impression, showcasing professionalism, and building trust with potential clients or employers. An essential marketing tool for individuals and businesses alike.
               </p>
-              <div className="mt-4 mb-8">
-                <button className="btn-primary flex items-center gap-2 text-sm">
-                  <span>Book Your Headshot</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
               
               {/* Massive Full-Screen Headshots Gallery */}
               <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">EXCLUSIVE HEADSHOT COLLECTION</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276", title: "Corporate Headshot" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781", title: "Artist Portrait" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251", title: "Business Professional" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot6.jpg?updatedAt=1757781885957", title: "Creative Professional" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot8.jpg?updatedAt=1757781885499", title: "Industry Leader" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300", title: "Executive Portrait" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot5.jpg?updatedAt=1757781884664", title: "Professional Headshot" },
-                    { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110", title: "Corporate Executive" },
-                    { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859", title: "Artistic Portrait" },
-                    { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg?updatedAt=1757781874606", title: "Executive Headshot" }
-                  ].map((headshot) => (
-                    <div 
-                      key={headshot.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-gold/30 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: headshot.title,
-                          image: headshot.src,
-                          type: 'Portrait Headshot',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[4/5]">
-                        <img 
-                          src={headshot.src} 
-                          alt={`${headshot.title} - Professional headshot by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                        
-                        {/* Animated Gold Border Glow */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                          <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-70 animate-pulse"></div>
-                        </div>
-
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Carousel images={[
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276", title: "Corporate Headshot" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781", title: "Artist Portrait" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251", title: "Business Professional" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot6.jpg?updatedAt=1757781885957", title: "Creative Professional" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot8.jpg?updatedAt=1757781885499", title: "Industry Leader" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300", title: "Executive Portrait" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot5.jpg?updatedAt=1757781884664", title: "Professional Headshot" },
+                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110", title: "Corporate Executive" },
+                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859", title: "Artistic Portrait" },
+                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg?updatedAt=1757781874606", title: "Executive Headshot" }
+                ]} />
               </div>
             </div>
             
@@ -817,75 +750,33 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
                 Our experience includes Kenya Fashion Awards 2018, Laikipia County Fashion Gala 2018, Kenya Colour Run Festival, Clever Art Event, Pawa Festival, Jkuat Awards & Mr & Miss Jkuat 2018, Dream Kona Events, Tuvibe Festival, Weddings, Baby Showers, Birthday Parties, Kibera Talent Search, Mr & Miss Kibera, The Millenials, and many other special occasions.
               </p>
-              <div className="mt-8 mb-8">
-                <button className="btn-primary flex items-center gap-2 text-sm">
-                  <span>Book Event Coverage</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
               
               {/* Event Photography Gallery */}
               <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">EVENT HIGHLIGHTS</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg", title: "Kenya Fashion Awards" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg", title: "Laikipia Fashion Gala" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg", title: "Kenya Colour Run" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg", title: "Clever Art Event" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event5.jpg", title: "Pawa Festival" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event6.jpg", title: "Jkuat Awards" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event7.jpg", title: "Mr & Miss Jkuat" },
-                    { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event8.jpg", title: "Dream Kona Events" },
-                    { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg", title: "Tuvibe Festival" },
-                    { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg", title: "Wedding Ceremony" },
-                    { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg", title: "Baby Shower" },
-                    { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg", title: "Birthday Party" },
-                    { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg", title: "Kibera Talent Search" },
-                    { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg", title: "Mr & Miss Kibera" },
-                    { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg", title: "The Millenials" },
-                    { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event16.jpg", title: "Special Occasion" },
-                    { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event17.jpg", title: "Event Coverage" },
-                    { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event18.jpg", title: "Memorable Moment" },
-                    { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event19.jpg", title: "Celebration" },
-                    { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival" },
-                    { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event" }
-                  ].map((event) => (
-                    <div 
-                      key={event.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-gold/30 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: event.title,
-                          image: event.src,
-                          type: 'Event Photography',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[4/5]">
-                        <img 
-                          src={event.src} 
-                          alt={`${event.title} - Event photography by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                        
-                        {/* Animated Gold Border Glow */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                          <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-70 animate-pulse"></div>
-                        </div>
-
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Carousel images={[
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg", title: "Kenya Fashion Awards" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg", title: "Laikipia Fashion Gala" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg", title: "Kenya Colour Run" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg", title: "Clever Art Event" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event5.jpg", title: "Pawa Festival" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event6.jpg", title: "Jkuat Awards" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event7.jpg", title: "Mr & Miss Jkuat" },
+                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event8.jpg", title: "Dream Kona Events" },
+                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg", title: "Tuvibe Festival" },
+                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg", title: "Wedding Ceremony" },
+                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg", title: "Baby Shower" },
+                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg", title: "Birthday Party" },
+                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg", title: "Kibera Talent Search" },
+                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg", title: "Mr & Miss Kibera" },
+                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg", title: "The Millenials" },
+                  { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event16.jpg", title: "Special Occasion" },
+                  { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event17.jpg", title: "Event Coverage" },
+                  { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event18.jpg", title: "Memorable Moment" },
+                  { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event19.jpg", title: "Celebration" },
+                  { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival" },
+                  { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event" }
+                ]} />
               </div>
             </div>
             
@@ -942,63 +833,23 @@ const PhotographyVideographyPg = () => {
               {/* Wedding Gallery */}
               <div className="mt-12">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-12 text-center">Wedding Highlights</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220", title: "Wedding Moments" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225", title: "Couple Love" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg", title: "Special Ceremony" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed4.jpg", title: "Happy Couple" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed5.jpg", title: "Wedding Joy" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding16.jpg?updatedAt=1759397148221", title: "Celebration Highlights" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg", title: "Romantic Moments" },
-                    { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed8.jpg", title: "Wedding Bliss" },
-                    { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed9.jpg", title: "Love Story" },
-                    { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed10.jpg", title: "Forever Love" },
-                    { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg?updatedAt=1759397148343", title: "Forever Love" },
-                    { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg?updatedAt=1759397148387", title: "Forever Love" },
-                    { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg?updatedAt=1759397148442", title: "Forever Love" },
-                    { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg?updatedAt=1759397148239", title: "Forever Love" },
-                    { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg?updatedAt=1759397148749", title: "Forever Love" },
-                  ].map((photo) => (
-                    <div 
-                      key={photo.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 ease-out hover:scale-105 shadow-xl hover:shadow-2xl"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: photo.title,
-                          image: photo.src,
-                          type: 'Wedding Photography',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="aspect-[3/4] relative">
-                        <img 
-                          src={photo.src} 
-                          alt={`${photo.title} - Wedding photography by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="text-center mt-12">
-                  <button 
-                    className="btn-primary px-8 py-4 premium-hover-gold inline-flex items-center gap-3 text-lg font-bold"
-                    onClick={() => {
-                      setShowFullCollectionModal(true);
-                    }}
-                  >
-                    <span>View Full Wedding Collection</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                </div>
+                <Carousel images={[ 
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220", title: "Wedding Moments" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225", title: "Couple Love" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg", title: "Special Ceremony" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed4.jpg", title: "Happy Couple" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed5.jpg", title: "Wedding Joy" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding16.jpg?updatedAt=1759397148221", title: "Celebration Highlights" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg", title: "Romantic Moments" },
+                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed8.jpg", title: "Wedding Bliss" },
+                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed9.jpg", title: "Love Story" },
+                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed10.jpg", title: "Forever Love" },
+                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg?updatedAt=1759397148343", title: "Forever Love" },
+                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg?updatedAt=1759397148387", title: "Forever Love" },
+                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg?updatedAt=1759397148442", title: "Forever Love" },
+                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg?updatedAt=1759397148239", title: "Forever Love" },
+                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg?updatedAt=1759397148749", title: "Forever Love" },
+                ]} />
               </div>
               
               {/* Wedding Packages */}
@@ -1015,7 +866,7 @@ const PhotographyVideographyPg = () => {
                   <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 hover:border-gold-gradient/50 transition-all duration-300">
                     <div className="text-center mb-6">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-slate-blue/30 to-slate-700/30 flex items-center justify-center mx-auto mb-4">
-                        <Heart className="w-8 h-8 text-gold-gradient" />
+                        <HeartHandshake className="w-8 h-8 text-gold-gradient" />
                       </div>
                       <h5 className="text-2xl font-bold font-montserrat text-white mb-2">Essential</h5>
                       <div className="text-3xl font-bold font-montserrat text-gold-gradient mb-1">KES 45,000</div>
@@ -1060,7 +911,7 @@ const PhotographyVideographyPg = () => {
                     
                     <div className="text-center mb-6 pt-4">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold-gradient/30 to-terracotta/30 flex items-center justify-center mx-auto mb-4">
-                        <Heart className="w-8 h-8 text-gold-gradient" />
+                        <HeartHandshake className="w-8 h-8 text-gold-gradient" />
                       </div>
                       <h5 className="text-2xl font-bold font-montserrat text-white mb-2">Premium</h5>
                       <div className="text-3xl font-bold font-montserrat text-gold-gradient mb-1">KES 75,000</div>
@@ -1103,7 +954,7 @@ const PhotographyVideographyPg = () => {
                   <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 hover:border-gold-gradient/50 transition-all duration-300">
                     <div className="text-center mb-6">
                       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-terracotta/30 to-marigold/30 flex items-center justify-center mx-auto mb-4">
-                        <Heart className="w-8 h-8 text-gold-gradient" />
+                        <HeartHandshake className="w-8 h-8 text-gold-gradient" />
                       </div>
                       <h5 className="text-2xl font-bold font-montserrat text-white mb-2">Deluxe</h5>
                       <div className="text-3xl font-bold font-montserrat text-gold-gradient mb-1">KES 120,000</div>
@@ -1173,84 +1024,36 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 Professional corporate photography that captures your brand essence and showcases your team.
               </p>
-              <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
-                Services include headshots, team photos, event coverage, and product photography with state-of-the-art equipment.
-              </p>
-              <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl mt-4">
-                Fast turnaround times to get your images when you need them.
-              </p>
-              <div className="mt-8 mb-8">
-                <button className="btn-primary flex items-center gap-2 text-sm">
-                  <span>Book Corporate Session</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
               
               {/* Corporate Photography Gallery */}
               <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">CORPORATE PHOTOGRAPHY GALLERY</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450", title: "Corporate Team Photo" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734", title: "Board Meeting" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507", title: "Executive Portrait" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE12.jpg?updatedAt=1759414889763", title: "Office Culture" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE13.jpg?updatedAt=1759414897700", title: "Business Meeting" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE18.jpg?updatedAt=1759414890314", title: "Corporate Event" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE17.jpg?updatedAt=1759414906205", title: "Team Collaboration" },
-                    { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE16.jpg?updatedAt=1759414892553", title: "Business Presentation" },
-                    { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE15.jpg?updatedAt=1759414889617", title: "Office Workspace" },
-                    { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE14.jpg?updatedAt=1759414889538", title: "Product Photography" },
-                    { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE19.jpg?updatedAt=1759414890528", title: "Corporate Portrait" },
-                    { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE2.jpg?updatedAt=1759414892388", title: "Team Building" },
-                    { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE20.jpg?updatedAt=1759414889815", title: "Business Professionals" },
-                    { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE21.jpg?updatedAt=1759414902409", title: "Conference Room" },
-                    { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE22.jpg?updatedAt=1759414890213", title: "Corporate Headshot" },
-                    { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE5.jpg?updatedAt=1759414902386", title: "Business Event" },
-                    { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE4.jpg?updatedAt=1759414892488", title: "Office Professionals" },
-                    { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE3.jpg?updatedAt=1759414889673", title: "Corporate Meeting" },
-                    { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE24.jpg?updatedAt=1759414906762", title: "Executive Meeting" },
-                    { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE23.jpg?updatedAt=1759414892400", title: "Team Photo" },
-                    { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE6.jpg?updatedAt=1759414889643", title: "Business Workshop" },
-                    { id: 22, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE7.jpg?updatedAt=1759414889833", title: "Corporate Presentation" },
-                    { id: 23, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg?updatedAt=1759414890058", title: "Office Team" },
-                    { id: 24, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg?updatedAt=1759414890024", title: "Business Professionals" }
-                  ].map((corpPhoto) => (
-                    <div 
-                      key={corpPhoto.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-gold/30 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: corpPhoto.title,
-                          image: corpPhoto.src,
-                          type: 'Corporate Photography',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[4/5]">
-                        <img 
-                          src={corpPhoto.src} 
-                          alt={`${corpPhoto.title} - Corporate photography by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                        
-                        {/* Animated Gold Border Glow */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                          <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-70 animate-pulse"></div>
-                        </div>
-
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Carousel images={[
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450", title: "Corporate Team Photo" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734", title: "Board Meeting" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507", title: "Executive Portrait" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE12.jpg?updatedAt=1759414889763", title: "Office Culture" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE13.jpg?updatedAt=1759414897700", title: "Business Meeting" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE18.jpg?updatedAt=1759414890314", title: "Corporate Event" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE17.jpg?updatedAt=1759414906205", title: "Team Collaboration" },
+                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE16.jpg?updatedAt=1759414892553", title: "Business Presentation" },
+                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE15.jpg?updatedAt=1759414889617", title: "Office Workspace" },
+                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE14.jpg?updatedAt=1759414889538", title: "Product Photography" },
+                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE19.jpg?updatedAt=1759414890528", title: "Corporate Portrait" },
+                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE2.jpg?updatedAt=1759414892388", title: "Team Building" },
+                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE20.jpg?updatedAt=1759414889815", title: "Business Professionals" },
+                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE21.jpg?updatedAt=1759414902409", title: "Conference Room" },
+                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE22.jpg?updatedAt=1759414890213", title: "Corporate Headshot" },
+                  { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE5.jpg?updatedAt=1759414902386", title: "Business Event" },
+                  { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE4.jpg?updatedAt=1759414892488", title: "Office Professionals" },
+                  { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE3.jpg?updatedAt=1759414889673", title: "Corporate Meeting" },
+                  { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE24.jpg?updatedAt=1759414906762", title: "Executive Meeting" },
+                  { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE23.jpg?updatedAt=1759414892400", title: "Team Photo" },
+                  { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE6.jpg?updatedAt=1759414889643", title: "Business Workshop" },
+                  { id: 22, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE7.jpg?updatedAt=1759414889833", title: "Corporate Presentation" },
+                  { id: 23, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg?updatedAt=1759414890058", title: "Office Team" },
+                  { id: 24, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg?updatedAt=1759414890024", title: "Business Professionals" }
+                ]} />
               </div>
             </div>
 
@@ -1268,64 +1071,19 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 High-quality property images that attract buyers. We highlight your property's best features to maximize appeal and selling potential.
               </p>
-              <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
-                Our real estate photography services include interior and exterior shots, virtual tours, and drone photography to showcase properties effectively.
-              </p>
-              <div className="mt-8 mb-8">
-                <button className="btn-primary flex items-center gap-2 text-sm">
-                  <span>Book Property Shoot</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
               
               {/* Real Estate Photography Gallery */}
               <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">PREMIUM PROPERTY SHOWCASE</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png", title: "Modern Living Room" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png", title: "Luxury Kitchen" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate3.png", title: "Spacious Bedroom" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate4.png", title: "Elegant Bathroom" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate5.png", title: "Stunning Exterior" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space" }
-                  ].map((realestate) => (
-                    <div 
-                      key={realestate.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-gold/30 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: realestate.title,
-                          image: realestate.src,
-                          type: 'Real Estate Photography',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[4/5]">
-                        <img 
-                          src={realestate.src} 
-                          alt={`${realestate.title} - Real estate photography by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                        
-                        {/* Animated Gold Border Glow */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                          <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-70 animate-pulse"></div>
-                        </div>
-
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Carousel images={[
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png", title: "Modern Living Room" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png", title: "Luxury Kitchen" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate3.png", title: "Spacious Bedroom" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate4.png", title: "Elegant Bathroom" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate5.png", title: "Stunning Exterior" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space" }
+                ]} />
               </div>
             </div>
 
@@ -1343,69 +1101,21 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 Kgill Plus Studio offers professional and high-quality graduation photography services to help capture and celebrate this milestone achievement.
               </p>
-              <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
-                Our team of experienced photographers has the expertise and creativity to capture stunning images that showcase your unique personality and academic achievement. We offer a range of customizable packages to fit your specific needs, whether it's individual or group photos. We use state-of-the-art equipment and editing software to ensure that every image is of the highest quality.
-              </p>
-              <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl mt-4">
-                Let us help you commemorate your graduation day with unforgettable photos that you will cherish for years to come. Contact us today to schedule your graduation photo session.
-              </p>
-              <div className="mt-8 mb-8">
-                <button className="btn-primary flex items-center gap-2 text-sm">
-                  <span>Book Graduation Shoot</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
               
               {/* Graduation Shoots Gallery */}
               <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
                 <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">GRADUATION MEMORIES</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                  {[
-                    { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation1.jpg", title: "Academic Achievement" },
-                    { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation2.jpg", title: "Cap & Gown" },
-                    { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation3.jpg", title: "Proud Graduate" },
-                    { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation4.jpg", title: "Celebration Moment" },
-                    { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation5.jpg", title: "Academic Pride" },
-                    { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation6.jpg", title: "Milestone Celebration" },
-                    { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation7.jpg?updatedAt=1759469659138", title: "Graduation Joy" },
-                    { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg?updatedAt=1759469658920", title: "Academic Success" },
-                    { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg?updatedAt=1759469658977", title: "Future Ahead" }
-                  ].map((graduation) => (
-                    <div 
-                      key={graduation.id} 
-                      className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-105 shadow-2xl hover:shadow-3xl hover:shadow-gold/30 bg-gradient-to-br from-slate-900/50 to-slate-800/70 backdrop-blur-sm border-2 border-slate-700/50"
-                      onClick={() => {
-                        setSelectedImage({
-                          title: graduation.title,
-                          image: graduation.src,
-                          type: 'Graduation Photography',
-                          year: '2024'
-                        });
-                        setShowModal(true);
-                      }}
-                    >
-                      <div className="relative aspect-[4/5]">
-                        <img 
-                          src={graduation.src} 
-                          alt={`${graduation.title} - Graduation photography by KGILL+ Studio`}
-                          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                        />
-                        {/* Loading indicator */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                        </div>
-                        
-                        {/* Animated Gold Border Glow */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                          <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-70 animate-pulse"></div>
-                        </div>
-
-                        {/* Hover Effect Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Carousel images={[
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation1.jpg", title: "Academic Achievement" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation2.jpg", title: "Cap & Gown" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation3.jpg", title: "Proud Graduate" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation4.jpg", title: "Celebration Moment" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation5.jpg", title: "Academic Pride" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation6.jpg", title: "Milestone Celebration" },
+                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation7.jpg?updatedAt=1759469659138", title: "Graduation Joy" },
+                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg?updatedAt=1759469658920", title: "Academic Success" },
+                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg?updatedAt=1759469658977", title: "Future Ahead" }
+                ]} />
               </div>
 
             </div>
@@ -1418,7 +1128,7 @@ const PhotographyVideographyPg = () => {
       <section className="py-20 bg-charcoal">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Our Process</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Your Vision, Our Mission</h2>
             <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
               From initial consultation to final delivery, here's how we bring your vision to life
             </p>
@@ -1430,7 +1140,7 @@ const PhotographyVideographyPg = () => {
             
             {/* Timeline items */}
             <div className="space-y-12 md:space-y-0">
-              {[
+              {[ 
                 { 
                   step: 1, 
                   title: "Initial Consultation", 
@@ -1447,7 +1157,7 @@ const PhotographyVideographyPg = () => {
                   step: 3, 
                   title: "The Shoot", 
                   description: "Our professional team captures your moments with creativity and technical excellence",
-                  icon: <Heart className="w-8 h-8" />
+                  icon: <Camera className="w-8 h-8" />
                 },
                 { 
                   step: 4, 
@@ -1493,7 +1203,7 @@ const PhotographyVideographyPg = () => {
       <section className="py-20 bg-charcoal texture-subtle">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Our Portfolio</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">A Glimpse Into Our Creative World</h2>
             <p className="text-2xl text-gray-400 font-inter max-w-3xl mx-auto">
               A showcase of our creative work
             </p>
@@ -1503,7 +1213,7 @@ const PhotographyVideographyPg = () => {
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             <button
               onClick={() => setActiveCategory('all')}
-              className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+              className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
                 activeCategory === 'all'
                   ? 'bg-gold-gradient text-charcoal'
                   : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
@@ -1515,7 +1225,7 @@ const PhotographyVideographyPg = () => {
               <button
                 key={service.id}
                 onClick={() => setActiveCategory(service.id)}
-                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
                   activeCategory === service.id
                     ? 'bg-gold-gradient text-charcoal'
                     : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
@@ -1528,7 +1238,7 @@ const PhotographyVideographyPg = () => {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category.toLowerCase())}
-                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
                   activeCategory === category.toLowerCase()
                     ? 'bg-gold-gradient text-charcoal'
                     : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
@@ -1540,31 +1250,34 @@ const PhotographyVideographyPg = () => {
           </div>
           
           {/* Portfolio Grid */}
-          <div className="masonry-grid">
-            {filteredItems.map((item) => (
-              <div 
-                key={item.id} 
-                className="masonry-item group cursor-pointer"
-                onClick={() => {
-                  setSelectedImage(item);
-                  setShowModal(true);
-                }}
-              >
-                <img 
-                  src={item.image} 
-                  alt={`${item.title} - ${services.find(s => s.id === item.category)?.title || item.category} by KGILL+ Studio`}
-                  className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
+          {loading ? (
+            <div className="masonry-grid">
+              <SkeletonLoader type="image" count={portfolioItems.length} />
+            </div>
+          ) : (
+            <div className="masonry-grid">
+              {filteredItems.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="masonry-item group cursor-pointer"
+                  onClick={() => {
+                    setSelectedImage(item);
+                    setShowModal(true);
+                  }}
+                >
+                  <LazyImage 
+                    src={item.image} 
+                    alt={`${item.title} - ${services.find(s => s.id === item.category)?.title || item.category} by KGILL+ Studio`}
+                    className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent">
+                    <h3 className="text-lg font-bold font-montserrat text-white">{item.title}</h3>
+                    <p className="text-sm text-gray-300">{services.find(s => s.id === item.category)?.title || item.category}</p>
+                  </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent">
-                  <h3 className="text-lg font-bold font-montserrat text-white">{item.title}</h3>
-                  <p className="text-sm text-gray-300">{services.find(s => s.id === item.category)?.title || item.category}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -1572,14 +1285,14 @@ const PhotographyVideographyPg = () => {
       <section className="py-20 bg-gradient-to-br from-slate-900 to-charcoal">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Frequently Asked Questions</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Your Questions, Answered</h2>
             <p className="text-xl text-gray-400 font-inter max-w-2xl mx-auto">
               Everything you need to know about our services and booking process
             </p>
           </div>
           
           <div className="space-y-6">
-            {[
+            {[ 
               {
                 question: "How far in advance should I book a session?",
                 answer: "We recommend booking at least 2-3 weeks in advance for regular sessions and 1-2 months for weddings or large events. During peak seasons, we may book up to 2 months in advance."
@@ -1647,7 +1360,7 @@ const PhotographyVideographyPg = () => {
       <section className="py-20 bg-charcoal texture-subtle">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Service Comparison</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Find Your Perfect Package</h2>
             <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
               Compare our different service packages to find the perfect match for your needs
             </p>
@@ -1744,7 +1457,7 @@ const PhotographyVideographyPg = () => {
         </svg>
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-20">
-            <h2 className="display-2 font-montserrat mb-6 epic-text bg-gradient-to-r from-gold-gradient-start via-terracotta to-marigold bg-clip-text text-transparent animate-gradient-move">Get In Touch</h2>
+            <h2 className="display-2 font-montserrat mb-6 epic-text bg-gradient-to-r from-gold-gradient-start via-terracotta to-marigold bg-clip-text text-transparent animate-gradient-move">Let's Create Something Amazing Together</h2>
             <p className="text-2xl text-gray-300 font-inter max-w-3xl mx-auto animate-fade-in-up">
               Ready to book your session? Contact us today
             </p>
@@ -1812,19 +1525,20 @@ const PhotographyVideographyPg = () => {
                 <h3 className="text-2xl font-bold font-montserrat mb-6 text-white drop-shadow-lg">Quick Booking</h3>
                 <form 
                   className="space-y-4" 
-                  autoComplete="off" 
+                  autoComplete="off"
                   aria-label="Book your studio session"
                   onSubmit={(e) => {
                     e.preventDefault();
                     // Handle form submission
+                    const form = e.target as HTMLFormElement;
                     const formData = {
-                      name: (e.target as any).name.value,
-                      email: (e.target as any).email.value,
+                      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+                      email: (form.elements.namedItem('email') as HTMLInputElement).value,
                       service: bookingService,
                       package: bookingPackage,
                       date: bookingDate,
                       time: bookingTime,
-                      phone: (e.target as any).phone.value
+                      phone: (form.elements.namedItem('phone') as HTMLInputElement).value
                     };
                     console.log('Booking form submitted:', formData);
                     alert('Thank you for your booking request! We will contact you soon.');
@@ -1963,18 +1677,10 @@ const PhotographyVideographyPg = () => {
             <div className="glass-morphism border border-gold-gradient/30 rounded-2xl p-6 text-center">
               <h3 className="text-xl font-bold font-montserrat text-white mb-4">On-the-Go Options</h3>
               <div className="grid grid-cols-2 gap-4">
-                <button className="bg-gradient-to-r from-gold-gradient to-terracotta text-charcoal px-4 py-3 rounded-lg font-bold">
-                  Call Now
-                </button>
-                <button className="bg-gradient-to-r from-cyan to-slate-blue text-charcoal px-4 py-3 rounded-lg font-bold">
-                  WhatsApp
-                </button>
-                <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-4 py-3 rounded-lg font-bold">
-                  Callback
-                </button>
-                <button className="bg-gradient-to-r from-terracotta to-marigold text-charcoal px-4 py-3 rounded-lg font-bold">
-                  Text Us
-                </button>
+                <button className="bg-gradient-to-r from-gold-gradient to-terracotta text-charcoal px-4 py-3 rounded-lg font-bold">Call Now</button>
+                <button className="bg-gradient-to-r from-cyan to-slate-blue text-charcoal px-4 py-3 rounded-lg font-bold">WhatsApp</button>
+                <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-4 py-3 rounded-lg font-bold">Callback</button>
+                <button className="bg-gradient-to-r from-terracotta to-marigold text-charcoal px-4 py-3 rounded-lg font-bold">Text Us</button>
               </div>
             </div>
           </div>
@@ -2060,7 +1766,7 @@ const PhotographyVideographyPg = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
+          {[ 
             { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg?updatedAt=1759397148343", title: "Elegant Ceremony" },
             { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg?updatedAt=1759397148387", title: "Bridal Portrait" },
             { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg?updatedAt=1759397148442", title: "Reception Highlights" },
