@@ -1217,6 +1217,40 @@ const PhotographyVideographyPg = () => {
               </div>
             </div>
 
+            {/* Product Photography Section */}
+            <div className="w-full mt-20">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
+                  <Camera className="w-8 h-8 text-charcoal" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold font-montserrat text-white drop-shadow-lg">Product Photography</h3>
+                  <p className="text-gray-300">Professional product images that sell and captivate</p>
+                </div>
+              </div>
+              <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
+                High-quality product photography that showcases your items in the best light. From e-commerce listings to marketing campaigns, we create stunning visuals that highlight your product's unique features and drive sales.
+              </p>
+              
+              {/* Product Photography Gallery */}
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PRODUCT PHOTOGRAPHY</h4>
+                <CompactGridGallery 
+                  title="Product Photography"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product1.jpg", title: "Product Showcase" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product2.jpg", title: "Commercial Photography" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product3.jpg", title: "Professional Styling" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product4.jpg", title: "Detail Shots" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product5.jpg", title: "E-commerce Ready" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product6.jpg", title: "Brand Photography" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product7.jpg", title: "Marketing Visuals" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product8.jpg", title: "Product Presentation" }
+                  ]} 
+                />
+              </div>
+            </div>
+
             </div>
           </div>
       </section>
