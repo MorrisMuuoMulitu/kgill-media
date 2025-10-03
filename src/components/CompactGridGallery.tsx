@@ -71,12 +71,12 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
                 
                 {/* View More Overlay for last image */}
                 {index === previewImages.length - 1 && hasMore && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start via-gold-gradient-end to-terracotta group-hover:scale-105 transition-all flex flex-col items-center justify-center shadow-2xl">
-                    <div className="bg-charcoal/20 backdrop-blur-sm rounded-full p-4 mb-3 group-hover:scale-110 transition-transform">
-                      <Grid3x3 className="w-10 h-10 md:w-14 md:h-14 text-charcoal drop-shadow-lg" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-slate-900 to-charcoal group-hover:from-slate-900 group-hover:via-charcoal group-hover:to-slate-900 transition-all flex flex-col items-center justify-center shadow-2xl border-2 border-gold-gradient-start">
+                    <div className="bg-gold-gradient rounded-full p-5 mb-4 group-hover:scale-110 transition-transform shadow-2xl">
+                      <Grid3x3 className="w-12 h-12 md:w-16 md:h-16 text-charcoal" />
                     </div>
-                    <div className="text-2xl md:text-3xl font-black text-charcoal font-montserrat drop-shadow-lg mb-1">View All</div>
-                    <div className="text-charcoal font-inter font-bold text-base md:text-lg drop-shadow-md">
+                    <div className="text-3xl md:text-4xl font-black text-white font-montserrat mb-2 tracking-wide">VIEW ALL</div>
+                    <div className="text-gold-gradient-start font-inter font-black text-xl md:text-2xl">
                       {images.length} Photos
                     </div>
                   </div>
@@ -107,16 +107,18 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
                   <h2 className="text-2xl md:text-4xl font-black font-montserrat text-white mb-1 md:mb-2">{title}</h2>
                   <p className="text-sm md:text-base text-gray-400 font-inter">{images.length} stunning photos</p>
                 </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:scale-110"
-                  aria-label="Close gallery"
-                >
-                  <X className="w-6 h-6 md:w-8 md:h-8 text-charcoal font-bold group-hover:rotate-90 transition-transform" />
-                </button>
               </div>
             </div>
           </div>
+
+          {/* Floating Close Button - positioned to avoid navigation */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="fixed bottom-8 right-8 md:bottom-12 md:right-12 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:scale-110 z-[60] border-4 border-charcoal"
+            aria-label="Close gallery"
+          >
+            <X className="w-8 h-8 md:w-10 md:h-10 text-charcoal font-bold group-hover:rotate-90 transition-transform stroke-[3]" />
+          </button>
 
           {/* Grid Gallery */}
           <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
@@ -158,10 +160,10 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
         <div className="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-4">
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 md:w-16 md:h-16 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-2xl hover:scale-110"
+            className="fixed top-8 left-1/2 -translate-x-1/2 md:top-12 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-2xl hover:scale-110 border-4 border-black"
             aria-label="Close image"
           >
-            <X className="w-6 h-6 md:w-8 md:h-8 text-charcoal font-bold group-hover:rotate-90 transition-transform" />
+            <X className="w-8 h-8 md:w-10 md:h-10 text-charcoal font-bold group-hover:rotate-90 transition-transform stroke-[3]" />
           </button>
 
           <button
