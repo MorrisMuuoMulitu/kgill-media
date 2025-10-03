@@ -3,6 +3,7 @@ import { Play, Clock, Eye, Star, ChevronRight, ChevronLeft, Camera, TrendingUp, 
 import { Link } from 'react-router-dom';
 import LoadingState from '../components/LoadingState';
 import OptimizedImage from '../components/OptimizedImage';
+import ImmersiveGallery from '../components/ImmersiveGallery';
 
 const KGTVPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -136,6 +137,94 @@ const KGTVPg = () => {
     { key: 'popular', label: 'Most Popular' },
     { key: 'recent', label: 'Recently Added' },
     { key: 'rating', label: 'Highest Rated' }
+  ];
+
+  // Behind the Scenes Gallery
+  const galleryImages = [
+    {
+      id: 1,
+      src: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "On Set Magic",
+      category: "production",
+      description: "Capturing authentic moments during our documentary shoots"
+    },
+    {
+      id: 2,
+      src: "https://images.pexels.com/photos/7991721/pexels-photo-7991721.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Interview Setup",
+      category: "production",
+      description: "Setting up for an intimate conversation with changemakers"
+    },
+    {
+      id: 3,
+      src: "https://images.pexels.com/photos/8111881/pexels-photo-8111881.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Community Engagement",
+      category: "events",
+      description: "Connecting with local communities across Africa"
+    },
+    {
+      id: 4,
+      src: "https://images.pexels.com/photos/7262775/pexels-photo-7262775.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Creative Direction",
+      category: "production",
+      description: "Our team bringing stories to life"
+    },
+    {
+      id: 5,
+      src: "https://images.pexels.com/photos/8111262/pexels-photo-8111262.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Awards Night",
+      category: "events",
+      description: "Celebrating excellence in African storytelling"
+    },
+    {
+      id: 6,
+      src: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Studio Sessions",
+      category: "production",
+      description: "Behind the scenes of our latest series"
+    },
+    {
+      id: 7,
+      src: "https://images.pexels.com/photos/8112090/pexels-photo-8112090.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Team Collaboration",
+      category: "team",
+      description: "Creative minds working together"
+    },
+    {
+      id: 8,
+      src: "https://images.pexels.com/photos/7991665/pexels-photo-7991665.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Field Production",
+      category: "production",
+      description: "Documenting stories in remote locations"
+    },
+    {
+      id: 9,
+      src: "https://images.pexels.com/photos/8111315/pexels-photo-8111315.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Premiere Night",
+      category: "events",
+      description: "Unveiling our latest documentary series"
+    },
+    {
+      id: 10,
+      src: "https://images.pexels.com/photos/7991680/pexels-photo-7991680.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Camera Ready",
+      category: "production",
+      description: "Perfecting every shot for our viewers"
+    },
+    {
+      id: 11,
+      src: "https://images.pexels.com/photos/5699477/pexels-photo-5699477.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Post-Production",
+      category: "team",
+      description: "Editing magic in our creative suite"
+    },
+    {
+      id: 12,
+      src: "https://images.pexels.com/photos/8111927/pexels-photo-8111927.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Festival Spotlight",
+      category: "events",
+      description: "Showcasing African stories on the world stage"
+    }
   ];
 
   // Simulate loading
@@ -448,6 +537,27 @@ const KGTVPg = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Behind the Scenes Gallery */}
+      <section className="py-24 bg-charcoal relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start/5 via-transparent to-blue-gradient-start/5"></div>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-slate-900/80 backdrop-blur-xl rounded-full border border-gold-gradient-start/30">
+              <Camera className="w-5 h-5 text-gold-gradient-start" />
+              <span className="text-gold-gradient-start font-bold text-sm tracking-wider">EXCLUSIVE</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-black font-montserrat mb-6 epic-text">
+              Behind the Scenes
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-400 font-inter max-w-3xl mx-auto leading-relaxed">
+              Step into our world of storytelling and discover the magic that brings our shows to life
+            </p>
+          </div>
+
+          <ImmersiveGallery images={galleryImages} title="Behind the Scenes" />
         </div>
       </section>
 
