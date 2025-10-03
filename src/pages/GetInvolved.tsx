@@ -57,8 +57,8 @@ const GetInvolved = () => {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-charcoal to-slate-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-charcoal to-slate-900">
+        <div className="max-w-3xl sm:max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold font-montserrat mb-6">
             GET <span className="text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">INVOLVED</span>
           </h1>
@@ -70,14 +70,14 @@ const GetInvolved = () => {
       </section>
 
       {/* Opportunity Tabs */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="py-12 sm:py-16 md:py-20 bg-slate-900">
+        <div className="max-w-4xl sm:max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-center gap-4 mb-12">
             {opportunities.map((opp) => (
               <button
                 key={opp.id}
                 onClick={() => setActiveTab(opp.id)}
-                className={`flex items-center gap-3 px-8 py-4 rounded-full font-inter font-semibold transition-all duration-300 ${
+                className={`flex items-center gap-3 px-6 py-4 sm:px-8 sm:py-4 rounded-full font-inter font-semibold transition-all duration-300 ${
                   activeTab === opp.id
                     ? `bg-gradient-to-r ${opp.gradient} text-charcoal`
                     : 'bg-slate-800 text-gray-300 hover:bg-slate-700'
@@ -119,7 +119,7 @@ const GetInvolved = () => {
                   <h3 className="text-2xl font-bold font-montserrat text-white mb-6">
                     Get Started Today
                   </h3>
-                  <form className="space-y-6">
+                  <form className="space-y-4 sm:space-y-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
                         Full Name
@@ -160,7 +160,10 @@ const GetInvolved = () => {
                         placeholder="Share your background, interests, or project details..."
                       ></textarea>
                     </div>
-                    <button className={`w-full bg-gradient-to-r ${currentOpportunity.gradient} text-charcoal py-4 rounded-lg font-inter font-bold text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2`}>
+                    <button
+                      type="submit"
+                      className={`w-full bg-gradient-to-r ${currentOpportunity.gradient} text-charcoal py-4 rounded-lg font-inter font-bold text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 relative`}
+                    >
                       <Send className="w-5 h-5" />
                       Submit Application
                     </button>
@@ -173,8 +176,8 @@ const GetInvolved = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-20 bg-charcoal">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="py-12 sm:py-16 md:py-20 bg-charcoal">
+        <div className="max-w-4xl sm:max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
               REACH OUT DIRECTLY
@@ -183,7 +186,7 @@ const GetInvolved = () => {
               Have questions? Want to discuss a custom project? We're here to help.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             <div className="text-center p-8 bg-slate-900 rounded-2xl border border-slate-700 hover:border-marigold/30 transition-all duration-300">
               <div className="w-16 h-16 bg-gradient-to-br from-marigold to-terracotta rounded-full flex items-center justify-center mx-auto mb-6">
                 <Mail className="w-8 h-8 text-charcoal" />
@@ -232,8 +235,8 @@ const GetInvolved = () => {
       </section>
 
       {/* Social Proof */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-charcoal">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-slate-900 to-charcoal">
+        <div className="max-w-3xl sm:max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
             JOIN THE CONVERSATION
           </h2>
@@ -243,11 +246,11 @@ const GetInvolved = () => {
           <div className="flex justify-center gap-6">
             <a 
               href="https://linkedin.com/company/kgill-media"
-              className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-4 sm:px-8 sm:py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               Follow on LinkedIn
             </a>
-            <button className="border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-full font-inter font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+            <button className="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-4 sm:px-8 sm:py-4 rounded-full font-inter font-semibold text-lg hover:bg-white/10 transition-all duration-300">
               Join 470+ Followers
             </button>
           </div>

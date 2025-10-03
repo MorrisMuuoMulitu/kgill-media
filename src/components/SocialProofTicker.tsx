@@ -100,7 +100,7 @@ const SocialProofTicker = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Stats Ticker */}
         <div className="relative overflow-hidden py-6 border-b border-white/5">
-          <div className="flex animate-scroll-left whitespace-nowrap">
+          <div className="flex animate-ticker-scroll whitespace-nowrap">
             {[...stats, ...stats].map((stat, index) => (
               <div key={index} className="flex items-center mx-8">
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color.replace('text-', 'from-').replace('-gradient-start', '')}/20 flex items-center justify-center mr-4`}>
@@ -162,15 +162,7 @@ const SocialProofTicker = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes scroll-left {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-scroll-left {
-          animation: scroll-left 40s linear infinite;
-        }
-      `}</style>
+
     </div>
   );
 };

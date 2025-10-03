@@ -7,8 +7,20 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownButtonRef = React.useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const { darkMode, toggleDarkMode } = useTheme();
+  // Keyboard navigation for dropdown
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (showDropdown && (e.key === 'Escape' || e.key === 'Tab')) {
+        setShowDropdown(false);
+        dropdownButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showDropdown]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +33,7 @@ const Navigation = () => {
   const mainNavLinks = [
     { path: '/our-story', label: 'Our Story' },
     { path: '/what-we-do', label: 'What We Do' },
-    { path: '/photography-videography', label: 'Kgill Studio' },
+    { path: '/photography-videography', label: 'Kgill+ Studio' },
     { path: '/kgill-tv', label: 'KGILL TV' }
   ];
 
@@ -71,7 +83,7 @@ const Navigation = () => {
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             {mainNavLinks.map((link) => (
               <Link
                 key={link.path}
@@ -86,32 +98,42 @@ const Navigation = () => {
             ))}
             
             {/* Dropdown Menu */}
-            <div className="relative dropdown-container">
+            <div className="relative dropdown-container" role="menu">
               <button
+                ref={dropdownButtonRef}
                 onClick={() => setShowDropdown(!showDropdown)}
-                className={`font-inter font-semibold text-base transition-all duration-300 hover:text-marigold relative group flex items-center gap-1 ${
+                className={`font-inter font-semibold text-base transition-all duration-300 hover:text-marigold relative group flex items-center gap-1 focus:outline focus:outline-2 focus:outline-marigold ${
                   dropdownLinks.some(link => location.pathname === link.path) ? 'text-marigold' : 'text-white'
                 }`}
                 aria-expanded={showDropdown}
                 aria-haspopup="true"
+                aria-controls="main-dropdown-menu"
+                tabIndex={0}
               >
                 More
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
                 <span className="absolute -bottom-2 left-0 w-0 h-1 bg-gradient-to-r from-marigold to-terracotta rounded-full transition-all duration-300 group-hover:w-full"></span>
               </button>
-              
-              <div className={`absolute right-0 mt-2 w-56 bg-charcoal/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300 ${
-                showDropdown ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
-              }`}>
+              <div
+                id="main-dropdown-menu"
+                className={`absolute right-0 mt-2 w-56 bg-charcoal/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300 ${
+                  showDropdown ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+                }`}
+                role="menu"
+                aria-label="More navigation links"
+              >
                 <div className="py-2">
                   {dropdownLinks.map((link) => (
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`block px-6 py-3 font-inter font-medium transition-colors hover:bg-white/10 hover:text-marigold ${
+                      className={`block px-6 py-3 font-inter font-medium transition-colors hover:bg-white/10 hover:text-marigold focus:outline focus:outline-2 focus:outline-marigold ${
                         location.pathname === link.path ? 'text-marigold bg-white/5' : 'text-white'
                       }`}
                       onClick={() => setShowDropdown(false)}
+                      tabIndex={showDropdown ? 0 : -1}
+                      role="menuitem"
+                      aria-label={link.label}
                     >
                       {link.label}
                     </Link>
@@ -149,7 +171,7 @@ const Navigation = () => {
       <div className={`lg:hidden transition-all duration-500 ease-in-out ${
         isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden bg-charcoal/95 backdrop-blur-xl border-b border-white/10`}>
-        <div className="px-4 py-6 space-y-6">
+        <div className="px-4 py-6 space-y-8">
           {/* Mobile brand section */}
           <div className="flex items-center space-x-3 pb-4 border-b border-white/10">
             <div className="relative">
@@ -176,7 +198,7 @@ const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`block py-3 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
+                    className={`block py-4 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
                       location.pathname === link.path 
                         ? 'text-marigold bg-marigold/10 border border-marigold/30' 
                         : 'text-white hover:text-marigold hover:bg-white/5'
@@ -197,7 +219,7 @@ const Navigation = () => {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`block py-3 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
+                    className={`block py-4 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
                       location.pathname === link.path 
                         ? 'text-cyan bg-cyan/10 border border-cyan/30' 
                         : 'text-white hover:text-cyan hover:bg-white/5'

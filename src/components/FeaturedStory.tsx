@@ -20,28 +20,28 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
 }) => {
   if (featured) {
     return (
-      <article className="group cursor-pointer hover-lift tilt-3d" role="article">
+      <article className="group cursor-pointer hover-lift tilt-3d premium-hover-glow animate-fade-in-up" role="article">
         <div className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 hover:border-marigold/30 transition-all duration-300 glass-morphism">
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 relative overflow-hidden">
               <img 
                 src={image} 
                 alt={title}
-                className="w-full h-48 sm:h-64 md:h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-48 sm:h-64 md:h-full object-cover group-hover:scale-110 transition-transform duration-500 premium-shimmer animate-sparkle animate-glow"
                 loading="lazy"
                 width="600"
                 height="400"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal/20" aria-hidden="true"></div>
-              <div className="absolute top-4 left-4">
-                <span className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-inter font-bold">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal/20 animate-gradient-move" aria-hidden="true"></div>
+              <div className="absolute top-4 left-4 animate-fade-in-up">
+                <span className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-inter font-bold premium-shimmer animate-sparkle">
                   Featured Story
                 </span>
               </div>
               
               {/* Play button overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-marigold/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-fade-in-up" aria-hidden="true">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-marigold/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl premium-hover-glow animate-glow">
                   <Play className="w-8 h-8 text-charcoal ml-1" />
                 </div>
               </div>
@@ -83,7 +83,7 @@ const FeaturedStory: React.FC<FeaturedStoryProps> = ({
         <img 
           src={image} 
           alt={title}
-          className="w-full h-48 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-48 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-500 premium-shimmer animate-sparkle animate-glow"
           loading="lazy"
           width="400"
           height="300"

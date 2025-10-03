@@ -96,11 +96,13 @@ const TheFeed = () => {
               <button
                 key={category.key}
                 onClick={() => setActiveCategory(category.key)}
-                className={`px-6 py-3 rounded-full font-inter font-semibold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-inter font-semibold transition-all duration-300 premium-hover-gold focus:outline-none focus:ring-2 focus:ring-marigold/50 ${
                   activeCategory === category.key
-                    ? 'bg-gradient-to-r from-marigold to-terracotta text-charcoal'
+                    ? 'bg-gradient-to-r from-marigold to-terracotta text-charcoal animate-fade-in-up'
                     : 'bg-slate-800 text-gray-300 hover:bg-slate-700'
                 }`}
+                aria-pressed={activeCategory === category.key}
+                tabIndex={0}
               >
                 {category.label}
               </button>
@@ -165,24 +167,24 @@ const TheFeed = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post, index) => (
-              <div key={index} className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 hover:border-slate-600 transition-all duration-300 group">
+              <div key={index} className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 hover:border-marigold/30 transition-all duration-300 group premium-hover-glow animate-fade-in-up">
                 <div className="relative">
                   <img 
                     src={post.image} 
                     alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500 premium-shimmer animate-sparkle animate-glow"
                   />
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-inter capitalize">
+                  <div className="absolute top-4 right-4 animate-fade-in-up">
+                    <span className="bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-inter capitalize premium-shimmer animate-sparkle">
                       {post.category}
                     </span>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold font-montserrat text-white mb-3 group-hover:text-marigold transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold font-montserrat text-white mb-3 group-hover:text-marigold transition-colors line-clamp-2 animate-fade-in-up">
                     {post.title}
                   </h3>
-                  <p className="text-gray-400 font-inter mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-gray-400 font-inter mb-4 leading-relaxed line-clamp-3 animate-fade-in-up">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
@@ -197,7 +199,7 @@ const TheFeed = () => {
                       <Calendar className="w-4 h-4" />
                       {post.date}
                     </div>
-                    <button className="text-cyan hover:text-marigold transition-colors font-inter font-semibold text-sm">
+                    <button className="text-cyan hover:text-marigold transition-colors font-inter font-semibold text-sm focus:outline-none focus:ring-2 focus:ring-cyan/50">
                       Read More →
                     </button>
                   </div>

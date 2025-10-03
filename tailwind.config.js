@@ -24,6 +24,7 @@ export default {
         'float': 'float 4s ease-in-out infinite',
         'slide': 'slide 3s linear infinite',
         'scroll-left': 'scroll-left 30s linear infinite',
+        'ticker-scroll': 'ticker-scroll 40s linear infinite',
         'loading': 'loading 1.5s infinite',
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
@@ -61,6 +62,10 @@ export default {
         'scroll-left': {
           '0%': { transform: 'translateX(100%)' },
           '100%': { transform: 'translateX(-100%)' },
+        },
+        'ticker-scroll': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         'loading': {
           '0%': { backgroundPosition: '200% 0' },

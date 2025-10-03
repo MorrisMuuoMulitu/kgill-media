@@ -1,4 +1,5 @@
 import React from 'react';
+import PageTransition from './components/PageTransition';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { AccessibilityProvider } from './providers/AccessibilityProvider';
@@ -36,20 +37,22 @@ function App() {
               <Navigation />
               <ScrollToTop />
               <main id="main-content" role="main">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/our-story" element={<OurStory />} />
-                  <Route path="/our-leaders" element={<OurLeaders />} />
-                  <Route path="/what-we-do" element={<WhatWeDo />} />
-                  <Route path="/the-movement" element={<TheMovement />} />
-                  <Route path="/the-feed" element={<TheFeed />} />
-                  <Route path="/get-involved" element={<GetInvolved />} />
-                  <Route path="/kgill-tv" element={<KGTVPg />} />
-                  <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
-                  <Route path="/workshops" element={<WorkshopsPg />} />
-                  <Route path="/blog" element={<BlogPage />} />
-                  <Route path="/blog/:id" element={<BlogPostDetail />} />
-                </Routes>
+                <PageTransition>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/our-story" element={<OurStory />} />
+                    <Route path="/our-leaders" element={<OurLeaders />} />
+                    <Route path="/what-we-do" element={<WhatWeDo />} />
+                    <Route path="/the-movement" element={<TheMovement />} />
+                    <Route path="/the-feed" element={<TheFeed />} />
+                    <Route path="/get-involved" element={<GetInvolved />} />
+                    <Route path="/kgill-tv" element={<KGTVPg />} />
+                    <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
+                    <Route path="/workshops" element={<WorkshopsPg />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:slug" element={<BlogPostDetail />} />
+                  </Routes>
+                </PageTransition>
               </main>
               <SocialProofTicker />
               <Footer />

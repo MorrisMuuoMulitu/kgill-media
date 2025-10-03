@@ -19,7 +19,14 @@ const EnhancedHeroSection: React.FC = () => {
   const storiesRef = useScrollAnimation();
   
   // Particle background
-  const particleCanvasRef = useParticles(30);
+  // More vibrant floating particles
+  const particleCanvasRef = useParticles(50, {
+    colors: ['#FFE066', '#FF7847', '#00E5FF', '#A78BFA', '#F472B6'],
+    size: [2, 4, 6],
+    speed: [0.5, 1.5],
+    opacity: [0.3, 0.7],
+    blendMode: 'screen',
+  });
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('kgill_visited');
@@ -127,13 +134,19 @@ const EnhancedHeroSection: React.FC = () => {
         
         {/* Dynamic Video/Image Background */}
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-hero-gradient z-20 absolute"></div>
-          <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-charcoal/30 to-transparent z-20 absolute"></div>
+          <div className="w-full h-full bg-hero-gradient z-20 absolute animate-gradient-move"></div>
+          <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-marigold/20 to-transparent z-20 absolute animate-gradient-move"></div>
           <img 
-            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
+            srcSet="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400 400w,
+                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800 800w,
+                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w,
+                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920 1920w"
+            sizes="(max-width: 640px) 400px, (max-width: 768px) 800px, (max-width: 1024px) 1200px, 1920px"
             alt="Creative Workshop"
-            className="w-full h-full object-cover scale-110 animate-slow-zoom"
+            className="w-full h-full object-cover scale-110 animate-slow-zoom animate-fade-in"
             loading="eager"
+            decoding="async"
           />
           {/* African-inspired geometric overlay */}
           <div className="absolute inset-0 z-15 opacity-10" aria-hidden="true">
@@ -148,27 +161,27 @@ const EnhancedHeroSection: React.FC = () => {
         </div>
 
         <div className="relative z-30 text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-montserrat leading-none tracking-tight mb-6">
-              <span className="block text-white">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
-              <span className="block gradient-text">
+          <div className="mb-8 animate-fade-in-up">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-montserrat leading-none tracking-tight mb-6">
+              <span className="block text-white animate-fade-in-up">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
+              <span className="block gradient-text animate-gradient-move">
                 {personalizedContent.headline.split(' ').slice(3).join(' ')}
               </span>
             </h1>
-            <div className="pattern-divider w-24 sm:w-32 mx-auto mb-6"></div>
-            <p className="text-lg sm:text-xl md:text-2xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <div className="pattern-divider w-24 sm:w-32 mx-auto mb-6 animate-fade-in-up"></div>
+            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up">
               {personalizedContent.subtext}
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12">
-            <button className="btn-primary pulse-glow tilt-3d w-full sm:w-auto min-w-[200px]">
+            <button className="btn-primary pulse-glow tilt-3d w-full sm:w-auto min-w-[200px] min-h-[50px] py-4">
               <span className="flex items-center justify-center gap-3">
                 {getCTAText()}
                 <ArrowRight className="w-6 h-6" />
               </span>
             </button>
-            <button className="btn-secondary group tilt-3d w-full sm:w-auto min-w-[200px]">
+            <button className="btn-secondary group tilt-3d w-full sm:w-auto min-w-[200px] min-h-[50px] py-4">
               <span className="flex items-center justify-center gap-3">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Watch Our Story

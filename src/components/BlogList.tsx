@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import BlogPostTemplate from '../components/BlogPostTemplate';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Camera, ArrowRight } from 'lucide-react';
 
 // Sample blog posts data
 const blogPosts = [
@@ -72,36 +72,59 @@ const blogPosts = [
   }
 ];
 
-const BlogPostDetail: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const [blogPost, setBlogPost] = useState<typeof blogPosts[0] | undefined>(undefined);
-
-  useEffect(() => {
-    const post = blogPosts.find(post => post.slug === slug);
-    setBlogPost(post);
-  }, [slug]);
-
-  if (!blogPost) {
-    return (
-      <div className="min-h-screen bg-charcoal flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-4">Blog Post Not Found</h1>
-          <p className="text-gray-400">The article you're looking for doesn't exist.</p>
+const BlogList: React.FC = () => {
+  return (
+    <section className="py-20 bg-gradient-to-br from-slate-900 to-charcoal">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-16">
+          <h2 className="display-2 font-montserrat mb-6 epic-text">Insights & Education</h2>
+          <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+            Discover photography tips, industry insights, and behind-the-scenes content
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((article) => (
+            <Link to={`/blog/${article.slug}`} key={article.id} className="block">
+              <div className="glass-morphism border border-gold-gradient/30 rounded-2xl overflow-hidden hover-lift transition-transform duration-300 h-full">
+                <div className="h-48 bg-gradient-to-br from-marigold/20 to-terracotta/20 relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-gold-gradient to-terracotta rounded-full flex items-center justify-center">
+                      <Camera className="w-8 h-8 text-charcoal" />
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-xs font-bold text-gold-gradient bg-charcoal/50 px-2 py-1 rounded-full">
+                      {article.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{article.readTime}</span>
+                  </div>
+                  <h3 className="text-xl font-bold font-montserrat text-white mb-3">{article.title}</h3>
+                  <p className="text-gray-400 font-inter mb-4">{article.excerpt}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500">{article.date}</span>
+                    <button className="text-gold-gradient hover:text-terracotta font-medium flex items-center group">
+                      Read more
+                      <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <Link to="/blog" className="btn-primary px-8 py-4 premium-hover-gold inline-flex items-center gap-3">
+            <span>View All Articles</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <BlogPostTemplate 
-      title={blogPost.title}
-      author={blogPost.author}
-      date={blogPost.date}
-      readTime={blogPost.readTime}
-      category={blogPost.category}
-      content={blogPost.content}
-    />
+    </section>
   );
 };
 
-export default BlogPostDetail;
+export default BlogList;

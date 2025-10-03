@@ -19,4 +19,5 @@ export const useAccessibility = (): AccessibilityContextType => {
   return context;
 };
 
+// Separate the provider into its own file to fix the fast refresh warning
 export default AccessibilityContext;
