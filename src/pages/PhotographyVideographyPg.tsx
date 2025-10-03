@@ -145,329 +145,169 @@ const PhotographyVideographyPg = () => {
     // Studio Photography
     {
       id: 1,
-      title: "Corporate Headshots",
+      title: "Midnight Bass",
       category: "studio",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg?updatedAt=1757778687521",
+      type: "Studio Session",
+      year: "2024"
     },
     {
       id: 2,
-      title: "LinkedIn Professional",
+      title: "Vocal Layers",
       category: "studio",
-      image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg?updatedAt=1757778686276",
+      type: "Studio Session",
+      year: "2024"
     },
-    {
-      id: 15,
-      title: "Studio Session",
-      category: "studio",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
-    },
-    {
-      id: 27,
-      title: "Professional Portrait",
-      category: "studio",
-      image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
-    },
-    {
-      id: 28,
-      title: "Lifestyle Shoot",
-      category: "studio",
-      image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Lifestyle",
-      year: "2023"
-    },
-    // Wedding Photography
     {
       id: 3,
-      title: "Traditional Wedding",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1475702/pexels-photo-1475702.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Ceremony",
-      year: "2023"
+      title: "Synth Dreams",
+      category: "studio",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg?updatedAt=1757778686459",
+      type: "Studio Session",
+      year: "2024"
     },
     {
       id: 4,
-      title: "Modern Wedding",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Reception",
-      year: "2023"
+      title: "Drum Mastery",
+      category: "studio",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg?updatedAt=1757778688452",
+      type: "Studio Session",
+      year: "2024"
     },
-    {
-      id: 16,
-      title: "Bridal Portrait",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1475702/pexels-photo-1475702.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
-    },
-    {
-      id: 17,
-      title: "Wedding Party",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Ceremony",
-      year: "2023"
-    },
-    {
-      id: 29,
-      title: "Ceremony Highlights",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1475702/pexels-photo-1475702.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Ceremony",
-      year: "2023"
-    },
-    {
-      id: 30,
-      title: "Reception Moments",
-      category: "wedding",
-      image: "https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Reception",
-      year: "2023"
-    },
-    // Corporate Photography
     {
       id: 5,
-      title: "Team Building Event",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3803423/pexels-photo-3803423.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Corporate",
-      year: "2023"
+      title: "Acoustic Soul",
+      category: "studio",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg?updatedAt=1757778687035",
+      type: "Studio Session",
+      year: "2024"
     },
     {
       id: 6,
-      title: "Graduation Portraits",
+      title: "Mixing Magic",
       category: "studio",
-      image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg?updatedAt=1757778689476",
+      type: "Studio Session",
+      year: "2024"
     },
-    {
-      id: 18,
-      title: "Board Meeting",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3803423/pexels-photo-3803423.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Corporate",
-      year: "2023"
-    },
-    {
-      id: 19,
-      title: "Executive Portrait",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Portrait",
-      year: "2023"
-    },
-    {
-      id: 20,
-      title: "Office Culture",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3803423/pexels-photo-3803423.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Corporate",
-      year: "2023"
-    },
-    {
-      id: 31,
-      title: "Product Photography",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3803423/pexels-photo-3803423.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Corporate",
-      year: "2023"
-    },
-    {
-      id: 32,
-      title: "Corporate Event",
-      category: "corporate",
-      image: "https://images.pexels.com/photos/3769714/pexels-photo-3769714.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Corporate",
-      year: "2023"
-    },
-    // Fashion Photography
+    // Wedding Photography
     {
       id: 7,
-      title: "Cultural Wear",
-      category: "fashion",
-      image: "https://images.pexels.com/photos/1036862/pexels-photo-1036862.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Fashion",
-      year: "2023"
+      title: "Wedding Moments",
+      category: "wedding",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220",
+      type: "Wedding",
+      year: "2024"
     },
     {
       id: 8,
-      title: "Street Style",
-      category: "fashion",
-      image: "https://images.pexels.com/photos/157674/fashion-model-posing-157674.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Fashion",
-      year: "2023"
+      title: "Couple Love",
+      category: "wedding",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225",
+      type: "Wedding",
+      year: "2024"
     },
-    {
-      id: 21,
-      title: "Runway Fashion",
-      category: "fashion",
-      image: "https://images.pexels.com/photos/1036862/pexels-photo-1036862.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Fashion",
-      year: "2023"
-    },
-    {
-      id: 33,
-      title: "Designer Collection",
-      category: "fashion",
-      image: "https://images.pexels.com/photos/157674/fashion-model-posing-157674.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Fashion",
-      year: "2023"
-    },
-    {
-      id: 34,
-      title: "Fashion Editorial",
-      category: "fashion",
-      image: "https://images.pexels.com/photos/1036862/pexels-photo-1036862.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Fashion",
-      year: "2023"
-    },
-    // Real Estate Photography
     {
       id: 9,
-      title: "Modern Villa Interior",
-      category: "real-estate",
-      image: "https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Interior",
-      year: "2023"
+      title: "Special Ceremony",
+      category: "wedding",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg",
+      type: "Wedding",
+      year: "2024"
     },
+    // Corporate Photography
     {
       id: 10,
-      title: "Luxury Apartment",
-      category: "real-estate",
-      image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Exterior",
-      year: "2023"
+      title: "Corporate Team Photo",
+      category: "corporate",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450",
+      type: "Corporate",
+      year: "2024"
     },
-    {
-      id: 22,
-      title: "Penthouse View",
-      category: "real-estate",
-      image: "https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Interior",
-      year: "2023"
-    },
-    {
-      id: 35,
-      title: "Commercial Space",
-      category: "real-estate",
-      image: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Interior",
-      year: "2023"
-    },
-    {
-      id: 36,
-      title: "Modern Kitchen",
-      category: "real-estate",
-      image: "https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Interior",
-      year: "2023"
-    },
-    // Event Coverage
     {
       id: 11,
-      title: "Fashion Gala",
-      category: "events",
-      image: "https://images.pexels.com/photos/7775603/pexels-photo-7775603.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
+      title: "Board Meeting",
+      category: "corporate",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734",
+      type: "Corporate",
+      year: "2024"
     },
     {
       id: 12,
-      title: "Award Ceremony",
-      category: "events",
-      image: "https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
+      title: "Executive Portrait",
+      category: "corporate",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507",
+      type: "Corporate",
+      year: "2024"
     },
-    {
-      id: 23,
-      title: "Product Launch",
-      category: "events",
-      image: "https://images.pexels.com/photos/7775603/pexels-photo-7775603.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
-    },
-    {
-      id: 24,
-      title: "Corporate Event",
-      category: "events",
-      image: "https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
-    },
-    {
-      id: 37,
-      title: "Conference Event",
-      category: "events",
-      image: "https://images.pexels.com/photos/7775603/pexels-photo-7775603.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
-    },
-    {
-      id: 38,
-      title: "Cultural Festival",
-      category: "events",
-      image: "https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Event",
-      year: "2023"
-    },
-    // Sports Photography
+    // Fashion Photography
     {
       id: 13,
-      title: "Motorsport Action",
-      category: "sports",
-      image: "https://images.pexels.com/photos/3184361/pexels-photo-3184361.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Sports",
-      year: "2023"
+      title: "Kenya Fashion Awards",
+      category: "fashion",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg",
+      type: "Fashion",
+      year: "2024"
     },
     {
       id: 14,
+      title: "Laikipia Fashion Gala",
+      category: "fashion",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg",
+      type: "Fashion",
+      year: "2024"
+    },
+    // Real Estate Photography
+    {
+      id: 15,
+      title: "Modern Living Room",
+      category: "real-estate",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png",
+      type: "Real Estate",
+      year: "2024"
+    },
+    {
+      id: 16,
+      title: "Luxury Kitchen",
+      category: "real-estate",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png",
+      type: "Real Estate",
+      year: "2024"
+    },
+    // Event Coverage
+    {
+      id: 17,
+      title: "Kenya Colour Run",
+      category: "events",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg",
+      type: "Event",
+      year: "2024"
+    },
+    {
+      id: 18,
+      title: "Clever Art Event",
+      category: "events",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg",
+      type: "Event",
+      year: "2024"
+    },
+    // Sports Photography
+    {
+      id: 19,
+      title: "Motorsport Action",
+      category: "sports",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276",
+      type: "Sports",
+      year: "2024"
+    },
+    {
+      id: 20,
       title: "Competition Highlights",
       category: "sports",
-      image: "https://images.pexels.com/photos/3184362/pexels-photo-3184362.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781",
       type: "Sports",
-      year: "2023"
-    },
-    {
-      id: 25,
-      title: "Racing Action",
-      category: "sports",
-      image: "https://images.pexels.com/photos/3184361/pexels-photo-3184361.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Sports",
-      year: "2023"
-    },
-    {
-      id: 26,
-      title: "Athletic Performance",
-      category: "sports",
-      image: "https://images.pexels.com/photos/3184362/pexels-photo-3184362.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Sports",
-      year: "2023"
-    },
-    {
-      id: 39,
-      title: "Sports Competition",
-      category: "sports",
-      image: "https://images.pexels.com/photos/3184361/pexels-photo-3184361.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Sports",
-      year: "2023"
-    },
-    {
-      id: 40,
-      title: "Athlete Portrait",
-      category: "sports",
-      image: "https://images.pexels.com/photos/3184362/pexels-photo-3184362.jpeg?auto=compress&cs=tinysrgb&w=800",
-      type: "Sports",
-      year: "2023"
+      year: "2024"
     }
   ];
 
@@ -1700,37 +1540,27 @@ const PhotographyVideographyPg = () => {
           </div>
           
           {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="masonry-grid">
             {filteredItems.map((item) => (
               <div 
                 key={item.id} 
-                className="premium-card premium-hover-gold group cursor-pointer"
+                className="masonry-item group cursor-pointer"
                 onClick={() => {
                   setSelectedImage(item);
                   setShowModal(true);
                 }}
               >
-                <div className="relative rounded-xl overflow-hidden mb-4">
-                  <img 
-                    src={item.image} 
-                    alt={`${item.title} - ${services.find(s => s.id === item.category)?.title || item.category} by KGILL+ Studio`}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent"></div>
-                  <div className="absolute top-3 right-3">
-                    <span className="px-2 py-1 bg-charcoal/80 text-white rounded-full text-xs">
-                      {item.type}
-                    </span>
-                  </div>
+                <img 
+                  src={item.image} 
+                  alt={`${item.title} - ${services.find(s => s.id === item.category)?.title || item.category} by KGILL+ Studio`}
+                  className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-8 h-8 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
                 </div>
-                
-                <h3 className="text-xl font-bold font-montserrat mb-2">{item.title}</h3>
-                <div className="flex justify-between items-center text-sm text-gray-500">
-                  <span>{services.find(s => s.id === item.category)?.title || item.category}</span>
-                  <span>{item.year}</span>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent">
+                  <h3 className="text-lg font-bold font-montserrat text-white">{item.title}</h3>
+                  <p className="text-sm text-gray-300">{services.find(s => s.id === item.category)?.title || item.category}</p>
                 </div>
               </div>
             ))}

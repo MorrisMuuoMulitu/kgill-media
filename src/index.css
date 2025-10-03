@@ -1371,3 +1371,21 @@ select:focus-visible {
 html {
   scroll-behavior: smooth;
 }
+
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.masonry-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
