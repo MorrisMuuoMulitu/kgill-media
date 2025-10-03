@@ -111,10 +111,10 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
             </div>
           </div>
 
-          {/* Floating Close Button - positioned to avoid navigation */}
+          {/* Floating Close Button - responsive positioning */}
           <button
             onClick={() => setIsOpen(false)}
-            className="fixed bottom-8 right-8 md:bottom-12 md:right-12 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:scale-110 z-[60] border-4 border-charcoal"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 md:top-6 md:left-auto md:right-6 md:bottom-auto md:translate-x-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:scale-110 z-[60] border-4 border-charcoal"
             aria-label="Close gallery"
           >
             <X className="w-8 h-8 md:w-10 md:h-10 text-charcoal font-bold group-hover:rotate-90 transition-transform stroke-[3]" />
@@ -160,7 +160,7 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
         <div className="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-4">
           <button
             onClick={closeLightbox}
-            className="fixed top-8 left-1/2 -translate-x-1/2 md:top-12 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-2xl hover:scale-110 border-4 border-black"
+            className="fixed top-6 left-1/2 -translate-x-1/2 md:top-8 md:left-auto md:right-8 md:translate-x-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-2xl hover:scale-110 border-4 border-black"
             aria-label="Close image"
           >
             <X className="w-8 h-8 md:w-10 md:h-10 text-charcoal font-bold group-hover:rotate-90 transition-transform stroke-[3]" />
