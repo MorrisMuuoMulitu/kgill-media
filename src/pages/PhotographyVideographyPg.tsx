@@ -1176,6 +1176,47 @@ const PhotographyVideographyPg = () => {
               </div>
             </div>
 
+            {/* Fashion Meet n Greet Hangout Section */}
+            <div className="w-full mt-20">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
+                  <Shirt className="w-8 h-8 text-charcoal" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold font-montserrat text-white drop-shadow-lg">Kgill Fashion Meet n Greet Hangout</h3>
+                  <p className="text-gray-300">Identifying your style and bringing out the fashionista in you</p>
+                </div>
+              </div>
+              <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
+                It's all about fashion culture - identifying your fashion style & bringing it out to be an outstanding fashionista. Join us in celebrating individual style, self-expression, and the art of fashion.
+              </p>
+              
+              {/* Fashion Gallery */}
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">FASHION MEET N GREET</h4>
+                <CompactGridGallery 
+                  title="Fashion Meet n Greet Hangout"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion1.jpg", title: "Fashion Forward" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion2.jpg", title: "Style Icon" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion3.jpg", title: "Street Style" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion4.jpg", title: "Fashion Culture" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion5.jpg", title: "Trendsetter" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion6.jpg", title: "Fashion Statement" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion7.jpg", title: "Style Expression" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion8.jpg", title: "Fashion Identity" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion12.jpg", title: "Outstanding Style" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion11.jpg", title: "Fashion Vibes" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion10.jpg", title: "Fashionista Life" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion9.jpg", title: "Style Journey" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion15.jpg", title: "Fashion Meets" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion13.jpg", title: "Style Community" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion14.jpg", title: "Fashion Hangout" }
+                  ]} 
+                />
+              </div>
+            </div>
+
             </div>
           </div>
       </section>
