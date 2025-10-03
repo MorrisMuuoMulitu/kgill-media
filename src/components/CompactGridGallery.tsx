@@ -71,10 +71,12 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
                 
                 {/* View More Overlay for last image */}
                 {index === previewImages.length - 1 && hasMore && (
-                  <div className="absolute inset-0 bg-gold-gradient/90 group-hover:bg-gold-gradient transition-all flex flex-col items-center justify-center">
-                    <Grid3x3 className="w-10 h-10 md:w-12 md:h-12 text-charcoal mb-2" />
-                    <div className="text-xl md:text-2xl font-black text-charcoal font-montserrat">View All</div>
-                    <div className="text-charcoal font-inter font-semibold text-sm md:text-base">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start via-gold-gradient-end to-terracotta group-hover:scale-105 transition-all flex flex-col items-center justify-center shadow-2xl">
+                    <div className="bg-charcoal/20 backdrop-blur-sm rounded-full p-4 mb-3 group-hover:scale-110 transition-transform">
+                      <Grid3x3 className="w-10 h-10 md:w-14 md:h-14 text-charcoal drop-shadow-lg" />
+                    </div>
+                    <div className="text-2xl md:text-3xl font-black text-charcoal font-montserrat drop-shadow-lg mb-1">View All</div>
+                    <div className="text-charcoal font-inter font-bold text-base md:text-lg drop-shadow-md">
                       {images.length} Photos
                     </div>
                   </div>
@@ -96,9 +98,9 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
 
       {/* Full-Screen Gallery Modal */}
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] bg-charcoal/98 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-[9999] bg-charcoal overflow-y-auto">
           {/* Header */}
-          <div className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-xl border-b border-white/10">
+          <div className="sticky top-0 z-50 bg-charcoal/98 backdrop-blur-xl border-b border-white/10 shadow-2xl">
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6">
               <div className="flex justify-between items-center">
                 <div>
@@ -107,9 +109,10 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all group"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:scale-110"
+                  aria-label="Close gallery"
                 >
-                  <X className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:rotate-90 transition-transform" />
+                  <X className="w-6 h-6 md:w-8 md:h-8 text-charcoal font-bold group-hover:rotate-90 transition-transform" />
                 </button>
               </div>
             </div>
@@ -152,26 +155,29 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
 
       {/* Lightbox */}
       {selectedImage !== null && (
-        <div className="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-4">
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+            className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 md:w-16 md:h-16 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-2xl hover:scale-110"
+            aria-label="Close image"
           >
-            <X className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:rotate-90 transition-transform" />
+            <X className="w-6 h-6 md:w-8 md:h-8 text-charcoal font-bold group-hover:rotate-90 transition-transform" />
           </button>
 
           <button
             onClick={prevImage}
-            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+            className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-gold-gradient border-2 border-white/20 hover:border-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-xl hover:scale-110"
+            aria-label="Previous image"
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-charcoal group-hover:-translate-x-1 transition-all font-bold" />
           </button>
 
           <button
             onClick={nextImage}
-            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+            className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/10 hover:bg-gold-gradient border-2 border-white/20 hover:border-gold-gradient-start flex items-center justify-center transition-all group z-50 shadow-xl hover:scale-110"
+            aria-label="Next image"
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-charcoal group-hover:translate-x-1 transition-all font-bold" />
           </button>
 
           <div className="max-w-6xl max-h-[90vh] relative">
