@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
 import BlogList from '../components/BlogList';
-import Carousel from '../components/Carousel';
+import CompactGridGallery from '../components/CompactGridGallery';
 import LazyImage from '../components/LazyImage';
 import SkeletonLoader from '../components/SkeletonLoader';
 
@@ -716,20 +716,23 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Massive Full-Screen Headshots Gallery */}
-              <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">EXCLUSIVE HEADSHOT COLLECTION</h4>
-                <Carousel images={[
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276", title: "Corporate Headshot" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781", title: "Artist Portrait" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251", title: "Business Professional" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot6.jpg?updatedAt=1757781885957", title: "Creative Professional" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot8.jpg?updatedAt=1757781885499", title: "Industry Leader" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300", title: "Executive Portrait" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot5.jpg?updatedAt=1757781884664", title: "Professional Headshot" },
-                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110", title: "Corporate Executive" },
-                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859", title: "Artistic Portrait" },
-                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg?updatedAt=1757781874606", title: "Executive Headshot" }
-                ]} />
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EXCLUSIVE HEADSHOT COLLECTION</h4>
+                <CompactGridGallery 
+                  title="Exclusive Headshot Collection"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276", title: "Corporate Headshot" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781", title: "Artist Portrait" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot3.jpg?updatedAt=1757781886251", title: "Business Professional" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot6.jpg?updatedAt=1757781885957", title: "Creative Professional" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot8.jpg?updatedAt=1757781885499", title: "Industry Leader" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot4.jpg?updatedAt=1757781885300", title: "Executive Portrait" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot5.jpg?updatedAt=1757781884664", title: "Professional Headshot" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg?updatedAt=1757781883110", title: "Corporate Executive" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg?updatedAt=1757781880859", title: "Artistic Portrait" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg?updatedAt=1757781874606", title: "Executive Headshot" }
+                  ]} 
+                />
               </div>
             </div>
             
@@ -752,31 +755,34 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Event Photography Gallery */}
-              <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">EVENT HIGHLIGHTS</h4>
-                <Carousel images={[
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg", title: "Kenya Fashion Awards" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg", title: "Laikipia Fashion Gala" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg", title: "Kenya Colour Run" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg", title: "Clever Art Event" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event5.jpg", title: "Pawa Festival" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event6.jpg", title: "Jkuat Awards" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event7.jpg", title: "Mr & Miss Jkuat" },
-                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event8.jpg", title: "Dream Kona Events" },
-                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg", title: "Tuvibe Festival" },
-                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg", title: "Wedding Ceremony" },
-                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg", title: "Baby Shower" },
-                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg", title: "Birthday Party" },
-                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg", title: "Kibera Talent Search" },
-                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg", title: "Mr & Miss Kibera" },
-                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg", title: "The Millenials" },
-                  { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event16.jpg", title: "Special Occasion" },
-                  { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event17.jpg", title: "Event Coverage" },
-                  { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event18.jpg", title: "Memorable Moment" },
-                  { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event19.jpg", title: "Celebration" },
-                  { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival" },
-                  { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event" }
-                ]} />
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EVENT HIGHLIGHTS</h4>
+                <CompactGridGallery 
+                  title="Event Highlights"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg", title: "Kenya Fashion Awards" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg", title: "Laikipia Fashion Gala" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg", title: "Kenya Colour Run" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg", title: "Clever Art Event" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event5.jpg", title: "Pawa Festival" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event6.jpg", title: "Jkuat Awards" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event7.jpg", title: "Mr & Miss Jkuat" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event8.jpg", title: "Dream Kona Events" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg", title: "Tuvibe Festival" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg", title: "Wedding Ceremony" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg", title: "Baby Shower" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg", title: "Birthday Party" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg", title: "Kibera Talent Search" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg", title: "Mr & Miss Kibera" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg", title: "The Millenials" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event16.jpg", title: "Special Occasion" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event17.jpg", title: "Event Coverage" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event18.jpg", title: "Memorable Moment" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event19.jpg", title: "Celebration" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event" }
+                  ]} 
+                />
               </div>
             </div>
             
@@ -832,24 +838,27 @@ const PhotographyVideographyPg = () => {
               
               {/* Wedding Gallery */}
               <div className="mt-12">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-12 text-center">Wedding Highlights</h4>
-                <Carousel images={[ 
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220", title: "Wedding Moments" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225", title: "Couple Love" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg", title: "Special Ceremony" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed4.jpg", title: "Happy Couple" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed5.jpg", title: "Wedding Joy" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding16.jpg?updatedAt=1759397148221", title: "Celebration Highlights" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg", title: "Romantic Moments" },
-                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed8.jpg", title: "Wedding Bliss" },
-                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed9.jpg", title: "Love Story" },
-                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed10.jpg", title: "Forever Love" },
-                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg?updatedAt=1759397148343", title: "Forever Love" },
-                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg?updatedAt=1759397148387", title: "Forever Love" },
-                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg?updatedAt=1759397148442", title: "Forever Love" },
-                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg?updatedAt=1759397148239", title: "Forever Love" },
-                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg?updatedAt=1759397148749", title: "Forever Love" },
-                ]} />
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-12 text-center epic-text">Wedding Highlights</h4>
+                <CompactGridGallery 
+                  title="Wedding Highlights"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220", title: "Wedding Moments" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225", title: "Couple Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg", title: "Special Ceremony" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed4.jpg", title: "Happy Couple" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed5.jpg", title: "Wedding Joy" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding16.jpg?updatedAt=1759397148221", title: "Celebration Highlights" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg", title: "Romantic Moments" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed8.jpg", title: "Wedding Bliss" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed9.jpg", title: "Love Story" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed10.jpg", title: "Forever Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg?updatedAt=1759397148343", title: "Forever Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg?updatedAt=1759397148387", title: "Forever Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg?updatedAt=1759397148442", title: "Forever Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg?updatedAt=1759397148239", title: "Forever Love" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg?updatedAt=1759397148749", title: "Forever Love" }
+                  ]} 
+                />
               </div>
               
               {/* Wedding Packages */}
@@ -1026,34 +1035,37 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Corporate Photography Gallery */}
-              <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">CORPORATE PHOTOGRAPHY GALLERY</h4>
-                <Carousel images={[
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450", title: "Corporate Team Photo" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734", title: "Board Meeting" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507", title: "Executive Portrait" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE12.jpg?updatedAt=1759414889763", title: "Office Culture" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE13.jpg?updatedAt=1759414897700", title: "Business Meeting" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE18.jpg?updatedAt=1759414890314", title: "Corporate Event" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE17.jpg?updatedAt=1759414906205", title: "Team Collaboration" },
-                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE16.jpg?updatedAt=1759414892553", title: "Business Presentation" },
-                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE15.jpg?updatedAt=1759414889617", title: "Office Workspace" },
-                  { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE14.jpg?updatedAt=1759414889538", title: "Product Photography" },
-                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE19.jpg?updatedAt=1759414890528", title: "Corporate Portrait" },
-                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE2.jpg?updatedAt=1759414892388", title: "Team Building" },
-                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE20.jpg?updatedAt=1759414889815", title: "Business Professionals" },
-                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE21.jpg?updatedAt=1759414902409", title: "Conference Room" },
-                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE22.jpg?updatedAt=1759414890213", title: "Corporate Headshot" },
-                  { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE5.jpg?updatedAt=1759414902386", title: "Business Event" },
-                  { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE4.jpg?updatedAt=1759414892488", title: "Office Professionals" },
-                  { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE3.jpg?updatedAt=1759414889673", title: "Corporate Meeting" },
-                  { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE24.jpg?updatedAt=1759414906762", title: "Executive Meeting" },
-                  { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE23.jpg?updatedAt=1759414892400", title: "Team Photo" },
-                  { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE6.jpg?updatedAt=1759414889643", title: "Business Workshop" },
-                  { id: 22, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE7.jpg?updatedAt=1759414889833", title: "Corporate Presentation" },
-                  { id: 23, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg?updatedAt=1759414890058", title: "Office Team" },
-                  { id: 24, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg?updatedAt=1759414890024", title: "Business Professionals" }
-                ]} />
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">CORPORATE PHOTOGRAPHY GALLERY</h4>
+                <CompactGridGallery 
+                  title="Corporate Photography Gallery"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450", title: "Corporate Team Photo" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734", title: "Board Meeting" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507", title: "Executive Portrait" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE12.jpg?updatedAt=1759414889763", title: "Office Culture" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE13.jpg?updatedAt=1759414897700", title: "Business Meeting" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE18.jpg?updatedAt=1759414890314", title: "Corporate Event" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE17.jpg?updatedAt=1759414906205", title: "Team Collaboration" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE16.jpg?updatedAt=1759414892553", title: "Business Presentation" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE15.jpg?updatedAt=1759414889617", title: "Office Workspace" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE14.jpg?updatedAt=1759414889538", title: "Product Photography" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE19.jpg?updatedAt=1759414890528", title: "Corporate Portrait" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE2.jpg?updatedAt=1759414892388", title: "Team Building" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE20.jpg?updatedAt=1759414889815", title: "Business Professionals" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE21.jpg?updatedAt=1759414902409", title: "Conference Room" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE22.jpg?updatedAt=1759414890213", title: "Corporate Headshot" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE5.jpg?updatedAt=1759414902386", title: "Business Event" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE4.jpg?updatedAt=1759414892488", title: "Office Professionals" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE3.jpg?updatedAt=1759414889673", title: "Corporate Meeting" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE24.jpg?updatedAt=1759414906762", title: "Executive Meeting" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE23.jpg?updatedAt=1759414892400", title: "Team Photo" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE6.jpg?updatedAt=1759414889643", title: "Business Workshop" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE7.jpg?updatedAt=1759414889833", title: "Corporate Presentation" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg?updatedAt=1759414890058", title: "Office Team" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg?updatedAt=1759414890024", title: "Business Professionals" }
+                  ]} 
+                />
               </div>
             </div>
 
@@ -1073,17 +1085,20 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Real Estate Photography Gallery */}
-              <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">PREMIUM PROPERTY SHOWCASE</h4>
-                <Carousel images={[
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png", title: "Modern Living Room" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png", title: "Luxury Kitchen" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate3.png", title: "Spacious Bedroom" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate4.png", title: "Elegant Bathroom" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate5.png", title: "Stunning Exterior" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space" }
-                ]} />
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PREMIUM PROPERTY SHOWCASE</h4>
+                <CompactGridGallery 
+                  title="Premium Property Showcase"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png", title: "Modern Living Room" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png", title: "Luxury Kitchen" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate3.png", title: "Spacious Bedroom" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate4.png", title: "Elegant Bathroom" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate5.png", title: "Stunning Exterior" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space" }
+                  ]} 
+                />
               </div>
             </div>
 
@@ -1103,19 +1118,22 @@ const PhotographyVideographyPg = () => {
               </p>
               
               {/* Graduation Shoots Gallery */}
-              <div className="mt-8 -mx-4 sm:-mx-6 lg:-mx-8 relative z-20">
-                <h4 className="text-2xl font-bold font-montserrat text-white mb-8 text-center">GRADUATION MEMORIES</h4>
-                <Carousel images={[
-                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation1.jpg", title: "Academic Achievement" },
-                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation2.jpg", title: "Cap & Gown" },
-                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation3.jpg", title: "Proud Graduate" },
-                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation4.jpg", title: "Celebration Moment" },
-                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation5.jpg", title: "Academic Pride" },
-                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation6.jpg", title: "Milestone Celebration" },
-                  { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation7.jpg?updatedAt=1759469659138", title: "Graduation Joy" },
-                  { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg?updatedAt=1759469658920", title: "Academic Success" },
-                  { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg?updatedAt=1759469658977", title: "Future Ahead" }
-                ]} />
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">GRADUATION MEMORIES</h4>
+                <CompactGridGallery 
+                  title="Graduation Memories"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation1.jpg", title: "Academic Achievement" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation2.jpg", title: "Cap & Gown" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation3.jpg", title: "Proud Graduate" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation4.jpg", title: "Celebration Moment" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation5.jpg", title: "Academic Pride" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation6.jpg", title: "Milestone Celebration" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation7.jpg?updatedAt=1759469659138", title: "Graduation Joy" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg?updatedAt=1759469658920", title: "Academic Success" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg?updatedAt=1759469658977", title: "Future Ahead" }
+                  ]} 
+                />
               </div>
 
             </div>
