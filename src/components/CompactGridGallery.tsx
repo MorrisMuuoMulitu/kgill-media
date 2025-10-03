@@ -74,11 +74,11 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
               }`}
               onClick={() => index === previewImages.length - 1 && hasMore ? openGallery() : openLightbox(index)}
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
                 <OptimizedImage
                   src={image.src}
                   alt={image.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 
@@ -159,11 +159,11 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
                   onClick={() => openLightbox(index)}
                 >
                   <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-gold-gradient-start/20 transition-all duration-500 transform hover:scale-[1.02]">
-                    <div className="relative aspect-[4/3] overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
                       <OptimizedImage
                         src={image.src}
                         alt={image.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
