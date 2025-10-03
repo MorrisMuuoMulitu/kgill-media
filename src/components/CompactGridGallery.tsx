@@ -124,10 +124,10 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
             </div>
           </div>
 
-          {/* Floating Close Button - middle right with blink animation */}
+          {/* Floating Close Button - responsive positioning with blink animation */}
           <button
             onClick={() => setIsOpen(false)}
-            className="fixed top-1/2 -translate-y-1/2 right-4 md:right-8 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-110 z-[9999] border-4 border-charcoal animate-pulse-slow"
+            className="fixed top-1/2 -translate-y-1/2 md:top-8 md:translate-y-0 right-4 md:right-8 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-110 z-[9999] border-4 border-charcoal animate-pulse-slow"
             aria-label="Close gallery"
             style={{
               animation: 'pulse-blink 2s ease-in-out infinite'
@@ -140,11 +140,23 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
             @keyframes pulse-blink {
               0%, 100% {
                 opacity: 1;
-                transform: translateY(-50%) scale(1);
+                transform: scale(1);
               }
               50% {
                 opacity: 0.6;
-                transform: translateY(-50%) scale(1.05);
+                transform: scale(1.05);
+              }
+            }
+            @media (max-width: 768px) {
+              @keyframes pulse-blink {
+                0%, 100% {
+                  opacity: 1;
+                  transform: translateY(-50%) scale(1);
+                }
+                50% {
+                  opacity: 0.6;
+                  transform: translateY(-50%) scale(1.05);
+                }
               }
             }
           `}</style>
@@ -189,7 +201,7 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
         <div className="fixed inset-0 z-[10000] bg-black flex items-center justify-center p-4">
           <button
             onClick={closeLightbox}
-            className="fixed top-1/2 -translate-y-1/2 right-4 md:right-8 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-110 z-50 border-4 border-black"
+            className="fixed top-1/2 -translate-y-1/2 md:top-8 md:translate-y-0 right-4 md:right-24 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold-gradient hover:bg-gradient-to-br hover:from-gold-gradient-end hover:to-gold-gradient-start flex items-center justify-center transition-all group shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-110 z-50 border-4 border-black"
             aria-label="Close image"
             style={{
               animation: 'pulse-blink 2s ease-in-out infinite'
