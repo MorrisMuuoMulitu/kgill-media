@@ -1138,6 +1138,44 @@ const PhotographyVideographyPg = () => {
 
             </div>
 
+            {/* Africanism Section */}
+            <div className="w-full mt-20">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
+                  <Camera className="w-8 h-8 text-charcoal" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold font-montserrat text-white drop-shadow-lg">Africanism</h3>
+                  <p className="text-gray-300">Celebrating the wealth of African culture</p>
+                </div>
+              </div>
+              <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl italic">
+                "I've got to where I am in life not because of something I brought to the world but through something I found - the wealth of African culture."
+              </p>
+              <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
+                It's obvious that the rest of the world loves high African culture - African culture, period.
+              </p>
+              
+              {/* Africanism Gallery */}
+              <div className="mt-8 relative z-20">
+                <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">AFRICANISM</h4>
+                <CompactGridGallery 
+                  title="Africanism"
+                  images={[
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism2.jpg?updatedAt=1759474239925", title: "African Culture" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism.jpg?updatedAt=1759474239572", title: "African Heritage" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism7.jpg?updatedAt=1759474239390", title: "Cultural Expression" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism8.jpg?updatedAt=1759474239393", title: "African Beauty" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism6.jpg?updatedAt=1759474239201", title: "Cultural Pride" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism3.jpg?updatedAt=1759474239013", title: "African Essence" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism4.jpg?updatedAt=1759474238982", title: "Cultural Richness" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism9.jpg?updatedAt=1759474239331", title: "African Identity" },
+                    { src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism5.jpg?updatedAt=1759474239165", title: "Cultural Heritage" }
+                  ]} 
+                />
+              </div>
+            </div>
+
             </div>
           </div>
       </section>
