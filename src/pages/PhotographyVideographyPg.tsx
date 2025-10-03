@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Aperture, Bike, Building2, CalendarDays, Camera, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
+import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
 import BlogList from '../components/BlogList';
 import Carousel from '../components/Carousel';
 import LazyImage from '../components/LazyImage';
