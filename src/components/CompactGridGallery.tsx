@@ -214,11 +214,11 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
             <ChevronRight className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-charcoal group-hover:translate-x-1 transition-all font-bold" />
           </button>
 
-          <div className="max-w-6xl max-h-[90vh] relative">
+          <div className="relative w-full h-full flex items-center justify-center">
             <img
               src={images[selectedImage]?.src}
               alt={images[selectedImage]?.title}
-              className="w-full h-full object-contain rounded-xl md:rounded-2xl shadow-2xl"
+              className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-xl md:rounded-2xl shadow-2xl"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 md:p-8 rounded-b-xl md:rounded-b-2xl">
               <h3 className="text-xl md:text-2xl font-bold text-white font-montserrat mb-1">
