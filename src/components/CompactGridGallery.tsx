@@ -74,11 +74,11 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
               }`}
               onClick={() => index === previewImages.length - 1 && hasMore ? openGallery() : openLightbox(index)}
             >
-              <div className="relative h-48 md:h-64 overflow-hidden bg-slate-900">
+              <div className="relative min-h-[300px] max-h-[500px] overflow-hidden bg-slate-900 flex items-center justify-center">
                 <OptimizedImage
                   src={image.src}
                   alt={image.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 
