@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
-import BlogList from '../components/BlogList';
+
 import CompactGridGallery from '../components/CompactGridGallery';
 import LazyImage from '../components/LazyImage';
 import SkeletonLoader from '../components/SkeletonLoader';
@@ -26,6 +26,14 @@ const PhotographyVideographyPg = () => {
     }, 1500); // Simulate loading for 1.5 seconds
     return () => clearTimeout(timer);
   }, []);
+
+  const getHighResImageUrl = (url: string) => {
+    if (url.includes('?')) {
+      return `${url}&tr=w-2000`;
+    }
+    return `${url}?tr=w-2000`;
+  };
+
 
   // Services data
   const services = [
@@ -408,52 +416,31 @@ const PhotographyVideographyPg = () => {
             </p>
           </div>
           
-          {/* Majestic Service Buttons Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {services.map((service, index) => (
-              <div 
+          {/* Service Buttons List */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {services.map((service) => (
+              <button
                 key={service.id}
-                className={`group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-sm border border-slate-700/30 rounded-3xl p-8 transition-all duration-500 cursor-pointer overflow-hidden hover:border-gold-gradient/40 hover:shadow-xl transform hover:-translate-y-2 animate-fade-in-up hover:scale-[1.02]`}
-                style={{ animationDelay: `${index * 150}ms` }}
+                className={`btn-primary premium-hover-gold flex items-center gap-3 ${
+                  activeService === service.id ? 'bg-gold-gradient text-charcoal' : ''
+                }`}
                 onClick={() => setActiveService(activeService === service.id ? 'all' : service.id)}
               >
-                {/* Service Icon */}
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-gradient/20 to-terracotta/20 flex items-center justify-center mb-6 shadow-md group-hover:shadow-gold/20 transition-all duration-300 ${activeService === service.id ? 'scale-110 ring-4 ring-gold-gradient/50' : ''}`}>
-                  <div className={`w-8 h-8 ${activeService === service.id ? 'text-terracotta' : 'text-gold-gradient'}`}>
-                    {service.icon}
-                  </div>
-                </div>
-                
-                <h3 className="text-2xl font-bold font-montserrat mb-4 text-white">{service.title}</h3>
-                <p className="text-gray-300 font-inter mb-6 text-sm leading-relaxed">{service.description}</p>
-                
-                {/* Interactive Button */}
-                <button 
-                  className="w-full flex items-center justify-between bg-slate-700/50 hover:bg-slate-700/70 border border-slate-600/50 hover:border-gold-gradient/30 rounded-xl py-3 px-4 transition-all duration-300 group/button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveService(activeService === service.id ? 'all' : service.id);
-                  }}
-                >
-                  <span className="text-sm font-inter font-semibold text-gray-200 group-hover/button:text-gold-gradient transition-colors">
-                    {activeService === service.id ? 'Show Less' : 'Learn More'}
-                  </span>
-                  <div className={`w-5 h-5 rounded-full bg-gold-gradient/20 flex items-center justify-center transition-transform duration-300 ${activeService === service.id ? 'rotate-180' : ''}`}>
-                    <svg className="w-3 h-3 text-gold-gradient" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </button>
-                
-                {/* Subtle hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
-              </div>
+                {service.icon}
+                <span>{service.title}</span>
+              </button>
             ))}
           </div>
           
           {/* Expanded Service Details Panel */}
           {activeService !== 'all' && (
             <div className="relative z-20 bg-gradient-to-br from-slate-800/70 to-slate-900/70 backdrop-blur-xl border border-gold-gradient/30 rounded-3xl p-8 mb-16 animate-fade-in">
+              <button
+                onClick={() => setActiveService('all')}
+                className="absolute top-4 right-4 text-white hover:text-gold-gradient transition-colors z-10"
+              >
+                <X className="w-8 h-8" />
+              </button>
               {services.map(service => (
                 activeService === service.id && (
                   <div key={service.id} className="max-w-4xl mx-auto">
@@ -1414,7 +1401,7 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
-      <BlogList />
+      
 
       {/* Contact Section - Premium, Animated, Accessible */}
       <section className="py-24 bg-gradient-to-br from-charcoal via-slate-900 to-black relative overflow-x-hidden">
