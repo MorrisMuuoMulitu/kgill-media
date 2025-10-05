@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
 
 import CompactGridGallery from '../components/CompactGridGallery';
-import LazyImage from '../components/LazyImage';
 import SkeletonLoader from '../components/SkeletonLoader';
+
+
+import { Gallery } from 'react-grid-gallery';
 
 const PhotographyVideographyPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -145,6 +147,8 @@ const PhotographyVideographyPg = () => {
       title: "Midnight Bass",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg?updatedAt=1757778687521",
+      width: 320,
+      height: 174,
       type: "Studio Session",
       year: "2024"
     },
@@ -153,6 +157,8 @@ const PhotographyVideographyPg = () => {
       title: "Vocal Layers",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg?updatedAt=1757778686276",
+      width: 320,
+      height: 212,
       type: "Studio Session",
       year: "2024"
     },
@@ -161,6 +167,8 @@ const PhotographyVideographyPg = () => {
       title: "Synth Dreams",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg?updatedAt=1757778686459",
+      width: 320,
+      height: 212,
       type: "Studio Session",
       year: "2024"
     },
@@ -169,6 +177,8 @@ const PhotographyVideographyPg = () => {
       title: "Drum Mastery",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg?updatedAt=1757778688452",
+      width: 320,
+      height: 174,
       type: "Studio Session",
       year: "2024"
     },
@@ -177,6 +187,8 @@ const PhotographyVideographyPg = () => {
       title: "Acoustic Soul",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg?updatedAt=1757778687035",
+      width: 320,
+      height: 212,
       type: "Studio Session",
       year: "2024"
     },
@@ -185,6 +197,8 @@ const PhotographyVideographyPg = () => {
       title: "Mixing Magic",
       category: "studio",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg?updatedAt=1757778689476",
+      width: 320,
+      height: 174,
       type: "Studio Session",
       year: "2024"
     },
@@ -194,6 +208,8 @@ const PhotographyVideographyPg = () => {
       title: "Wedding Moments",
       category: "wedding",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg?updatedAt=1759398774220",
+      width: 320,
+      height: 212,
       type: "Wedding",
       year: "2024"
     },
@@ -202,6 +218,8 @@ const PhotographyVideographyPg = () => {
       title: "Couple Love",
       category: "wedding",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg?updatedAt=1759398775225",
+      width: 320,
+      height: 174,
       type: "Wedding",
       year: "2024"
     },
@@ -210,6 +228,8 @@ const PhotographyVideographyPg = () => {
       title: "Special Ceremony",
       category: "wedding",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed3.jpg",
+      width: 320,
+      height: 212,
       type: "Wedding",
       year: "2024"
     },
@@ -219,6 +239,8 @@ const PhotographyVideographyPg = () => {
       title: "Corporate Team Photo",
       category: "corporate",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg?updatedAt=1759414890450",
+      width: 320,
+      height: 174,
       type: "Corporate",
       year: "2024"
     },
@@ -227,6 +249,8 @@ const PhotographyVideographyPg = () => {
       title: "Board Meeting",
       category: "corporate",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg?updatedAt=1759414889734",
+      width: 320,
+      height: 212,
       type: "Corporate",
       year: "2024"
     },
@@ -235,6 +259,8 @@ const PhotographyVideographyPg = () => {
       title: "Executive Portrait",
       category: "corporate",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE11.jpg?updatedAt=1759414892507",
+      width: 320,
+      height: 174,
       type: "Corporate",
       year: "2024"
     },
@@ -244,6 +270,8 @@ const PhotographyVideographyPg = () => {
       title: "Kenya Fashion Awards",
       category: "fashion",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg",
+      width: 320,
+      height: 212,
       type: "Fashion",
       year: "2024"
     },
@@ -252,6 +280,8 @@ const PhotographyVideographyPg = () => {
       title: "Laikipia Fashion Gala",
       category: "fashion",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg",
+      width: 320,
+      height: 174,
       type: "Fashion",
       year: "2024"
     },
@@ -261,6 +291,8 @@ const PhotographyVideographyPg = () => {
       title: "Modern Living Room",
       category: "real-estate",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png",
+      width: 320,
+      height: 212,
       type: "Real Estate",
       year: "2024"
     },
@@ -269,6 +301,8 @@ const PhotographyVideographyPg = () => {
       title: "Luxury Kitchen",
       category: "real-estate",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png",
+      width: 320,
+      height: 174,
       type: "Real Estate",
       year: "2024"
     },
@@ -278,6 +312,8 @@ const PhotographyVideographyPg = () => {
       title: "Kenya Colour Run",
       category: "events",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event3.jpg",
+      width: 320,
+      height: 212,
       type: "Event",
       year: "2024"
     },
@@ -286,6 +322,8 @@ const PhotographyVideographyPg = () => {
       title: "Clever Art Event",
       category: "events",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event4.jpg",
+      width: 320,
+      height: 174,
       type: "Event",
       year: "2024"
     },
@@ -295,6 +333,8 @@ const PhotographyVideographyPg = () => {
       title: "Motorsport Action",
       category: "sports",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg?updatedAt=1757781887276",
+      width: 320,
+      height: 212,
       type: "Sports",
       year: "2024"
     },
@@ -303,9 +343,74 @@ const PhotographyVideographyPg = () => {
       title: "Competition Highlights",
       category: "sports",
       image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg?updatedAt=1757781886781",
+      width: 320,
+      height: 174,
       type: "Sports",
       year: "2024"
     }
+  ];
+
+  const packages = [
+    {
+      serviceId: 'studio',
+      packages: [
+        {
+          name: 'Basic',
+          price: 'Ksh 5,000',
+          features: ['1 hour session', '10 edited photos', 'Online gallery'],
+        },
+        {
+          name: 'Standard',
+          price: 'Ksh 10,000',
+          features: ['2 hour session', '20 edited photos', 'Online gallery', '1 outfit change'],
+        },
+        {
+          name: 'Premium',
+          price: 'Ksh 15,000',
+          features: ['3 hour session', '30 edited photos', 'Online gallery', '2 outfit changes', 'Makeup artist'],
+        },
+      ],
+    },
+    {
+      serviceId: 'wedding',
+      packages: [
+        {
+          name: 'Ceremony',
+          price: 'Ksh 50,000',
+          features: ['4 hours coverage', '200 edited photos', 'Online gallery'],
+        },
+        {
+          name: 'Full Day',
+          price: 'Ksh 100,000',
+          features: ['8 hours coverage', '400 edited photos', 'Online gallery', 'Pre-wedding shoot'],
+        },
+        {
+          name: 'Premium',
+          price: 'Ksh 150,000',
+          features: ['12 hours coverage', '600 edited photos', 'Online gallery', 'Pre-wedding shoot', 'Wedding album'],
+        },
+      ],
+    },
+    {
+      serviceId: 'corporate',
+      packages: [
+        {
+          name: 'Headshots',
+          price: 'Ksh 10,000',
+          features: ['1 hour session', '10 edited photos per person', 'Online gallery'],
+        },
+        {
+          name: 'Team Photos',
+          price: 'Ksh 20,000',
+          features: ['2 hour session', '20 edited photos', 'Online gallery'],
+        },
+        {
+          name: 'Event Coverage',
+          price: 'Ksh 30,000',
+          features: ['4 hours coverage', '200 edited photos', 'Online gallery'],
+        },
+      ],
+    },
   ];
 
   const filteredItems = activeCategory === 'all' 
@@ -418,7 +523,7 @@ const PhotographyVideographyPg = () => {
           
           {/* Service Buttons List */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {services.map((service) => (
+            {services.filter(service => portfolioItems.some(item => item.category === service.id)).map((service) => (
               <button
                 key={service.id}
                 className={`btn-primary premium-hover-gold flex items-center gap-3 ${
@@ -473,18 +578,76 @@ const PhotographyVideographyPg = () => {
                           </div>
                         ))}
                       </div>
-                      
                       <div className="text-center pt-6 border-t border-slate-700/50">
                         <button 
-                          className="btn-primary premium-hover-gold flex items-center gap-3 mx-auto"
+                          className="btn-secondary premium-hover-gold flex items-center gap-3 mx-auto"
                           onClick={() => {
-                            // Scroll to booking section
-                            document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
+                            let sectionId = 'portfolio-section';
+                            switch (service.id) {
+                              case 'wedding':
+                                sectionId = 'portfolio-wedding';
+                                break;
+                              case 'corporate':
+                                sectionId = 'portfolio-corporate';
+                                break;
+                              case 'events':
+                                sectionId = 'portfolio-events';
+                                break;
+                              case 'real-estate':
+                                sectionId = 'portfolio-real-estate';
+                                break;
+                              case 'graduation':
+                                sectionId = 'portfolio-graduation';
+                                break;
+                              case 'africanism':
+                                sectionId = 'portfolio-africanism';
+                                break;
+                              case 'fashion':
+                                sectionId = 'portfolio-fashion';
+                                break;
+                              case 'product':
+                                sectionId = 'portfolio-product';
+                                break;
+                            }
+                            const portfolioSection = document.getElementById(sectionId);
+                            if (portfolioSection) {
+                              portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                            }
                           }}
                         >
-                          <span>Book This Service</span>
-                          <ArrowRight className="w-5 h-5" />
+                          <span>View Portfolio</span>
+                          <Camera className="w-5 h-5" />
                         </button>
+                      </div>
+                      
+                      <div className="text-center pt-6 border-t border-slate-700/50">
+                        <h4 className="text-xl font-bold font-montserrat text-gold-gradient mb-6 tracking-wider">PACKAGES</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          {packages.find(p => p.serviceId === service.id)?.packages.map(pkg => (
+                            <div key={pkg.name} className="glass-morphism border border-gold-gradient/30 rounded-2xl p-6">
+                              <h5 className="text-2xl font-bold font-montserrat text-white mb-4">{pkg.name}</h5>
+                              <p className="text-4xl font-bold text-gold-gradient mb-4">{pkg.price}</p>
+                              <ul className="text-gray-300 font-inter space-y-2 mb-6">
+                                {pkg.features.map(feature => (
+                                  <li key={feature} className="flex items-center">
+                                    <span className="text-gold-gradient mr-2">✓</span>
+                                    {feature}
+                                  </li>
+                                ))}
+                              </ul>
+                              <button
+                                className="btn-primary premium-hover-gold w-full"
+                                onClick={() => {
+                                  setBookingService(service.id);
+                                  setBookingPackage(pkg.name);
+                                  document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                              >
+                                Book Now
+                              </button>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -685,7 +848,7 @@ const PhotographyVideographyPg = () => {
           </div>
           <div className="grid grid-cols-1 gap-24">
             {/* Portrait Headshots - Full-screen Gallery */}
-            <div className="w-full">
+            <div className="w-full" id="portfolio-corporate">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <User className="w-8 h-8 text-charcoal" />
@@ -724,7 +887,7 @@ const PhotographyVideographyPg = () => {
             </div>
             
             {/* Event Photography */}
-            <div className="w-full">
+            <div className="w-full" id="portfolio-events">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <Camera className="w-8 h-8 text-charcoal" />
@@ -774,7 +937,7 @@ const PhotographyVideographyPg = () => {
             </div>
             
             {/* Wedding Photography & Videography */}
-            <div className="w-full">
+            <div className="w-full" id="portfolio-wedding">
               <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
                 <div className="md:w-1/2">
                   <div className="flex items-start gap-6 mb-8">
@@ -900,7 +1063,7 @@ const PhotographyVideographyPg = () => {
             </div>
 
             {/* Real Estate Photography */}
-            <div className="w-full">
+            <div className="w-full" id="portfolio-real-estate">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <MapPin className="w-8 h-8 text-charcoal" />
@@ -933,7 +1096,7 @@ const PhotographyVideographyPg = () => {
             </div>
 
             {/* Graduation Shoots */}
-            <div className="w-full">
+            <div className="w-full" id="portfolio-graduation">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <User className="w-8 h-8 text-charcoal" />
@@ -969,7 +1132,7 @@ const PhotographyVideographyPg = () => {
             </div>
 
             {/* Africanism Section */}
-            <div className="w-full mt-20">
+            <div className="w-full mt-20" id="portfolio-africanism">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <Camera className="w-8 h-8 text-charcoal" />
@@ -1007,7 +1170,7 @@ const PhotographyVideographyPg = () => {
             </div>
 
             {/* Fashion Meet n Greet Hangout Section */}
-            <div className="w-full mt-20">
+            <div className="w-full mt-20" id="portfolio-fashion">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <Shirt className="w-8 h-8 text-charcoal" />
@@ -1048,7 +1211,7 @@ const PhotographyVideographyPg = () => {
             </div>
 
             {/* Product Photography Section */}
-            <div className="w-full mt-20">
+            <div className="w-full mt-20" id="portfolio-product">
               <div className="flex items-start gap-6 mb-8">
                 <div className="w-16 h-16 rounded-xl bg-gold-gradient flex items-center justify-center flex-shrink-0 shadow-lg animate-bounce">
                   <Camera className="w-8 h-8 text-charcoal" />
@@ -1085,162 +1248,9 @@ const PhotographyVideographyPg = () => {
           </div>
       </section>
 
-      {/* Process Timeline Section */}
-      <section className="py-20 bg-charcoal">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">Your Vision, Our Mission</h2>
-            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
-              From initial consultation to final delivery, here's how we bring your vision to life
-            </p>
-          </div>
-          
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-gold-gradient to-terracotta hidden md:block"></div>
-            
-            {/* Timeline items */}
-            <div className="space-y-12 md:space-y-0">
-              {[ 
-                { 
-                  step: 1, 
-                  title: "Initial Consultation", 
-                  description: "We discuss your needs, style preferences, and project details to understand your vision",
-                  icon: <Camera className="w-8 h-8" />
-                },
-                { 
-                  step: 2, 
-                  title: "Planning & Scouting", 
-                  description: "We plan the shoot location, timing, and technical requirements for optimal results",
-                  icon: <MapPin className="w-8 h-8" />
-                },
-                { 
-                  step: 3, 
-                  title: "The Shoot", 
-                  description: "Our professional team captures your moments with creativity and technical excellence",
-                  icon: <Camera className="w-8 h-8" />
-                },
-                { 
-                  step: 4, 
-                  title: "Post-Production", 
-                  description: "We carefully edit and enhance your photos to deliver stunning final results",
-                  icon: <User className="w-8 h-8" />
-                },
-                { 
-                  step: 5, 
-                  title: "Delivery & Follow-up", 
-                  description: "We deliver your images through our secure gallery and ensure your satisfaction",
-                  icon: <ArrowRight className="w-8 h-8" />
-                }
-              ].map((item, index) => (
-                <div key={item.step} className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} mb-12`}>
-                  <div className="md:w-5/12 mb-6 md:mb-0 md:px-8">
-                    <div className="glass-morphism border border-gold-gradient/30 rounded-2xl p-6">
-                      <div className="flex items-center mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gold-gradient flex items-center justify-center mr-4">
-                          <span className="text-charcoal font-bold text-lg">{item.step}</span>
-                        </div>
-                        <h3 className="text-xl font-bold font-montserrat text-white">{item.title}</h3>
-                      </div>
-                      <p className="text-gray-300 font-inter">{item.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-2/12 flex justify-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gold-gradient to-terracotta flex items-center justify-center border-4 border-charcoal z-10">
-                      {item.icon}
-                    </div>
-                  </div>
-                  
-                  <div className="md:w-5/12"></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Portfolio Section */}
-      <section className="py-20 bg-charcoal texture-subtle">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="display-2 font-montserrat mb-6 epic-text">A Glimpse Into Our Creative World</h2>
-            <p className="text-2xl text-gray-400 font-inter max-w-3xl mx-auto">
-              A showcase of our creative work
-            </p>
-          </div>
-          
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <button
-              onClick={() => setActiveCategory('all')}
-              className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
-                activeCategory === 'all'
-                  ? 'bg-gold-gradient text-charcoal'
-                  : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
-              } premium-hover-gold`}
-            >
-              All Projects
-            </button>
-            {services.map((service) => (
-              <button
-                key={service.id}
-                onClick={() => setActiveCategory(service.id)}
-                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
-                  activeCategory === service.id
-                    ? 'bg-gold-gradient text-charcoal'
-                    : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
-                } premium-hover-gold`}
-              >
-                {service.title}
-              </button>
-            ))}
-            {Array.from(new Set(services.map(service => service.category))).map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category.toLowerCase())}
-                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 ${ 
-                  activeCategory === category.toLowerCase()
-                    ? 'bg-gold-gradient text-charcoal'
-                    : 'bg-charcoal/50 text-white hover:bg-charcoal/70'
-                } premium-hover-gold`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-          
-          {/* Portfolio Grid */}
-          {loading ? (
-            <div className="masonry-grid">
-              <SkeletonLoader type="image" count={portfolioItems.length} />
-            </div>
-          ) : (
-            <div className="masonry-grid">
-              {filteredItems.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="masonry-item group cursor-pointer"
-                  onClick={() => {
-                    setSelectedImage(item);
-                    setShowModal(true);
-                  }}
-                >
-                  <LazyImage 
-                    src={item.image} 
-                    alt={`${item.title} - ${services.find(s => s.id === item.category)?.title || item.category} by KGILL+ Studio`}
-                    className="w-full h-auto object-cover rounded-xl transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-charcoal/80 to-transparent">
-                    <h3 className="text-lg font-bold font-montserrat text-white">{item.title}</h3>
-                    <p className="text-sm text-gray-300">{services.find(s => s.id === item.category)?.title || item.category}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
+
+
 
       {/* FAQ Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 to-charcoal">
