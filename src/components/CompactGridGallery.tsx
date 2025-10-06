@@ -161,31 +161,29 @@ const CompactGridGallery: React.FC<CompactGridGalleryProps> = ({
             }
           `}</style>
 
-          {/* Grid Gallery */}
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {/* Masonry Gallery Layout - Ultra Compact for space optimization */}
+          <div className="max-w-7xl mx-auto px-2 md:px-4 py-4 md:py-6">
+            <div className="gallery-masonry">
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="group cursor-pointer"
+                  className="gallery-item group cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-lg hover:shadow-gold-gradient-start/20 transition-all duration-300 transform hover:scale-[1.01]"
                   onClick={() => openLightbox(index)}
                 >
-                  <div className="relative overflow-hidden rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-gold-gradient-start/20 transition-all duration-500 transform hover:scale-[1.02]">
-                    <div className="relative min-h-[300px] max-h-[500px] overflow-hidden bg-slate-900 flex items-center justify-center">
-                      <OptimizedImage
-                        src={image.src}
-                        alt={image.title}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
-                        <h3 className="text-sm md:text-base font-bold text-white font-montserrat">{image.title}</h3>
+                  <div className="relative overflow-hidden bg-slate-900 rounded-sm">
+                    <OptimizedImage
+                      src={image.src}
+                      alt={image.title}
+                      className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                        <h3 className="text-xs font-bold text-white font-montserrat truncate">{image.title}</h3>
                       </div>
                     </div>
-                    <div className="absolute top-2 right-2 md:top-4 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gold-gradient flex items-center justify-center">
-                        <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-charcoal" />
+                    <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-5 h-5 rounded-full bg-gold-gradient flex items-center justify-center shadow-sm">
+                        <Maximize2 className="w-2.5 h-2.5 text-charcoal" />
                       </div>
                     </div>
                   </div>

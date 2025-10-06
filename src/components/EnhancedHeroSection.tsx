@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Play, ArrowRight, Users, Camera, Mic, Heart, Linkedin, TrendingUp, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Play, ArrowRight, Users, Camera, Mic, Heart, Linkedin, TrendingUp, X, Star, Globe, Target, Zap } from 'lucide-react';
 import CounterAnimation from '../components/CounterAnimation';
 import ServiceCard from '../components/ServiceCard';
 import FeaturedStory from '../components/FeaturedStory';
 import SocialProofTicker from '../components/SocialProofTicker';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useParticles } from '../hooks/useParticles';
+import ComponentInView from '../components/ComponentInView';
 
 const EnhancedHeroSection: React.FC = () => {
   const [userIntent, setUserIntent] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [followersCount, setFollowersCount] = useState(470);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Scroll animation refs
   const heroRef = useScrollAnimation();
@@ -20,11 +22,11 @@ const EnhancedHeroSection: React.FC = () => {
   
   // Particle background
   // More vibrant floating particles
-  const particleCanvasRef = useParticles(50, {
-    colors: ['#FFE066', '#FF7847', '#00E5FF', '#A78BFA', '#F472B6'],
-    size: [2, 4, 6],
-    speed: [0.5, 1.5],
-    opacity: [0.3, 0.7],
+  const particleCanvasRef = useParticles(75, {
+    colors: ['#FFE066', '#FF7847', '#00E5FF', '#A78BFA', '#F472B6', '#3B82F6'],
+    size: [1, 3, 5],
+    speed: [0.3, 2],
+    opacity: [0.2, 0.8],
     blendMode: 'screen',
   });
 
@@ -121,6 +123,14 @@ const EnhancedHeroSection: React.FC = () => {
     }
   ];
 
+  // Additional impact stats for more visual interest
+  const additionalStats = [
+    { icon: Star, value: 98, label: "Client Satisfaction", suffix: '%', color: 'text-marigold' },
+    { icon: Globe, value: 12, label: "Countries Reached", color: 'text-cyan' },
+    { icon: Target, value: 42, label: "Projects Completed", suffix: '+', color: 'text-terracotta' },
+    { icon: Zap, value: 24, label: "Hours Creative", suffix: '/day', color: 'text-slate-blue' }
+  ];
+
   return (
     <>
       {/* Hero Section with Dynamic Background */}
@@ -134,10 +144,10 @@ const EnhancedHeroSection: React.FC = () => {
         
         {/* Dynamic Video/Image Background */}
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-hero-gradient z-20 absolute animate-gradient-move"></div>
-          <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-marigold/20 to-transparent z-20 absolute animate-gradient-move"></div>
+          <div className="w-full h-full bg-gradient-to-br from-black/90 via-charcoal/80 to-black/90 z-20 absolute animate-gradient-move"></div>
+          <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-marigold/10 to-transparent z-20 absolute animate-gradient-move"></div>
           <img 
-            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800"
+            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200"
             srcSet="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400 400w,
                     https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800 800w,
                     https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w,
@@ -149,57 +159,73 @@ const EnhancedHeroSection: React.FC = () => {
             decoding="async"
           />
           {/* African-inspired geometric overlay */}
-          <div className="absolute inset-0 z-15 opacity-10" aria-hidden="true">
+          <div className="absolute inset-0 z-15 opacity-15" aria-hidden="true">
             <div className="w-full h-full" style={{
               background: `
-                radial-gradient(circle at 20% 20%, var(--marigold) 0%, transparent 25%),
-                radial-gradient(circle at 80% 80%, var(--terracotta) 0%, transparent 25%),
-                radial-gradient(circle at 40% 80%, var(--cyan) 0%, transparent 25%)
+                radial-gradient(circle at 15% 15%, var(--marigold) 0%, transparent 20%),
+                radial-gradient(circle at 85% 15%, var(--cyan) 0%, transparent 20%),
+                radial-gradient(circle at 15% 85%, var(--terracotta) 0%, transparent 20%),
+                radial-gradient(circle at 85% 85%, var(--purple) 0%, transparent 20%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFC72C' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm0 0l-15 15h30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
               `
             }}></div>
           </div>
         </div>
 
+        {/* Floating Elements */}
+        <div className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-gradient-to-r from-marigold to-terracotta opacity-20 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-gradient-to-r from-cyan to-slate-blue opacity-20 blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-2/3 right-1/3 w-12 h-12 rounded-full bg-gradient-to-r from-purple to-pink opacity-20 blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+
         <div className="relative z-30 text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 animate-fade-in-up">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold font-montserrat leading-none tracking-tight mb-6">
-              <span className="block text-white animate-fade-in-up">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
-              <span className="block gradient-text animate-gradient-move">
+          {/* Badge Section */}
+          <div className="mb-6 animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-marigold/10 to-terracotta/10 border border-marigold/20 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-marigold rounded-full animate-pulse"></div>
+              <span className="text-sm font-inter font-medium text-marigold">Africa's Leading Creative Hub</span>
+            </div>
+          </div>
+          
+          <div className="mb-10 animate-fade-in-up">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-montserrat leading-tight mb-6">
+              <span className="block text-white/90 animate-fade-in-up">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
+              <span className="block gradient-text animate-gradient-move text-transparent bg-clip-text bg-gradient-to-r from-marigold via-cyan to-purple text-6xl sm:text-7xl md:text-8xl">
                 {personalizedContent.headline.split(' ').slice(3).join(' ')}
               </span>
             </h1>
-            <div className="pattern-divider w-24 sm:w-32 mx-auto mb-6 animate-fade-in-up"></div>
-            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up">
+            <div className="pattern-divider w-32 sm:w-40 mx-auto mb-8 animate-fade-in-up"></div>
+            <p className="text-lg sm:text-xl md:text-2xl font-inter font-light text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-up">
               {personalizedContent.subtext}
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12">
-            <button className="btn-primary pulse-glow tilt-3d w-full sm:w-auto min-w-[200px] min-h-[50px] py-4">
-              <span className="flex items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10 sm:mb-16">
+            <button className="group relative overflow-hidden btn-primary w-full sm:w-auto min-w-[240px] min-h-[56px] py-4 px-8">
+              <span className="flex items-center justify-center gap-3 relative z-10">
                 {getCTAText()}
-                <ArrowRight className="w-6 h-6" />
+                <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
               </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-marigold/20 to-terracotta/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-            <button className="btn-secondary group tilt-3d w-full sm:w-auto min-w-[200px] min-h-[50px] py-4">
-              <span className="flex items-center justify-center gap-3">
+            <button className="group relative overflow-hidden btn-secondary w-full sm:w-auto min-w-[240px] min-h-[56px] py-4 px-8">
+              <span className="flex items-center justify-center gap-3 relative z-10">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Watch Our Story
               </span>
+              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
 
           {/* Live Social Proof */}
-          <div className="glass-effect rounded-full px-4 sm:px-6 py-3 inline-flex items-center gap-2 sm:gap-3 text-sm font-inter">
-            <div className="flex items-center gap-2">
-              <Linkedin className="w-4 h-4 text-marigold" />
-              <span className="text-gray-300 hidden sm:inline">Join</span>
+          <div className="glass-morphism rounded-full px-6 py-4 inline-flex items-center gap-3 text-sm font-inter max-w-md mx-auto">
+            <div className="flex items-center gap-3">
+              <Linkedin className="w-5 h-5 text-marigold" />
+              <span className="text-gray-300">Join</span>
               <CounterAnimation target={followersCount} duration={1000} />
-              <span className="text-gray-300 hidden sm:inline">Changemakers</span>
-              <span className="text-gray-300 sm:hidden">Followers</span>
+              <span className="text-gray-300">Changemakers</span>
             </div>
             <div className="w-1 h-1 bg-cyan rounded-full animate-pulse"></div>
-            <TrendingUp className="w-4 h-4 text-green-400" />
+            <TrendingUp className="w-5 h-5 text-green-400" />
           </div>
         </div>
 
@@ -210,9 +236,8 @@ const EnhancedHeroSection: React.FC = () => {
         </div>
       </section>
 
-      {/* Rest of the sections remain the same */}
-      {/* Impact Numbers */}
-      <section ref={impactRef} className="py-12 sm:py-16 md:py-20 bg-section-gradient relative overflow-hidden opacity-0">
+      {/* Enhanced Impact Numbers */}
+      <section ref={impactRef} className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-charcoal to-slate-900 relative overflow-hidden opacity-0">
         <div className="absolute inset-0 opacity-5">
           <div className="w-full h-full bg-repeat" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFC72C' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm0 0l-15 15h30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -227,29 +252,49 @@ const EnhancedHeroSection: React.FC = () => {
             <p className="text-lg sm:text-xl text-gray-400 font-inter">Real change, measured results</p>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             {[
               { icon: Users, value: 250, suffix: '+', label: 'Young Creatives Empowered', color: 'marigold' },
               { icon: Camera, value: 150, suffix: '+', label: 'Stories Told', color: 'cyan' },
               { icon: Mic, value: 75, suffix: '+', label: 'Podcast Episodes', color: 'terracotta' },
               { icon: Heart, value: 25, suffix: '+', label: 'Community Projects', color: 'slate-blue' }
             ].map((stat, index) => (
-              <div key={index} className="text-center group hover-lift tilt-3d">
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-${stat.color} to-terracotta rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 tilt-3d shadow-lg`}>
-                  <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-charcoal" />
+              <div key={index} className="text-center group premium-hover">
+                <div className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-${stat.color} to-terracotta rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-xl relative overflow-hidden`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                  <stat.icon className="w-10 h-10 sm:w-12 sm:h-12 text-charcoal z-10" />
                 </div>
-                <CounterAnimation target={stat.value} suffix={stat.suffix} />
-                <p className="text-sm sm:text-base text-gray-400 font-inter mt-2 leading-tight px-2">{stat.label}</p>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold font-montserrat gradient-text mb-2">
+                  <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                </div>
+                <p className="text-sm sm:text-base md:text-lg text-gray-400 font-inter leading-tight px-2">{stat.label}</p>
               </div>
             ))}
+          </div>
+
+          {/* Additional Stats */}
+          <div className="mt-16 sm:mt-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {additionalStats.map((stat, index) => (
+                <div key={index} className="text-center p-4 rounded-xl backdrop-blur-sm bg-slate-800/30 border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-700/30 mb-3 ${stat.color}`}>
+                    <stat.icon className="w-6 h-6" />
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold font-montserrat mb-1">
+                    <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-xs sm:text-sm text-gray-400 font-inter">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Services Preview */}
-      <section ref={servicesRef} className="py-12 sm:py-16 md:py-20 bg-slate-900 relative opacity-0">
+      <section ref={servicesRef} className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-slate-900 to-charcoal relative opacity-0">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-6">
               WHAT WE CREATE
             </h2>
@@ -257,7 +302,7 @@ const EnhancedHeroSection: React.FC = () => {
               From powerful documentaries to innovative podcasts, we craft stories that inspire change.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             <ServiceCard 
               title="Film Production"
               description="Documentary films that amplify youth voices and social causes"
@@ -284,9 +329,9 @@ const EnhancedHeroSection: React.FC = () => {
       </section>
 
       {/* Featured Stories */}
-      <section ref={storiesRef} className="py-12 sm:py-16 md:py-20 bg-charcoal texture-subtle opacity-0">
+      <section ref={storiesRef} className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-charcoal to-slate-900 texture-subtle opacity-0">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-6">
               FEATURED STORIES
             </h2>
@@ -296,12 +341,12 @@ const EnhancedHeroSection: React.FC = () => {
           </div>
           
           {/* Featured Story */}
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-12 sm:mb-16">
             <FeaturedStory {...featuredStories[0]} />
           </div>
           
           {/* Regular Stories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
             {featuredStories.slice(1).map((story, index) => (
               <FeaturedStory key={index} {...story} />
             ))}
@@ -320,7 +365,7 @@ const EnhancedHeroSection: React.FC = () => {
           aria-modal="true"
           aria-labelledby="intent-modal-title"
         >
-          <div className="glass-effect rounded-2xl p-6 sm:p-8 max-w-md w-full border border-slate-600 animate-fade-in relative">
+          <div className="glass-morphism rounded-2xl p-6 sm:p-8 max-w-md w-full border border-slate-600 animate-fade-in relative">
             <button
               onClick={() => setShowModal(false)}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"

@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Clock, Eye, Star, ChevronRight, ChevronLeft, Camera, TrendingUp, Users, Award, Search, Filter, Video, Sparkles } from 'lucide-react';
+import { Play, Clock, Eye, Star, ChevronRight, ChevronLeft, Camera, TrendingUp, Users, Award, Search, Filter, Video, Sparkles, Youtube, ExternalLink, ThumbsUp, Calendar, Tv, X, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LoadingState from '../components/LoadingState';
 import OptimizedImage from '../components/OptimizedImage';
 import ImmersiveGallery from '../components/ImmersiveGallery';
+import YouTubePlayerModal from '../components/YouTubePlayerModal';
 
 const KGTVPg = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -11,10 +12,12 @@ const KGTVPg = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('popular');
   const [hoveredShow, setHoveredShow] = useState<number | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const trendingScrollRef = useRef<HTMLDivElement>(null);
 
   // Sample show data
-  const shows = [
+  const sampleShows = [
     {
       id: 1,
       title: "Voices of the Youth",
@@ -122,21 +125,171 @@ const KGTVPg = () => {
     }
   ];
 
+  // Actual KGILL TV YouTube video data
+  const youtubeVideos = [
+    {
+      id: 1,
+      title: "Kick Off S02 Ep 1 (We are back ~ the reunion)",
+      description: "The game is back — and so is the drama. Papa, Candy, Kevo, and Coco return for a brand-new season filled with football fever, messy relationships, and ghetto hustle. Kenya's CHAN Tournament success sets the vibe.",
+      thumbnail: "https://img.youtube.com/vi/Z6BPF8gbquY/maxresdefault.jpg",
+      category: "Web Series",
+      duration: "14:15",
+      views: "1.2K",
+      date: "Premiered 6 hours ago",
+      videoId: "Z6BPF8gbquY",
+      featured: true,
+      year: "2025"
+    },
+    {
+      id: 2,
+      title: "Kick Off season 2 Trailer",
+      description: "The game is back — and so is the drama. Childhood friends return with bigger secrets, louder arguments, and football fever. Arsenal is flying, Chelsea is on form, and Manchester United is still struggling.",
+      thumbnail: "https://img.youtube.com/vi/UX8p6XwZxbA/maxresdefault.jpg",
+      category: "Web Series",
+      duration: "Short",
+      views: "61",
+      date: "Oct 3, 2025",
+      videoId: "UX8p6XwZxbA",
+      year: "2025"
+    },
+    {
+      id: 3,
+      title: "A Sinema Mtaani | AUMA Short film",
+      description: "Story of a 12-year-old girl in Kibera experiencing her first period. Addresses menstrual health, dignity, and the 65% of Kenyan females who cannot afford sanitary pads.",
+      thumbnail: "https://img.youtube.com/vi/bp_BnrK-hOo/maxresdefault.jpg",
+      category: "Short Film",
+      duration: "12:54",
+      views: "2.7K",
+      date: "Apr 13, 2025",
+      videoId: "bp_BnrK-hOo",
+      year: "2025"
+    },
+    {
+      id: 4,
+      title: "A Sinema Mtaani | Wishes Short Film",
+      description: "Short film addressing relationship dynamics and domestic violence themes.",
+      thumbnail: "https://img.youtube.com/vi/MzMwB13sWWQ/maxresdefault.jpg",
+      category: "Short Film",
+      duration: "16:23",
+      views: "15K",
+      date: "May 11, 2025",
+      videoId: "MzMwB13sWWQ",
+      year: "2025"
+    },
+    {
+      id: 5,
+      title: "A Sinema Mtaani | Dark Valentine Short Film",
+      description: "A haunting tale inspired by real femicide cases",
+      thumbnail: "https://img.youtube.com/vi/NWPQemVFUXQ/maxresdefault.jpg",
+      category: "Short Film",
+      duration: "16:23",
+      views: "Unknown",
+      date: "8 months ago",
+      videoId: "NWPQemVFUXQ",
+      year: "2025"
+    },
+    {
+      id: 6,
+      title: "A Sinema Mtaani Shortfilm| The Other End Trailer",
+      description: "Trailer for 'The Other End' short film",
+      thumbnail: "https://img.youtube.com/vi/6vTyk8g3DBc/maxresdefault.jpg",
+      category: "Short Film",
+      duration: "Short",
+      views: "274",
+      date: "3 weeks ago",
+      videoId: "6vTyk8g3DBc",
+      year: "2025"
+    },
+    {
+      id: 7,
+      title: "A Sinema Mtaani | Situations Short Film Trailer",
+      description: "Trailer for 'Situations' short film",
+      thumbnail: "https://img.youtube.com/vi/kkEgPEcen5Q/maxresdefault.jpg",
+      category: "Short Film",
+      duration: "Short",
+      views: "Unknown",
+      date: "Recent",
+      videoId: "kkEgPEcen5Q",
+      year: "2025"
+    },
+    {
+      id: 8,
+      title: "Making of Sinema Mtaani Short Films | Situations Short Film (BTS)",
+      description: "Behind the scenes of Making of Situations short film",
+      thumbnail: "https://img.youtube.com/vi/scdj1xKxDqs/maxresdefault.jpg",
+      category: "Behind the Scenes",
+      duration: "Unknown",
+      views: "247",
+      date: "2 months ago",
+      videoId: "scdj1xKxDqs",
+      year: "2025"
+    },
+    {
+      id: 9,
+      title: "KICK OFF S01 E01(Kevo Hajui Kuomba Mechi)",
+      description: "Welcome to the Kick Off web series - a full vibe on football, love and relationship.",
+      thumbnail: "https://img.youtube.com/vi/EgO4wXrZ2iU/maxresdefault.jpg",
+      category: "Web Series",
+      duration: "Unknown",
+      views: "1.2K",
+      date: "1 year ago",
+      videoId: "EgO4wXrZ2iU",
+      year: "2024"
+    },
+    {
+      id: 10,
+      title: "KICK OFF EPISODE 4 (Anguka na Dem wa Morio)",
+      description: "Football web series episode focusing on relationships",
+      thumbnail: "https://img.youtube.com/vi/Z2b4uT16Kmk/maxresdefault.jpg",
+      category: "Web Series",
+      duration: "Unknown",
+      views: "334",
+      date: "1 year ago",
+      videoId: "Z2b4uT16Kmk",
+      year: "2024"
+    },
+    {
+      id: 11,
+      title: "Welcome to Kgill Tv (For People Like You)",
+      description: "Kgill TV is the home to African Diversity of Art. We are determined to showcasing Africa's very best Art from Films, talk shows, interviews, vlogs, reality shows.",
+      thumbnail: "https://img.youtube.com/vi/X1zNzenFvUk/maxresdefault.jpg",
+      category: "Introduction",
+      duration: "0:14",
+      views: "108",
+      date: "3 years ago",
+      videoId: "X1zNzenFvUk",
+      year: "2022"
+    },
+    {
+      id: 12,
+      title: "Social Media Influence on Gen-Zs #UnapologeticallyAdults",
+      description: "Unapologetically Adults Podcast with hosts Mitchelle and Omiele discussing social media's impact on Gen-Z",
+      thumbnail: "https://img.youtube.com/vi/NpwD7mRM8-s/maxresdefault.jpg",
+      category: "Podcast",
+      duration: "17:58",
+      views: "357",
+      date: "2 years ago",
+      videoId: "NpwD7mRM8-s",
+      year: "2023"
+    }
+  ];
+
+  // Use YouTube videos as the main content
+  const shows = youtubeVideos;
+
   const categories = [
     { key: 'all', label: 'All Shows' },
-    { key: 'Documentary', label: 'Documentaries' },
-    { key: 'Community', label: 'Community' },
-    { key: 'Culture', label: 'Culture' },
-    { key: 'Technology', label: 'Technology' },
-    { key: 'Environment', label: 'Environment' },
-    { key: 'Health', label: 'Health' },
-    { key: 'Entertainment', label: 'Entertainment' }
+    { key: 'Web Series', label: 'Web Series' },
+    { key: 'Short Film', label: 'Short Films' },
+    { key: 'Podcast', label: 'Podcasts' },
+    { key: 'Behind the Scenes', label: 'Behind the Scenes' },
+    { key: 'Introduction', label: 'Introduction' }
   ];
 
   const sortOptions = [
     { key: 'popular', label: 'Most Popular' },
     { key: 'recent', label: 'Recently Added' },
-    { key: 'rating', label: 'Highest Rated' }
+    { key: 'views', label: 'Most Viewed' }
   ];
 
   // Behind the Scenes Gallery
@@ -268,18 +421,24 @@ const KGTVPg = () => {
   const sortedShows = [...filteredShows].sort((a, b) => {
     switch (sortBy) {
       case 'recent':
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      case 'rating':
-        return b.rating - a.rating;
-      default: // popular
-        return parseInt(b.views) - parseInt(a.views);
+        // For YouTube content, we'll sort by ID (newer videos have higher IDs)
+        return b.id - a.id;
+      case 'views':
+        // Convert views to numbers for sorting (handle "K" suffix)
+        const aViews = a.views.includes('K') ? parseFloat(a.views) * 1000 : parseInt(a.views) || 0;
+        const bViews = b.views.includes('K') ? parseFloat(b.views) * 1000 : parseInt(b.views) || 0;
+        return bViews - aViews;
+      default: // popular (use views as popularity metric)
+        const aPop = a.views.includes('K') ? parseFloat(a.views) * 1000 : parseInt(a.views) || 0;
+        const bPop = b.views.includes('K') ? parseFloat(b.views) * 1000 : parseInt(b.views) || 0;
+        return bPop - aPop;
     }
   });
 
   return (
     <div className="min-h-screen bg-charcoal">
-      {/* Hero Section - Premium Showcase */}
-      <section className="relative min-h-[85vh] overflow-hidden">
+      {/* Hero Section - Epic Video Showcase */}
+      <section className="relative min-h-[90vh] overflow-hidden">
         <div className="absolute inset-0 z-0">
           <OptimizedImage 
             src={featuredShow.thumbnail} 
@@ -287,74 +446,154 @@ const KGTVPg = () => {
             className="w-full h-full object-cover"
             lazy={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/70 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/40"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal"></div>
+          {/* Animated overlay for enhanced visual effect */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)] animate-pulse-slow"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 h-full flex items-center py-20">
-          <div className="max-w-4xl">
-            <div className="mb-6 flex items-center gap-4">
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-gold-gradient/20 text-gold-gradient-start rounded-full text-sm font-bold tracking-wider border border-gold-gradient-start/30 backdrop-blur-sm">
-                <Sparkles className="w-4 h-4" />
-                FEATURED SERIES
-              </span>
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/60 text-gray-300 rounded-full text-sm font-semibold backdrop-blur-sm">
-                <Video className="w-4 h-4" />
-                {featuredShow.episodes} Episodes
-              </span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-montserrat font-black mb-6 leading-tight">
-              <span className="block text-white">{featuredShow.title.split(' ').slice(0, -1).join(' ')}</span>
-              <span className="block epic-text">{featuredShow.title.split(' ').slice(-1)}</span>
-            </h1>
-            
-            <div className="flex flex-wrap gap-5 mb-8">
-              <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-lg">
-                <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                <span className="font-bold text-white">{featuredShow.rating}</span>
-                <span className="text-gray-400">/5</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            {/* Text Content */}
+            <div className="max-w-3xl">
+              <div className="mb-8 flex flex-wrap items-center gap-4">
+                <span className="inline-flex items-center gap-2 px-6 py-3 bg-gold-gradient/20 text-gold-gradient-start rounded-full text-sm font-bold tracking-wider border border-gold-gradient-start/30 backdrop-blur-sm shadow-lg">
+                  <Sparkles className="w-5 h-5 animate-pulse" />
+                  FEATURED PREMIERE
+                </span>
+                <span className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900/70 text-gray-300 rounded-full text-sm font-semibold backdrop-blur-sm border border-slate-700/50 shadow-lg">
+                  <Youtube className="w-5 h-5 text-red-500" />
+                  YouTube Exclusive
+                </span>
+                <span className="inline-flex items-center gap-2 px-5 py-3 bg-purple-gradient/20 text-purple-gradient-start rounded-full text-sm font-semibold backdrop-blur-sm border border-purple-gradient-start/30 shadow-lg">
+                  <Tv className="w-5 h-5" />
+                  Season 2
+                </span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-lg text-gray-300">
-                <Clock className="w-5 h-5" />
-                <span className="font-semibold">{featuredShow.duration}</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-slate-900/60 backdrop-blur-sm rounded-lg text-gray-300">
-                <Eye className="w-5 h-5" />
-                <span className="font-semibold">{featuredShow.views} views</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-purple-gradient/20 backdrop-blur-sm rounded-lg border border-purple-gradient-start/30">
-                <span className="text-purple-gradient-start font-bold text-sm">{featuredShow.category}</span>
-              </div>
-            </div>
-            
-            <p className="text-xl md:text-2xl text-gray-200 font-inter mb-10 leading-relaxed max-w-3xl">
-              {featuredShow.description}
-            </p>
-            
-            <div className="flex flex-wrap gap-5">
-              <button className="group flex items-center gap-3 px-10 py-5 bg-gold-gradient text-charcoal rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-105 transition-all duration-300">
-                <Play className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                <span>Watch Now</span>
-              </button>
               
-              <button className="group flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300">
-                <span>More Info</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-black mb-8 leading-tight">
+                <span className="block text-white animate-fade-in-up">{featuredShow.title.split(' ').slice(0, -1).join(' ')}</span>
+                <span className="block epic-text animate-gradient-move mt-2">{featuredShow.title.split(' ').slice(-1)}</span>
+              </h1>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div className="p-4 bg-slate-900/60 backdrop-blur-sm rounded-xl text-gray-300 border border-slate-700/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Clock className="w-5 h-5 text-marigold" />
+                    <span className="font-bold text-white">{featuredShow.duration}</span>
+                  </div>
+                  <span className="text-xs text-gray-400 font-inter">Duration</span>
+                </div>
+                <div className="p-4 bg-slate-900/60 backdrop-blur-sm rounded-xl text-gray-300 border border-slate-700/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Eye className="w-5 h-5 text-cyan" />
+                    <span className="font-bold text-white">{featuredShow.views}</span>
+                  </div>
+                  <span className="text-xs text-gray-400 font-inter">Views</span>
+                </div>
+                <div className="p-4 bg-slate-900/60 backdrop-blur-sm rounded-xl text-gray-300 border border-slate-700/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Calendar className="w-5 h-5 text-terracotta" />
+                    <span className="font-bold text-white">{featuredShow.date}</span>
+                  </div>
+                  <span className="text-xs text-gray-400 font-inter">Release</span>
+                </div>
+                <div className="p-4 bg-slate-900/60 backdrop-blur-sm rounded-xl text-gray-300 border border-slate-700/50">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Star className="w-5 h-5 text-purple fill-current" />
+                    <span className="font-bold text-white">4.9</span>
+                  </div>
+                  <span className="text-xs text-gray-400 font-inter">Rating</span>
+                </div>
+              </div>
+              
+              <p className="text-xl md:text-2xl text-gray-200 font-inter mb-10 leading-relaxed">
+                {featuredShow.description}
+              </p>
+              
+              <div className="flex flex-wrap gap-5">
+                <button 
+                  onClick={() => {
+                    setSelectedVideo(featuredShow);
+                    setIsModalOpen(true);
+                  }}
+                  className="group relative overflow-hidden flex items-center gap-3 px-10 py-5 bg-gold-gradient text-charcoal rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-105 transition-all duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-marigold/20 to-terracotta/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Play className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <span>Watch Premiere</span>
+                </button>
+                
+                <button className="group relative overflow-hidden flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Youtube className="w-6 h-6 text-red-500" />
+                  <span>Subscribe</span>
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+            
+            {/* Featured Video Preview */}
+            <div className="relative group">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 hover:border-gold-gradient-start/50 transition-all duration-500">
+                <OptimizedImage 
+                  src={featuredShow.thumbnail} 
+                  alt={featuredShow.title}
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
+                
+                {/* Play Button Overlay */}
+                <button 
+                  onClick={() => {
+                    setSelectedVideo(featuredShow);
+                    setIsModalOpen(true);
+                  }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <div className="w-24 h-24 bg-gold-gradient rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-10 h-10 text-charcoal ml-2" />
+                  </div>
+                </button>
+                
+                {/* Video Info Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1.5 bg-gold-gradient text-charcoal rounded-full text-xs font-bold">
+                      {featuredShow.category}
+                    </span>
+                    <span className="px-3 py-1.5 bg-slate-900/80 text-gray-300 rounded-full text-xs font-semibold border border-slate-700/50">
+                      {featuredShow.duration}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold font-montserrat text-white truncate">
+                    {featuredShow.title}
+                  </h3>
+                </div>
+              </div>
+              
+              {/* Floating Elements */}
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-cyan rounded-full flex items-center justify-center shadow-lg animate-float">
+                <Star className="w-6 h-6 text-charcoal fill-current" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 w-10 h-10 bg-marigold rounded-full flex items-center justify-center shadow-lg animate-float animation-delay-1000">
+                <Heart className="w-5 h-5 text-charcoal fill-current" />
+              </div>
             </div>
           </div>
         </div>
         
-        {/* Studio Services CTA */}
+        {/* Enhanced Studio Services CTA */}
         <div className="absolute bottom-8 right-8 z-10 hidden lg:block">
           <Link 
             to="/photography-videography"
-            className="group flex items-center gap-4 p-5 bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-gradient-start/50 hover:bg-slate-900/90 transition-all duration-300 shadow-2xl"
+            className="group relative overflow-hidden flex items-center gap-4 p-5 bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-gradient-start/50 hover:bg-slate-900/90 transition-all duration-300 shadow-2xl"
           >
-            <div className="w-14 h-14 rounded-xl bg-blue-gradient/20 flex items-center justify-center border border-blue-gradient-start/30 group-hover:scale-110 transition-transform">
-              <Camera className="w-7 h-7 text-blue-gradient-start" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="w-16 h-16 rounded-xl bg-blue-gradient/20 flex items-center justify-center border border-blue-gradient-start/30 group-hover:scale-110 transition-transform relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+              <Camera className="w-8 h-8 text-blue-gradient-start z-10 relative" />
             </div>
             <div>
               <h3 className="font-bold font-montserrat text-white text-base mb-1">Studio Services</h3>
@@ -371,9 +610,9 @@ const KGTVPg = () => {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold font-montserrat epic-text-2 mb-3">
-                Featured Shows
+                Featured Videos
               </h2>
-              <p className="text-gray-400 font-inter text-lg">Curated collection of our best series</p>
+              <p className="text-gray-400 font-inter text-lg">Curated collection of our best content</p>
             </div>
             <button 
               onClick={() => setActiveCategory('all')}
@@ -401,7 +640,13 @@ const KGTVPg = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
                     <div className={`absolute inset-0 bg-charcoal/90 flex items-center justify-center transition-opacity duration-300 ${hoveredShow === show.id ? 'opacity-100' : 'opacity-0'}`}>
-                      <button className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform">
+                      <button 
+                        onClick={() => {
+                          setSelectedVideo(show);
+                          setIsModalOpen(true);
+                        }}
+                        className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform"
+                      >
                         <Play className="w-8 h-8 text-charcoal ml-1" />
                       </button>
                     </div>
@@ -455,11 +700,11 @@ const KGTVPg = () => {
                 <div className="p-3 bg-gold-gradient/20 rounded-xl border border-gold-gradient-start/30">
                   <TrendingUp className="w-8 h-8 text-gold-gradient-start" />
                 </div>
-                Trending Now
+                Trending Videos
               </h2>
               <div className="flex items-center gap-2 text-gray-400 font-inter">
-                <Users className="w-5 h-5" />
-                <span className="text-lg">Most watched this week</span>
+                <Youtube className="w-5 h-5" />
+                <span className="text-lg">Most popular on YouTube</span>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -566,9 +811,9 @@ const KGTVPg = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-6">
             <div>
-              <h2 className="text-4xl md:text-6xl font-black font-montserrat mb-4 epic-text">All Shows</h2>
+              <h2 className="text-4xl md:text-6xl font-black font-montserrat mb-4 epic-text">All Videos</h2>
               <p className="text-xl text-gray-400 font-inter max-w-2xl leading-relaxed">
-                Explore our complete collection of original series and documentaries
+                Explore our complete YouTube video collection
               </p>
             </div>
             
@@ -637,10 +882,16 @@ const KGTVPg = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
                   
                   <div className={`absolute inset-0 bg-charcoal/90 flex flex-col items-center justify-center transition-opacity duration-300 ${hoveredShow === show.id ? 'opacity-100' : 'opacity-0'}`}>
-                    <button className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform mb-4">
+                    <button 
+                      onClick={() => {
+                        setSelectedVideo(show);
+                        setIsModalOpen(true);
+                      }}
+                      className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform mb-4"
+                    >
                       <Play className="w-8 h-8 text-charcoal ml-1" />
                     </button>
-                    <span className="text-white font-bold text-lg">Watch Now</span>
+                    <span className="text-white font-bold text-lg">Watch Video</span>
                   </div>
                   
                   <div className="absolute top-4 right-4">
@@ -741,21 +992,26 @@ const KGTVPg = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start/10 via-transparent to-blue-gradient-start/10"></div>
         <div className="max-w-5xl mx-auto text-center px-4 relative z-10">
           <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-slate-900/80 backdrop-blur-xl rounded-full border border-white/10">
-            <Sparkles className="w-5 h-5 text-gold-gradient-start" />
-            <span className="text-gold-gradient-start font-bold text-sm tracking-wider">EXCLUSIVE ACCESS</span>
+            <Youtube className="w-5 h-5 text-gold-gradient-start" />
+            <span className="text-gold-gradient-start font-bold text-sm tracking-wider">YOUTUBE CHANNEL</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black font-montserrat mb-8 epic-text leading-tight">
-            Join the Movement
+            Join the Community
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 font-inter mb-12 max-w-3xl mx-auto leading-relaxed">
-            Subscribe to KGILL TV and get access to exclusive content, behind-the-scenes footage, 
-            and early releases of our shows.
+            Subscribe to our YouTube channel @kgilltv and get access to exclusive African content, 
+            behind-the-scenes footage, and early releases of our videos.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <button className="group flex items-center justify-center gap-3 px-12 py-5 bg-gold-gradient text-charcoal rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-105 transition-all duration-300">
-              <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-              <span>Subscribe Now</span>
-            </button>
+            <a 
+              href="https://www.youtube.com/@kgilltv" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center gap-3 px-12 py-5 bg-gold-gradient text-charcoal rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-gold-gradient-start/50 hover:scale-105 transition-all duration-300"
+            >
+              <Youtube className="w-6 h-6 group-hover:scale-110 transition-transform" />
+              <span>Subscribe on YouTube</span>
+            </a>
             <button className="group flex items-center justify-center gap-3 px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300">
               <span>Learn More</span>
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -765,25 +1021,33 @@ const KGTVPg = () => {
           <div className="mt-16 pt-16 border-t border-white/10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl md:text-5xl font-black font-montserrat text-gold-gradient-start mb-2">50+</div>
-                <div className="text-gray-400 font-inter">Original Series</div>
+                <div className="text-4xl md:text-5xl font-black font-montserrat text-gold-gradient-start mb-2">150+</div>
+                <div className="text-gray-400 font-inter">YouTube Videos</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-black font-montserrat text-blue-gradient-start mb-2">1M+</div>
-                <div className="text-gray-400 font-inter">Viewers</div>
+                <div className="text-4xl md:text-5xl font-black font-montserrat text-blue-gradient-start mb-2">1.87K</div>
+                <div className="text-gray-400 font-inter">Subscribers</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-black font-montserrat text-purple-gradient-start mb-2">200+</div>
-                <div className="text-gray-400 font-inter">Episodes</div>
+                <div className="text-4xl md:text-5xl font-black font-montserrat text-purple-gradient-start mb-2">500K+</div>
+                <div className="text-gray-400 font-inter">Total Views</div>
               </div>
               <div>
-                <div className="text-4xl md:text-5xl font-black font-montserrat text-gold-gradient-start mb-2">15+</div>
-                <div className="text-gray-400 font-inter">Awards</div>
+                <div className="text-4xl md:text-5xl font-black font-montserrat text-gold-gradient-start mb-2">12+</div>
+                <div className="text-gray-400 font-inter">Content Categories</div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      
+      {/* YouTube Player Modal */}
+      <YouTubePlayerModal
+        videoId={selectedVideo?.videoId || ''}
+        title={selectedVideo?.title || ''}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

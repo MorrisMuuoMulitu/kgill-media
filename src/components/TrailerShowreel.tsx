@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Tv, Camera, Mic } from 'lucide-react';
 
 const TrailerShowreel = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -12,19 +12,21 @@ const TrailerShowreel = () => {
   const trailers = [
     {
       id: 1,
-      title: "The Digital Griot",
-      description: "A cinematic journey through African storytelling traditions in the digital age",
+      title: "The Real People Show",
+      description: "Pure, honest conversations addressing real issues that matter to Kenyan communities",
       thumbnail: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200",
       videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "3:45"
+      duration: "3:45",
+      category: "KGILL TV"
     },
     {
       id: 2,
-      title: "Voices of the Youth",
-      description: "Empowering young creatives across Kenya through media production",
+      title: "Voices of Kibera",
+      description: "Empowering young creatives from our home community through authentic storytelling",
       thumbnail: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=1200",
       videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "5:22"
+      duration: "5:22",
+      category: "Documentary"
     },
     {
       id: 3,
@@ -32,7 +34,8 @@ const TrailerShowreel = () => {
       description: "Bringing cinema to the streets - community film projects across Nairobi",
       thumbnail: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1200",
       videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "4:18"
+      duration: "4:18",
+      category: "Community Project"
     }
   ];
 
@@ -107,21 +110,26 @@ const TrailerShowreel = () => {
           {/* Trailer info */}
           <div className={`text-left ${trailerChange ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'} transition-all duration-500`}>
             <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-gold-gradient text-charcoal rounded-full text-sm font-bold tracking-wider">
-                FEATURED REEL
-              </span>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="inline-block px-4 py-2 bg-gold-gradient text-charcoal rounded-full text-sm font-bold tracking-wider">
+                  KGILL+ MEDIA HUB
+                </span>
+                <span className="inline-block px-3 py-1 bg-slate-blue/20 text-cyan rounded-full text-xs font-bold tracking-wider border border-slate-blue/30">
+                  {current.category}
+                </span>
+              </div>
+              
+              <h1 className="display-1 font-montserrat mb-6 leading-tight">
+                <span className="block">FOR PEOPLE</span>
+                <span className="block epic-text animate-pulse">LIKE YOU</span>
+              </h1>
             </div>
-            
-            <h1 className="display-1 font-montserrat mb-6 leading-tight">
-              <span className="block">{current.title.split(' ').slice(0, -1).join(' ')}</span>
-              <span className="block epic-text animate-pulse">{current.title.split(' ').slice(-1)}</span>
-            </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 font-inter mb-8 max-w-2xl">
               {current.description}
             </p>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-8">
               <button 
                 onClick={togglePlay}
                 className="btn-primary flex items-center gap-3 premium-hover-gold"
@@ -129,25 +137,55 @@ const TrailerShowreel = () => {
                 {isPlaying ? (
                   <>
                     <Pause className="w-5 h-5" />
-                    <span>Pause Reel</span>
+                    <span>Pause Showreel</span>
                   </>
                 ) : (
                   <>
                     <Play className="w-5 h-5" />
-                    <span>Play Reel</span>
+                    <span>Play Showreel</span>
                   </>
                 )}
               </button>
               
               <button className="btn-secondary flex items-center gap-3">
-                <span>View All Showreels</span>
+                <span>View All Projects</span>
               </button>
+            </div>
+            
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 max-w-md">
+              <div className="p-3 bg-slate-800/30 rounded-xl border border-slate-700/50 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Camera className="w-4 h-4 text-marigold" />
+                  <span className="text-lg font-bold font-montserrat">150+</span>
+                </div>
+                <p className="text-xs text-gray-400 font-inter">Stories Told</p>
+              </div>
+              <div className="p-3 bg-slate-800/30 rounded-xl border border-slate-700/50 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Tv className="w-4 h-4 text-cyan" />
+                  <span className="text-lg font-bold font-montserrat">75+</span>
+                </div>
+                <p className="text-xs text-gray-400 font-inter">Episodes</p>
+              </div>
+              <div className="p-3 bg-slate-800/30 rounded-xl border border-slate-700/50 text-center">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Mic className="w-4 h-4 text-terracotta" />
+                  <span className="text-lg font-bold font-montserrat">250+</span>
+                </div>
+                <p className="text-xs text-gray-400 font-inter">Workshops</p>
+              </div>
             </div>
           </div>
           
           {/* Trailer selector */}
           <div className="glass-premium rounded-3xl p-6 border border-white/10 backdrop-blur-xl">
-            <h2 className="display-3 font-montserrat mb-6 epic-text-2">Our Cinematic Portfolio</h2>
+            <div className="flex items-center gap-3 mb-6">
+              <h2 className="display-3 font-montserrat epic-text-2">KGILL+ PROJECTS</h2>
+              <div className="w-8 h-8 bg-gradient-to-br from-marigold to-terracotta rounded-full flex items-center justify-center">
+                <Tv className="w-4 h-4 text-charcoal" />
+              </div>
+            </div>
             
             <div className="space-y-4">
               {trailers.map((trailer, index) => (
@@ -187,6 +225,9 @@ const TrailerShowreel = () => {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold font-montserrat text-lg truncate">{trailer.title}</h3>
                     <p className="text-sm text-gray-400 line-clamp-2 mt-1">{trailer.description}</p>
+                    <span className="inline-block mt-2 px-2 py-1 bg-slate-700/50 text-xs text-gray-300 rounded-full font-inter">
+                      {trailer.category}
+                    </span>
                   </div>
                 </div>
               ))}

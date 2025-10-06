@@ -142,30 +142,30 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               </div>
             </div>
 
-            {/* Masonry Gallery Grid */}
-            <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-              <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            {/* Masonry Gallery Grid - Ultra Compact */}
+            <div className="max-w-7xl mx-auto px-2 md:px-4 py-6">
+              <div className="gallery-masonry-compact">
                 {filteredImages.map((image, index) => (
                   <div
                     key={image.id}
-                    className="break-inside-avoid group cursor-pointer"
+                    className="gallery-item group cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-lg hover:shadow-gold-gradient-start/30 transition-all duration-300 transform hover:scale-[1.01]"
                     onClick={() => openLightbox(index)}
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-gold-gradient-start/30 transition-all duration-500 transform hover:scale-[1.02]">
+                    <div className="relative overflow-hidden rounded-sm">
                       <OptimizedImage
                         src={image.src}
                         alt={image.title}
-                        className="w-full h-auto transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <h3 className="text-xl font-bold text-white font-montserrat mb-1">{image.title}</h3>
-                          <p className="text-gray-300 text-sm font-inter">{image.category}</p>
+                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-1.5">
+                          <h3 className="text-xs font-bold text-white font-montserrat truncate">{image.title}</h3>
+                          <p className="text-gray-300 text-xs font-inter truncate">{image.category}</p>
                         </div>
                       </div>
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="w-10 h-10 rounded-full bg-gold-gradient flex items-center justify-center">
-                          <ZoomIn className="w-5 h-5 text-charcoal" />
+                      <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="w-4 h-4 rounded-full bg-gold-gradient flex items-center justify-center shadow-sm">
+                          <ZoomIn className="w-2 h-2 text-charcoal" />
                         </div>
                       </div>
                     </div>

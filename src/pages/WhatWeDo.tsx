@@ -1,58 +1,74 @@
 import React from 'react';
-import { Camera, Mic, Users, Code, Play, ArrowRight } from 'lucide-react';
+import { Camera, Mic, Users, Code, Play, ArrowRight, Tv, Film, BookOpen, Megaphone, Monitor } from 'lucide-react';
 
 const WhatWeDo = () => {
   const services = [
     {
-      title: "Documentary Film Production",
-      description: "Compelling visual narratives that showcase real stories and drive social change",
+      title: "Media Production",
+      description: "Professional photography and videography for events, organizations, and brands. High-quality promotional videos, adverts, and corporate content.",
       icon: <Camera className="w-8 h-8" />,
-      features: ["Pre-production planning", "Professional cinematography", "Post-production editing", "Distribution strategy"],
+      features: ["Event Photography", "Videography Services", "Promotional Videos", "Corporate Content"],
       gradient: "from-marigold to-terracotta",
-      projects: "25+ Films Produced"
+      projects: "500+ Events Covered"
     },
     {
-      title: "Podcast Creation & Production",
-      description: "Audio storytelling that amplifies voices and sparks meaningful conversations",
-      icon: <Mic className="w-8 h-8" />,
-      features: ["Concept development", "Recording & editing", "Sound design", "Platform distribution"],
+      title: "Documentary & Film Production",
+      description: "Creation of short films, feature projects, and documentaries that highlight authentic African stories and drive social conversations.",
+      icon: <Film className="w-8 h-8" />,
+      features: ["Short Films", "Feature Documentaries", "Social Issue Films", "Storytelling Workshops"],
       gradient: "from-cyan to-slate-blue",
-      projects: "75+ Episodes Released"
+      projects: "150+ Productions"
     },
     {
-      title: "Community Workshops",
-      description: "Skill-building sessions that empower youth with media production capabilities",
+      title: "Community Programs & Creative Workshops",
+      description: "Initiatives like Sinema Mtaani and Future Storytellers, which empower youth through mentorship, training, and storytelling platforms.",
       icon: <Users className="w-8 h-8" />,
-      features: ["Digital storytelling", "Technical training", "Creative development", "Mentorship programs"],
+      features: ["Sinema Mtaani", "Future Storytellers Program", "Training Sessions", "Networking Events"],
       gradient: "from-terracotta to-marigold",
-      projects: "500+ Youth Trained"
+      projects: "250+ Workshops"
     },
     {
-      title: "Innovation Consulting",
-      description: "Strategic guidance for organizations looking to amplify their social impact",
-      icon: <Code className="w-8 h-8" />,
-      features: ["Strategy development", "Impact measurement", "Partnership facilitation", "Program design"],
+      title: "Content Strategy & Consultancy",
+      description: "Offering strategic guidance for brands, NGOs, and organizations on how to use storytelling and media for impact and visibility.",
+      icon: <Monitor className="w-8 h-8" />,
+      features: ["Brand Strategy", "Media Planning", "Impact Measurement", "Visibility Enhancement"],
       gradient: "from-slate-blue to-cyan",
-      projects: "20+ Organizations Advised"
+      projects: "75+ Organizations Served"
+    },
+    {
+      title: "Shows & Podcasts",
+      description: "Development and hosting of lifestyle shows, talk series, and podcasts that spotlight culture, creativity, and social issues.",
+      icon: <Tv className="w-8 h-8" />,
+      features: ["Talk Shows", "Lifestyle Series", "Podcast Hosting", "Cultural Spotlight"],
+      gradient: "from-purple to-pink",
+      projects: "75+ Episodes"
+    },
+    {
+      title: "Advocacy & Awareness Campaigns",
+      description: "Leveraging art, media, and innovation to raise awareness on pressing issues such as climate action, education, gender equality, and youth empowerment.",
+      icon: <Megaphone className="w-8 h-8" />,
+      features: ["Climate Action Campaigns", "Education Advocacy", "Gender Equality", "Youth Empowerment"],
+      gradient: "from-green to-teal",
+      projects: "50+ Campaigns"
     }
   ];
 
   const caseStudies = [
     {
-      title: "Youth Climate Action Documentary",
-      client: "Kenya Environmental Youth Network",
-      challenge: "Need to amplify young climate activists' voices and inspire nationwide action",
-      solution: "6-part documentary series featuring diverse youth perspectives across Kenya",
-      impact: "50,000+ views, featured at 3 international film festivals, sparked 10 new youth climate groups",
-      image: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=800"
+      title: "The Real People Talk Show",
+      client: "KGILL TV",
+      challenge: "Creating a platform where conversations are pure, honest and authentic",
+      solution: "Weekly talk show featuring real people discussing real issues that matter to Kenyan communities",
+      impact: "Growing audience engagement and community participation in social discourse",
+      image: "https://images.pexels.com/photos/7551667/pexels-photo-7551667.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
-      title: "Innovation Podcast Series",
-      client: "Nairobi Innovation Hub",
-      challenge: "Showcase Kenya's tech ecosystem and inspire young entrepreneurs",
-      solution: "Weekly podcast featuring successful entrepreneurs, investors, and innovators",
-      impact: "25 episodes, 15,000+ downloads, 5 startups featured received funding",
-      image: "https://images.pexels.com/photos/7551667/pexels-photo-7551667.jpeg?auto=compress&cs=tinysrgb&w=800"
+      title: "Apple for Education Workshop",
+      client: "Mac & More Solutions",
+      challenge: "Educating communities on Apple technology for educational advancement",
+      solution: "Comprehensive workshop covering Apple tools for learning and creative expression",
+      impact: "Positive feedback from participants demonstrating increased digital literacy",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
     }
   ];
 
@@ -65,8 +81,10 @@ const WhatWeDo = () => {
             WHAT WE <span className="text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">CREATE</span>
           </h1>
           <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
-            From powerful documentaries to innovative podcasts, we craft stories that inspire change 
-            and build bridges between communities, innovation, and social impact.
+            Kgill+ Media Hub is a creative and innovation hub using film, media, and art to tell powerful African stories, empower youth, and drive social change.
+          </p>
+          <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
+            From films, podcasts, and community programs to workshops, advocacy, and media services, we create platforms where underrepresented voices are heard and celebrated.
           </p>
           <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
             <Play className="w-5 h-5" />
@@ -82,11 +100,11 @@ const WhatWeDo = () => {
             <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
               OUR SERVICES
             </h2>
-            <p className="text-xl text-gray-400 font-inter max-w-2xl mx-auto">
-              Comprehensive media production and community engagement services designed for maximum impact.
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              "Our services are designed to merge creativity with strategy, delivering impact that lasts."
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div key={index} className="group">
                 <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-all duration-300 h-full">
@@ -124,15 +142,87 @@ const WhatWeDo = () => {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* KGILL TV Section */}
       <section className="py-20 bg-charcoal">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
-              CASE STUDIES
+              KGILL <span className="text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">TV</span>
             </h2>
-            <p className="text-xl text-gray-400 font-inter max-w-2xl mx-auto">
-              Real projects, real impact. See how we've helped organizations amplify their message and create lasting change.
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              "The Real People Show is a talk show where the conversations are pure, honest and youtrmut, addressing the real issues being said on this show, it's all about #THEREALPEOPLESHOW"
+            </p>
+          </div>
+          
+          <div className="bg-slate-900 rounded-2xl p-8 md:p-12 border border-slate-700">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-3xl font-bold font-montserrat mb-6 text-marigold">
+                  KGILL TV Streaming Platform
+                </h3>
+                <p className="text-gray-300 font-inter leading-relaxed mb-6">
+                  Kgill TV is our official streaming platform available on both YouTube and the Kgill TV website dedicated to showcasing bold, authentic, and diverse African stories.
+                </p>
+                <p className="text-gray-300 font-inter leading-relaxed mb-6">
+                  Through films, documentaries, shows, and podcasts, Kgill TV provides a space where underrepresented voices are heard, celebrated, and shared with the world.
+                </p>
+                <p className="text-gray-300 font-inter leading-relaxed mb-6">
+                  Designed with grassroots communities in mind, Kgill TV is a reliable, user-friendly, and affordable platform that ensures access to quality content without barriers.
+                </p>
+                <p className="text-gray-300 font-inter leading-relaxed">
+                  More than entertainment, it is a hub for social advocacy, cultural expression, and youth empowerment, giving audiences content that educates, inspires, and transforms perspectives.
+                </p>
+                
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-bold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    Visit YouTube Channel
+                  </button>
+                  <button className="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full font-inter font-semibold hover:bg-white/10 transition-all duration-300">
+                    Visit Website
+                  </button>
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700 h-full flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-marigold to-terracotta rounded-xl flex items-center justify-center">
+                      <Tv className="w-6 h-6 text-charcoal" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold font-montserrat text-white">At The Real People Talk Show</h4>
+                      <p className="text-gray-400 font-inter">#THEREALPEOPLESHOW</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="p-4 bg-slate-800/50 rounded-xl">
+                      <h5 className="font-inter font-semibold text-white mb-2">Contact Information</h5>
+                      <p className="text-gray-400 font-inter text-sm">Email: kgillcompany@gmail.com</p>
+                      <p className="text-gray-400 font-inter text-sm">Mobile No: 0757749883</p>
+                    </div>
+                    
+                    <div className="p-4 bg-slate-800/50 rounded-xl">
+                      <h5 className="font-inter font-semibold text-white mb-2">For More Info</h5>
+                      <p className="text-gray-400 font-inter text-sm">0785634805774</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="py-20 bg-gradient-to-b from-slate-900 to-charcoal">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
+              OUR PROJECT HIGHLIGHTS
+            </h2>
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              We have delivered high-quality services to a variety of clientele; here are a few of the major projects we have executed.
             </p>
           </div>
           <div className="space-y-16">
@@ -181,6 +271,76 @@ const WhatWeDo = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Overview */}
+      <section className="py-20 bg-charcoal">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6">
+              PROJECTS OVERVIEW
+            </h2>
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              At Kgill+ Media Hub, our projects reflect our passion for storytelling, innovation, and social impact.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-marigold to-terracotta rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Film className="w-6 h-6 text-charcoal" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-montserrat text-white">Sinema Mtaani #ShortFilmSundays</h3>
+                  <p className="text-gray-400 font-inter">Grassroots film program</p>
+                </div>
+              </div>
+              <p className="text-gray-300 font-inter leading-relaxed">
+                A grassroots film program showcasing short films created by local creatives, providing a platform for youth to screen their work and engage with the community.
+              </p>
+              <div className="mt-4 pt-4 border-t border-slate-700">
+                <p className="text-terracotta font-inter font-semibold">Planned: Sinema Mtaani Festival in 2026</p>
+              </div>
+            </div>
+            
+            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-slate-blue rounded-xl flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-montserrat text-white">Future Storytellers Creative Program</h3>
+                  <p className="text-gray-400 font-inter">Mentorship and training program</p>
+                </div>
+              </div>
+              <p className="text-gray-300 font-inter leading-relaxed">
+                A mentorship and training program equipping young people with skills in filmmaking, digital storytelling, and advocacy.
+              </p>
+              <div className="mt-4 pt-4 border-t border-slate-700">
+                <p className="text-cyan font-inter font-semibold">Target: Strategic partnerships with 100+ companies in 2025/2027</p>
+              </div>
+            </div>
+            
+            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-terracotta to-marigold rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Users className="w-6 h-6 text-charcoal" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-montserrat text-white">Workshops & Creative Events</h3>
+                  <p className="text-gray-400 font-inter">Training and networking</p>
+                </div>
+              </div>
+              <p className="text-gray-300 font-inter leading-relaxed">
+                Training sessions, networking meetups, and film screenings that nurture collaboration and build capacity among young creatives.
+              </p>
+              <div className="mt-4 pt-4 border-t border-slate-700">
+                <p className="text-terracotta font-inter font-semibold">Achievement: 250k views across social media platforms for Kgill Tv</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

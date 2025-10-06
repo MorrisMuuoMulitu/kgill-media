@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Camera, Moon, Sun, ChevronDown } from 'lucide-react';
+import { Menu, Moon, Sun, ChevronDown, Sparkles, Globe, Users } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import Logo from './Logo';
+import MobileMenu from './MobileMenu';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +43,8 @@ const Navigation = () => {
     { path: '/our-leaders', label: 'Our Leaders' },
     { path: '/the-feed', label: 'The Feed' },
     { path: '/get-involved', label: 'Get Involved' },
-    { path: '/the-movement', label: 'The Movement' }
+    { path: '/the-movement', label: 'The Movement' },
+    { path: '/contact', label: 'Contact Us' }
   ];
 
   // Close mobile menu when route changes
@@ -69,31 +72,29 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-3 md:py-4">
           <Link to="/" className="flex items-center space-x-3 group">
+            <Logo size="md" showText={false} />
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-marigold to-terracotta rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg">
-                <Camera className="w-7 h-7 text-charcoal" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-5 h-5 bg-cyan rounded-full animate-pulse shadow-lg"></div>
-            </div>
-            <div>
               <h1 className="text-xl md:text-2xl font-bold font-montserrat text-white group-hover:text-marigold transition-colors">
                 KGILL+ MEDIA
               </h1>
-              <p className="text-xs md:text-sm text-slate-blue font-inter">Creative & Innovation Hub</p>
+              <p className="text-xs md:text-sm text-slate-blue font-inter flex items-center gap-1">
+                <Globe className="w-3 h-3" /> Creative & Innovation Hub
+              </p>
+              <div className="absolute -bottom-1 left-0 w-2 h-2 bg-marigold rounded-full animate-pulse"></div>
             </div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <div className="hidden lg:flex items-center space-x-5 xl:space-x-7">
             {mainNavLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-inter font-semibold text-base transition-all duration-300 hover:text-marigold relative group ${
-                  location.pathname === link.path ? 'text-marigold' : 'text-white'
+                className={`font-inter font-semibold text-base transition-all duration-300 relative group ${
+                  location.pathname === link.path ? 'text-marigold' : 'text-white hover:text-marigold'
                 }`}
               >
                 {link.label}
-                <span className="absolute -bottom-2 left-0 w-0 h-1 bg-gradient-to-r from-marigold to-terracotta rounded-full transition-all duration-300 group-hover:w-full"></span>
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-marigold to-terracotta rounded-full transition-all duration-300 group-hover:w-full ${location.pathname === link.path ? 'w-full' : ''}`}></span>
               </Link>
             ))}
             
@@ -102,21 +103,23 @@ const Navigation = () => {
               <button
                 ref={dropdownButtonRef}
                 onClick={() => setShowDropdown(!showDropdown)}
-                className={`font-inter font-semibold text-base transition-all duration-300 hover:text-marigold relative group flex items-center gap-1 focus:outline focus:outline-2 focus:outline-marigold ${
-                  dropdownLinks.some(link => location.pathname === link.path) ? 'text-marigold' : 'text-white'
+                className={`font-inter font-semibold text-base transition-all duration-300 relative group flex items-center gap-1 focus:outline focus:outline-2 focus:outline-marigold ${
+                  dropdownLinks.some(link => location.pathname === link.path) ? 'text-marigold' : 'text-white hover:text-marigold'
                 }`}
                 aria-expanded={showDropdown}
                 aria-haspopup="true"
                 aria-controls="main-dropdown-menu"
                 tabIndex={0}
               >
-                More
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
-                <span className="absolute -bottom-2 left-0 w-0 h-1 bg-gradient-to-r from-marigold to-terracotta rounded-full transition-all duration-300 group-hover:w-full"></span>
+                <div className="flex items-center gap-1">
+                  More
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showDropdown ? 'rotate-180' : ''}`} />
+                </div>
+                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-marigold to-terracotta rounded-full transition-all duration-300 ${showDropdown ? 'w-full' : 'group-hover:w-full'}`}></span>
               </button>
               <div
                 id="main-dropdown-menu"
-                className={`absolute right-0 mt-2 w-56 bg-charcoal/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 transition-all duration-300 ${
+                className={`absolute right-0 mt-3 w-56 bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/50 transition-all duration-300 z-50 ${
                   showDropdown ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
                 }`}
                 role="menu"
@@ -127,8 +130,8 @@ const Navigation = () => {
                     <Link
                       key={link.path}
                       to={link.path}
-                      className={`block px-6 py-3 font-inter font-medium transition-colors hover:bg-white/10 hover:text-marigold focus:outline focus:outline-2 focus:outline-marigold ${
-                        location.pathname === link.path ? 'text-marigold bg-white/5' : 'text-white'
+                      className={`block px-6 py-3 font-inter font-medium transition-all duration-300 hover:bg-slate-700/50 hover:text-marigold focus:outline focus:outline-2 focus:outline-marigold rounded-lg mx-2 my-1 ${
+                        location.pathname === link.path ? 'text-marigold bg-slate-700/30' : 'text-slate-200 hover:bg-slate-700/30'
                       }`}
                       onClick={() => setShowDropdown(false)}
                       tabIndex={showDropdown ? 0 : -1}
@@ -144,109 +147,43 @@ const Navigation = () => {
             
             <button 
               onClick={toggleDarkMode}
-              className="p-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 backdrop-blur-sm border border-white/10 hover:border-marigold/30"
+              className="p-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 backdrop-blur-sm border border-slate-700/50 hover:border-marigold/30 relative overflow-hidden group"
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {darkMode ? <Sun className="w-5 h-5 text-marigold" /> : <Moon className="w-5 h-5 text-cyan" />}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {darkMode ? <Sun className="w-5 h-5 text-marigold z-10 relative" /> : <Moon className="w-5 h-5 text-cyan z-10 relative" />}
             </button>
             
-            <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-bold text-base hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg">
-              Join The Hub
+            <button className="group relative overflow-hidden bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
+              <span className="relative z-10 flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                Join The Hub
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-marigold/20 to-terracotta/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
 
           {/* Mobile menu button with improved accessibility */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-12 h-12 flex items-center justify-center rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 backdrop-blur-sm border border-white/10"
+            className="lg:hidden w-12 h-12 flex items-center justify-center rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 backdrop-blur-sm border border-slate-700/50 relative overflow-hidden group"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {isOpen ? <X className="w-6 h-6 text-white z-10 relative" /> : <Menu className="w-6 h-6 text-white z-10 relative" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden transition-all duration-500 ease-in-out ${
-        isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-      } overflow-hidden bg-charcoal/95 backdrop-blur-xl border-b border-white/10`}>
-        <div className="px-4 py-6 space-y-8">
-          {/* Mobile brand section */}
-          <div className="flex items-center space-x-3 pb-4 border-b border-white/10">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-marigold to-terracotta rounded-lg flex items-center justify-center">
-                <Camera className="w-6 h-6 text-charcoal" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-cyan rounded-full animate-pulse"></div>
-            </div>
-            <div>
-              <h2 className="text-xl font-bold font-montserrat text-white">
-                KGILL+ MEDIA
-              </h2>
-              <p className="text-xs text-slate-blue font-inter">Creative & Innovation Hub</p>
-            </div>
-          </div>
-          
-          <div className="space-y-8">
-            {/* Main navigation */}
-            <div>
-              <h3 className="text-sm font-semibold text-marigold uppercase tracking-wider mb-3">Main</h3>
-              <div className="space-y-2">
-                {mainNavLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-4 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
-                      location.pathname === link.path 
-                        ? 'text-marigold bg-marigold/10 border border-marigold/30' 
-                        : 'text-white hover:text-marigold hover:bg-white/5'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            
-            {/* Secondary navigation */}
-            <div>
-              <h3 className="text-sm font-semibold text-cyan uppercase tracking-wider mb-3">More</h3>
-              <div className="space-y-2">
-                {dropdownLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-4 px-4 rounded-lg font-inter font-semibold text-base transition-all duration-300 ${
-                      location.pathname === link.path 
-                        ? 'text-cyan bg-cyan/10 border border-cyan/30' 
-                        : 'text-white hover:text-cyan hover:bg-white/5'
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Mobile theme toggle */}
-          <div className="pt-4 border-t border-white/10">
-            <button 
-              onClick={toggleDarkMode}
-              className="w-full flex items-center justify-center gap-3 p-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-colors text-white font-inter font-semibold"
-            >
-              {darkMode ? <Sun className="w-5 h-5 text-marigold" /> : <Moon className="w-5 h-5 text-cyan" />}
-              {darkMode ? "Light Mode" : "Dark Mode"}
-            </button>
-          </div>
-          
-          <button className="w-full bg-gradient-to-r from-marigold to-terracotta text-charcoal py-4 rounded-xl font-inter font-bold text-lg shadow-lg">
-            Join The Hub
-          </button>
-        </div>
+      <div className="lg:hidden">
+        <MobileMenu
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          mainNavLinks={mainNavLinks}
+          dropdownLinks={dropdownLinks}
+        />
       </div>
     </nav>
   );
