@@ -292,8 +292,8 @@ const KGTVPg = () => {
     { key: 'views', label: 'Most Viewed' }
   ];
 
-  // Behind the Scenes Gallery
-  const galleryImages = [
+  // Behind the Scenes Gallery - Specific to our production content
+  const behindTheScenesImages = [
     {
       id: 1,
       src: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -310,73 +310,73 @@ const KGTVPg = () => {
     },
     {
       id: 3,
-      src: "https://images.pexels.com/photos/8111881/pexels-photo-8111881.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Community Engagement",
-      category: "events",
-      description: "Connecting with local communities across Africa"
-    },
-    {
-      id: 4,
       src: "https://images.pexels.com/photos/7262775/pexels-photo-7262775.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Creative Direction",
       category: "production",
       description: "Our team bringing stories to life"
     },
     {
-      id: 5,
-      src: "https://images.pexels.com/photos/8111262/pexels-photo-8111262.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Awards Night",
-      category: "events",
-      description: "Celebrating excellence in African storytelling"
-    },
-    {
-      id: 6,
+      id: 4,
       src: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Studio Sessions",
       category: "production",
       description: "Behind the scenes of our latest series"
     },
     {
-      id: 7,
+      id: 5,
       src: "https://images.pexels.com/photos/8112090/pexels-photo-8112090.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Team Collaboration",
-      category: "team",
+      category: "production",
       description: "Creative minds working together"
     },
     {
-      id: 8,
+      id: 6,
       src: "https://images.pexels.com/photos/7991665/pexels-photo-7991665.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Field Production",
       category: "production",
       description: "Documenting stories in remote locations"
     },
     {
-      id: 9,
-      src: "https://images.pexels.com/photos/8111315/pexels-photo-8111315.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Premiere Night",
-      category: "events",
-      description: "Unveiling our latest documentary series"
-    },
-    {
-      id: 10,
+      id: 7,
       src: "https://images.pexels.com/photos/7991680/pexels-photo-7991680.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Camera Ready",
       category: "production",
       description: "Perfecting every shot for our viewers"
     },
     {
-      id: 11,
+      id: 8,
       src: "https://images.pexels.com/photos/5699477/pexels-photo-5699477.jpeg?auto=compress&cs=tinysrgb&w=1200",
       title: "Post-Production",
-      category: "team",
+      category: "production",
       description: "Editing magic in our creative suite"
     },
     {
+      id: 9,
+      src: "https://images.pexels.com/photos/7991602/pexels-photo-7991602.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Equipment Setup",
+      category: "production",
+      description: "Preparing gear for the perfect shot"
+    },
+    {
+      id: 10,
+      src: "https://images.pexels.com/photos/8111202/pexels-photo-8111202.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Director's View",
+      category: "production",
+      description: "Behind the monitor during crucial scene filming"
+    },
+    {
+      id: 11,
+      src: "https://images.pexels.com/photos/7991560/pexels-photo-7991560.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Lighting Setup",
+      category: "production",
+      description: "Perfecting the lighting for that cinematic look"
+    },
+    {
       id: 12,
-      src: "https://images.pexels.com/photos/8111927/pexels-photo-8111927.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Festival Spotlight",
-      category: "events",
-      description: "Showcasing African stories on the world stage"
+      src: "https://images.pexels.com/photos/1279819/pexels-photo-1279819.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      title: "Sound Check",
+      category: "production",
+      description: "Ensuring crystal clear audio for our audience"
     }
   ];
 
@@ -802,7 +802,7 @@ const KGTVPg = () => {
             </p>
           </div>
 
-          <ImmersiveGallery images={galleryImages} title="Behind the Scenes" />
+          <ImmersiveGallery images={behindTheScenesImages} title="Behind the Scenes" />
         </div>
       </section>
 
