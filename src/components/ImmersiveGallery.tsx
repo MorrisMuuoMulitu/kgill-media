@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { X, ZoomIn, ChevronLeft, ChevronRight, Grid3x3, Maximize2 } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 
@@ -20,10 +20,13 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
-  const categories = ['all', ...Array.from(new Set(images.map(img => img.category)))];
-  const filteredImages = activeCategory === 'all' 
-    ? images 
-    : images.filter(img => img.category === activeCategory);
+  const categories = useMemo(() => ['all', ...Array.from(new Set(images.map(img => img.category)))], [images]);
+  const filteredImages = useMemo(() => 
+    activeCategory === 'all' 
+      ? images 
+      : images.filter(img => img.category === activeCategory), 
+    [images, activeCategory]
+  );
 
   const previewImages = images.slice(0, 6);
 
@@ -105,7 +108,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
 
       {/* Full-Screen Gallery Modal */}
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] bg-charcoal/98 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[9999] bg-charcoal/98 backdrop-blur-sm" aria-modal="true" role="dialog">
           <div className="absolute inset-0 overflow-y-auto">
             {/* Header */}
             <div className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-xl border-b border-white/10">
@@ -118,6 +121,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
                   <button
                     onClick={() => setIsOpen(false)}
                     className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all group"
+                    aria-label="Close gallery"
                   >
                     <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform" />
                   </button>
@@ -134,6 +138,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
                           ? 'bg-gold-gradient text-charcoal shadow-xl shadow-gold-gradient-start/30 scale-105'
                           : 'bg-white/5 text-white hover:bg-white/10 border border-white/10 hover:border-gold-gradient-start/50 hover:scale-105'
                       }`}
+                      aria-pressed={activeCategory === category}
                     >
                       {category.charAt(0).toUpperCase() + category.slice(1)}
                     </button>
@@ -150,6 +155,14 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
                     key={image.id}
                     className="gallery-item group cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-lg hover:shadow-gold-gradient-start/30 transition-all duration-300 transform hover:scale-[1.01]"
                     onClick={() => openLightbox(index)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        openLightbox(index);
+                      }
+                    }}
+                    aria-label={`View image: ${image.title}`}
                   >
                     <div className="relative overflow-hidden rounded-sm">
                       <OptimizedImage
@@ -177,10 +190,26 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
 
           {/* Lightbox */}
           {selectedImage !== null && (
-            <div className="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center p-4">
+            <div 
+              className="fixed inset-0 z-[10000] bg-black/95 flex items-center justify-center p-4"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) closeLightbox();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') {
+                  closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                  prevImage();
+                } else if (e.key === 'ArrowRight') {
+                  nextImage();
+                }
+              }}
+              tabIndex={-1}
+            >
               <button
                 onClick={closeLightbox}
                 className="absolute top-6 right-6 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+                aria-label="Close lightbox"
               >
                 <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform" />
               </button>
@@ -188,6 +217,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               <button
                 onClick={prevImage}
                 className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+                aria-label="Previous image"
               >
                 <ChevronLeft className="w-6 h-6 text-white group-hover:-translate-x-1 transition-transform" />
               </button>
@@ -195,6 +225,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               <button
                 onClick={nextImage}
                 className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 flex items-center justify-center transition-all group z-50"
+                aria-label="Next image"
               >
                 <ChevronRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
               </button>
@@ -202,7 +233,7 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               <div className="max-w-6xl max-h-[90vh] relative">
                 <img
                   src={filteredImages[selectedImage]?.src}
-                  alt={filteredImages[selectedImage]?.title}
+                  alt={filteredImages[selectedImage]?.title || 'Gallery image'}
                   className="w-full h-full object-contain rounded-2xl shadow-2xl"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-8 rounded-b-2xl">
