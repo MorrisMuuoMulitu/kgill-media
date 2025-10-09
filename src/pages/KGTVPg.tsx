@@ -260,7 +260,7 @@ const KGTVPg = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)] animate-pulse-slow"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 h-full flex items-center py-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 h-full flex items-center pt-32 md:pt-40 lg:pt-44 pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             {/* Text Content */}
             <div className="max-w-3xl">

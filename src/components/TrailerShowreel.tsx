@@ -93,7 +93,7 @@ const TrailerShowreel: React.FC<TrailerShowreelProps> = ({ videos }) => {
 
   return (
     <>
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden premium-bg pt-20 md:pt-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden premium-bg pt-32 md:pt-40 lg:pt-44">
       {/* Background image from YouTube thumbnail */}
       <div className="absolute inset-0 z-0">
         <img
