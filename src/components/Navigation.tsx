@@ -29,9 +29,6 @@ const Navigation = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Hide logo on TV page
-  const isKGILLTVPage = location.pathname === '/kgill-tv';
-
   return (
     <>
       {/* Navigation */}
@@ -41,16 +38,14 @@ const Navigation = () => {
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24 md:h-28 lg:h-32">
-            {/* Logo - Hidden on TV page */}
-            {!isKGILLTVPage && (
-              <Link 
-                to="/" 
-                className="group relative"
-              >
-                <Logo size="lg" showText={false} />
-              </Link>
-            )}
+          <div className="flex justify-between items-center h-20 md:h-24 lg:h-28">
+            {/* Logo */}
+            <Link 
+              to="/" 
+              className="group relative"
+            >
+              <Logo size="lg" showText={false} />
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-2">

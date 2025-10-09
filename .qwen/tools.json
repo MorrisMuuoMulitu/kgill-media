@@ -1,8 +1,0 @@
-{
-  "tools": {
-    "chrome-devtools": {
-      "description": "Connect to Chrome DevTools for enhanced debugging context",
-      "mcpServer": "chrome-devtools"
-    }
-  }
-}

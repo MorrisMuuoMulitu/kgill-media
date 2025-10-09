@@ -15,12 +15,12 @@ const Logo: React.FC<LogoProps> = ({
   logoSrc // Optional custom logo image
 }) => {
   const sizeClasses = {
-    sm: 'w-24 h-24',
-    md: 'w-40 h-40',
-    lg: 'w-56 h-56'
+    sm: 'w-20 h-20',
+    md: 'w-32 h-32',
+    lg: 'w-40 h-40 md:w-48 h-48 lg:w-56 h-56'
   };
 
-  const iconSize = size === 'sm' ? 'w-20 h-20' : size === 'md' ? 'w-36 h-36' : 'w-52 h-52';
+  const iconSize = size === 'sm' ? 'w-18 h-18' : size === 'md' ? 'w-28 h-28' : 'w-36 h-36 md:w-44 h-44 lg:w-52 h-52';
 
   // Use main logo by default, or custom logo if provided
   const defaultLogoSrc = "https://ik.imagekit.io/5zp8ovb7c/Kgill/Logos/kgillpluslogo.png?updatedAt=1760027625871&tr=f-webp";
