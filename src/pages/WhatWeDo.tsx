@@ -61,7 +61,7 @@ const WhatWeDo = () => {
       challenge: "Creating a platform where conversations are pure, honest and authentic",
       solution: "Weekly talk show featuring real people discussing real issues that matter to Kenyan communities",
       impact: "Growing audience engagement and community participation in social discourse",
-      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/KGILL_TV/KGILL_TV_2.jpg?updatedAt=1736758721431",
+      image: "https://img.youtube.com/vi/Z6BPF8gbquY/maxresdefault.jpg",
       videoUrl: "/kgill-tv"
     }
   ];
