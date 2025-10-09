@@ -51,7 +51,7 @@ const Navigation = () => {
                 <img 
                   src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Logos/tvlog.png?updatedAt=1760027625818&tr=f-webp"
                   alt="KGILL TV Logo"
-                  className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                  className="w-40 h-40 md:w-48 h-48 lg:w-56 h-56 object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               ) : (
                 <Logo size="lg" showText={false} />
