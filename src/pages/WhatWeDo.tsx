@@ -1,5 +1,6 @@
 import React from 'react';
 import { Camera, Mic, Users, Code, Play, ArrowRight, Tv, Film, BookOpen, Megaphone, Monitor } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const WhatWeDo = () => {
   const services = [
@@ -60,15 +61,8 @@ const WhatWeDo = () => {
       challenge: "Creating a platform where conversations are pure, honest and authentic",
       solution: "Weekly talk show featuring real people discussing real issues that matter to Kenyan communities",
       impact: "Growing audience engagement and community participation in social discourse",
-      image: "https://images.pexels.com/photos/7551667/pexels-photo-7551667.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
-      title: "Apple for Education Workshop",
-      client: "Mac & More Solutions",
-      challenge: "Educating communities on Apple technology for educational advancement",
-      solution: "Comprehensive workshop covering Apple tools for learning and creative expression",
-      impact: "Positive feedback from participants demonstrating increased digital literacy",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://ik.imagekit.io/5zp8ovb7c/Kgill/KGILL_TV/KGILL%20TV%202.jpg",
+      videoUrl: "/kgill-tv"
     }
   ];
 
@@ -86,10 +80,10 @@ const WhatWeDo = () => {
           <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
             From films, podcasts, and community programs to workshops, advocacy, and media services, we create platforms where underrepresented voices are heard and celebrated.
           </p>
-          <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
+          <Link to="/kgill-tv" className="bg-gradient-to-r from-marigold to-terracotta text-white px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
             <Play className="w-5 h-5" />
             Watch Our Reel
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -131,9 +125,20 @@ const WhatWeDo = () => {
                     <span className="text-terracotta font-inter font-semibold text-sm">
                       {service.projects}
                     </span>
-                    <button className="text-cyan hover:text-marigold transition-colors flex items-center gap-2 font-inter font-semibold">
+                    <Link 
+                      to={
+                        service.title.includes("Media Production") || service.title.includes("Documentary") 
+                          ? "/photography-videography" 
+                          : service.title.includes("Shows & Podcasts") 
+                          ? "/kgill-tv" 
+                          : service.title.includes("Workshops") || service.title.includes("Community") 
+                          ? "/workshops" 
+                          : "/what-we-do"
+                      }
+                      className="text-cyan hover:text-marigold transition-colors flex items-center gap-2 font-inter font-semibold"
+                    >
                       Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -174,12 +179,12 @@ const WhatWeDo = () => {
                 </p>
                 
                 <div className="mt-8 flex flex-wrap gap-4">
-                  <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-bold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                  <a href="https://www.youtube.com/@KGILLPlusMedia" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-marigold to-terracotta text-white px-6 py-3 rounded-full font-inter font-bold hover:shadow-lg hover:scale-105 transition-all duration-300">
                     Visit YouTube Channel
-                  </button>
-                  <button className="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full font-inter font-semibold hover:bg-white/10 transition-all duration-300">
+                  </a>
+                  <Link to="/kgill-tv" className="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-full font-inter font-semibold hover:bg-white/10 transition-all duration-300">
                     Visit Website
-                  </button>
+                  </Link>
                 </div>
               </div>
               
@@ -231,14 +236,21 @@ const WhatWeDo = () => {
                 index % 2 === 1 ? 'md:grid-flow-col-dense' : ''
               }`}>
                 <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
-                  <div className="relative group">
+                  <Link 
+                    to={study.videoUrl}
+                    className="relative group block cursor-pointer"
+                  >
                     <img 
                       src={study.image} 
                       alt={study.title}
                       className="w-full h-80 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-gold-gradient flex items-center justify-center shadow-2xl">
+                        <Play className="w-10 h-10 text-charcoal ml-1" />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
                 <div className={index % 2 === 1 ? 'md:col-start-1' : ''}>
                   <div className="space-y-6">
@@ -264,9 +276,12 @@ const WhatWeDo = () => {
                         <p className="text-gray-300 font-inter leading-relaxed">{study.impact}</p>
                       </div>
                     </div>
-                    <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
-                      View Full Case Study <ArrowRight className="w-4 h-4" />
-                    </button>
+                    <Link 
+                      to={study.videoUrl}
+                      className="bg-gradient-to-r from-marigold to-terracotta text-white px-6 py-3 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 inline-flex"
+                    >
+                      Watch Full Episode <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -355,12 +370,12 @@ const WhatWeDo = () => {
             Let's work together to tell your story and create meaningful change in your community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-marigold to-terracotta text-charcoal px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
+            <a href="mailto:kgillcompany@gmail.com" className="bg-gradient-to-r from-marigold to-terracotta text-white px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
               Get A Quote <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-full font-inter font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+            </a>
+            <Link to="/photography-videography" className="border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-full font-inter font-semibold text-lg hover:bg-white/10 transition-all duration-300">
               View Our Portfolio
-            </button>
+            </Link>
           </div>
         </div>
       </section>

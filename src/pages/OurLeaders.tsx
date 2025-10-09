@@ -6,7 +6,6 @@ const OurLeaders = () => {
     {
       name: "Kevinne Mullick O.",
       title: "Founder/Ceo",
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Founder & CEO of Kgill+ Media. Visionary leader passionate about amplifying African voices through innovative storytelling. With deep roots in Kibera, Kevinne has over 4 years in media production and community development.",
       quote: "Stories are not just to be told - they are tools to awaken, to challenge, and to build the Africa we deserve.",
       linkedin: "#",
@@ -15,7 +14,6 @@ const OurLeaders = () => {
     {
       name: "Gillian Akinyi",
       title: "Hr/Admin",
-      image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Human Resources and Administration lead responsible for managing organizational operations, employee relations, and administrative functions to ensure smooth day-to-day operations.",
       quote: "Strong organizations are built on strong foundations of people and processes.",
       linkedin: "#",
@@ -24,7 +22,6 @@ const OurLeaders = () => {
     {
       name: "Alex Omiele",
       title: "Communication Director",
-      image: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Communication Director responsible for developing and implementing strategic communication plans, managing public relations, and ensuring consistent messaging across all platforms.",
       quote: "Effective communication is the bridge between confusion and clarity.",
       linkedin: "#",
@@ -33,7 +30,6 @@ const OurLeaders = () => {
     {
       name: "Debbie Atieno",
       title: "Programs Director",
-      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Programs Director overseeing the development, implementation, and evaluation of all organizational programs and initiatives to ensure alignment with mission and goals.",
       quote: "Programs that matter create lasting impact in communities.",
       linkedin: "#",
@@ -42,7 +38,6 @@ const OurLeaders = () => {
     {
       name: "Bernard Maingi",
       title: "Production Lead",
-      image: "https://images.pexels.com/photos/7551667/pexels-photo-7551667.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Production Lead managing all aspects of media production including filming, editing, and post-production to deliver high-quality content for all platforms.",
       quote: "Quality production brings stories to life in powerful ways.",
       linkedin: "#",
@@ -51,7 +46,6 @@ const OurLeaders = () => {
     {
       name: "Diana Osale Atsula",
       title: "Partnership Director",
-      image: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=400",
       bio: "Partnership Director responsible for building and maintaining strategic relationships with organizations, sponsors, and collaborators to expand our reach and impact.",
       quote: "Strong partnerships multiply our ability to create change.",
       linkedin: "#",
@@ -146,7 +140,7 @@ const OurLeaders = () => {
                     </div>
                     <a 
                       href={leader.linkedin}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-marigold to-terracotta text-charcoal px-6 py-3 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-marigold to-terracotta text-white px-6 py-3 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
                     >
                       <Linkedin className="w-5 h-5" />
                       Connect on LinkedIn

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { X, ZoomIn, ChevronLeft, ChevronRight, Grid3x3, Maximize2 } from 'lucide-react';
 import OptimizedImage from './OptimizedImage';
 
@@ -13,12 +13,40 @@ interface GalleryImage {
 interface ImmersiveGalleryProps {
   images: GalleryImage[];
   title?: string;
+  accentColor?: string;
 }
 
-const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Gallery" }) => {
+const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ 
+  images, 
+  title = "Gallery",
+  accentColor = "from-gold-gradient-start to-terracotta"
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = '0px'; // Prevent layout shift
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+    };
+  }, [isOpen]);
+
+  // Simulate loading for skeleton effect
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const categories = useMemo(() => ['all', ...Array.from(new Set(images.map(img => img.category)))], [images]);
   const filteredImages = useMemo(() => 
@@ -38,6 +66,12 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
     setSelectedImage(null);
   };
 
+  const closeGallery = () => {
+    setIsOpen(false);
+    setSelectedImage(null);
+    setActiveCategory('all');
+  };
+
   const nextImage = () => {
     if (selectedImage !== null) {
       setSelectedImage((selectedImage + 1) % filteredImages.length);
@@ -53,9 +87,22 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
   return (
     <>
       {/* Compact Preview Section - Bento Box Style */}
-      <div className="relative">
+      <div className="relative group">
+        {/* Shimmer effect overlay */}
+        <div className="absolute inset-0 -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold-gradient-start/10 to-transparent animate-shimmer"></div>
+        </div>
+        
         {/* Preview Grid */}
-        <div className="grid grid-cols-6 grid-rows-2 gap-3 h-[400px] md:h-[500px]">
+        {isLoading ? (
+          // Skeleton Loading State
+          <div className="grid grid-cols-6 grid-rows-2 gap-3 h-[400px] md:h-[500px]">
+            <div className="col-span-4 row-span-2 rounded-3xl bg-slate-800 animate-pulse"></div>
+            <div className="col-span-2 row-span-1 rounded-2xl bg-slate-800 animate-pulse"></div>
+            <div className="col-span-2 row-span-1 rounded-2xl bg-slate-800 animate-pulse"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-6 grid-rows-2 gap-3 h-[400px] md:h-[500px]">
           {/* Large featured image */}
           <div className="col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl" onClick={() => setIsOpen(true)}>
             <OptimizedImage 
@@ -69,8 +116,8 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               <p className="text-gray-300 font-inter">{previewImages[0]?.category}</p>
             </div>
             <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="w-12 h-12 rounded-full bg-gold-gradient flex items-center justify-center shadow-xl">
-                <ZoomIn className="w-6 h-6 text-charcoal" />
+              <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${accentColor} flex items-center justify-center shadow-xl animate-bounce-slow`}>
+                <ZoomIn className="w-6 h-6 text-charcoal group-hover:scale-110 transition-transform" />
               </div>
             </div>
           </div>
@@ -89,54 +136,79 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
 
           {/* Bottom right - View All button */}
           <div 
-            className="col-span-2 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-gold-gradient-start via-terracotta to-purple-gradient-start"
+            className={`col-span-2 row-span-1 relative cursor-pointer overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br ${accentColor} hover:shadow-2xl hover:shadow-gold-gradient-start/50 transition-all duration-300`}
             onClick={() => setIsOpen(true)}
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 group-hover:scale-105 transition-transform">
-              <Grid3x3 className="w-12 h-12 text-charcoal mb-3" />
+              <Grid3x3 className="w-12 h-12 text-charcoal mb-3 animate-bounce-slow" />
               <div className="text-2xl font-black text-charcoal font-montserrat">View All</div>
               <div className="text-charcoal font-inter font-semibold">{images.length} Photos</div>
             </div>
           </div>
         </div>
+        )}
 
-        {/* Floating badge */}
-        <div className="absolute -top-4 left-6 px-5 py-2.5 bg-slate-900/90 backdrop-blur-xl rounded-full border border-gold-gradient-start/30 shadow-2xl">
-          <span className="text-gold-gradient-start font-bold text-sm tracking-wider">{title.toUpperCase()}</span>
+        {/* Floating badge with glassmorphism */}
+        <div className={`absolute -top-4 left-6 px-5 py-2.5 bg-white/10 backdrop-blur-xl rounded-full border-2 shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white/20 border-[${accentColor}]`}>
+          <span className={`bg-gradient-to-r ${accentColor} bg-clip-text text-transparent font-bold text-sm tracking-wider`}>
+            {title.toUpperCase()}
+          </span>
         </div>
       </div>
 
-      {/* Full-Screen Gallery Modal */}
+      {/* Full-Screen Gallery Modal - ISOLATED */}
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] bg-charcoal/98 backdrop-blur-sm" aria-modal="true" role="dialog">
-          <div className="absolute inset-0 overflow-y-auto">
-            {/* Header */}
-            <div className="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-xl border-b border-white/10">
-              <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-black font-montserrat text-white mb-2">{title}</h2>
-                    <p className="text-gray-400 font-inter">{filteredImages.length} stunning moments</p>
+        <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md" aria-modal="true" role="dialog">
+          {/* Fixed Close Button - Always Visible */}
+          <button
+            onClick={closeGallery}
+            className="fixed top-4 right-4 md:top-6 md:right-6 z-[10000] w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 hover:scale-110 active:scale-95 flex items-center justify-center transition-all shadow-2xl border-4 border-white/30 group animate-pulse-slow"
+            aria-label="Close gallery"
+            style={{ boxShadow: '0 0 30px rgba(239, 68, 68, 0.6)' }}
+          >
+            <X className="w-8 h-8 md:w-10 md:h-10 text-white font-bold group-hover:rotate-90 transition-transform duration-300 drop-shadow-2xl stroke-[3]" />
+            <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-white text-sm font-bold bg-black/80 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap backdrop-blur-sm">
+              Press ESC or Click to Close
+            </span>
+          </button>
+          
+          {/* Close background overlay */}
+          <div 
+            className="absolute inset-0" 
+            onClick={closeGallery}
+            aria-label="Close gallery overlay"
+          />
+          
+          {/* Scrollable content container - ISOLATED from body */}
+          <div className="absolute inset-0 overflow-y-auto overflow-x-hidden" style={{ WebkitOverflowScrolling: 'touch' }}>
+            {/* Header - Glassmorphism */}
+            <div className="sticky top-0 z-50 bg-white/5 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
+              <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 relative">
+                {/* Accent color bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${accentColor}`}></div>
+                
+                <div className="flex items-center">
+                  <div className="pr-20">
+                    <h2 className={`text-2xl md:text-4xl font-black font-montserrat mb-2 bg-gradient-to-r ${accentColor} bg-clip-text text-transparent`}>
+                      {title}
+                    </h2>
+                    <p className="text-gray-400 font-inter flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${accentColor} animate-pulse`}></span>
+                      {filteredImages.length} stunning moments
+                    </p>
                   </div>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 border-2 border-white/20 hover:border-white/40 flex items-center justify-center transition-all group"
-                    aria-label="Close gallery"
-                  >
-                    <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform" />
-                  </button>
                 </div>
 
-                {/* Category Filters */}
+                {/* Category Filters - Glassmorphism */}
                 <div className="flex gap-3 mt-6 overflow-x-auto pb-2 scrollbar-hide">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setActiveCategory(category)}
-                      className={`px-6 py-2.5 rounded-xl font-bold font-inter text-sm whitespace-nowrap transition-all duration-300 ${
+                      className={`px-6 py-2.5 rounded-xl font-bold font-inter text-sm whitespace-nowrap transition-all duration-300 active:scale-95 ${
                         activeCategory === category
-                          ? 'bg-gold-gradient text-charcoal shadow-xl shadow-gold-gradient-start/30 scale-105'
-                          : 'bg-white/5 text-white hover:bg-white/10 border border-white/10 hover:border-gold-gradient-start/50 hover:scale-105'
+                          ? `bg-gradient-to-r ${accentColor} text-white shadow-xl scale-105`
+                          : 'bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 border border-white/10 hover:border-white/30 hover:scale-105'
                       }`}
                       aria-pressed={activeCategory === category}
                     >
@@ -147,13 +219,21 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
               </div>
             </div>
 
-            {/* Masonry Gallery Grid - Ultra Compact */}
-            <div className="max-w-7xl mx-auto px-2 md:px-4 py-6">
-              <div className="gallery-masonry-compact">
+            {/* Masonry Gallery Grid - ONLY SHOWS THIS GALLERY'S IMAGES */}
+            <div className="max-w-7xl mx-auto px-2 md:px-4 py-6 relative">
+              {/* Parallax background effect */}
+              <div className="absolute inset-0 opacity-5 pointer-events-none">
+                <div className={`w-full h-full bg-gradient-to-br ${accentColor} blur-3xl`}></div>
+              </div>
+              
+              <div className="gallery-masonry-compact relative z-10">
                 {filteredImages.map((image, index) => (
                   <div
                     key={image.id}
-                    className="gallery-item group cursor-pointer overflow-hidden rounded-sm shadow-md hover:shadow-lg hover:shadow-gold-gradient-start/30 transition-all duration-300 transform hover:scale-[1.01]"
+                    className={`gallery-item group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-1 active:scale-95`}
+                    style={{
+                      boxShadow: 'hover:0 20px 40px rgba(0,0,0,0.3)'
+                    }}
                     onClick={() => openLightbox(index)}
                     role="button"
                     tabIndex={0}
@@ -170,15 +250,15 @@ const ImmersiveGallery: React.FC<ImmersiveGalleryProps> = ({ images, title = "Ga
                         alt={image.title}
                         className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-1.5">
-                          <h3 className="text-xs font-bold text-white font-montserrat truncate">{image.title}</h3>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-0 left-0 right-0 p-2 backdrop-blur-sm">
+                          <h3 className="text-sm font-bold text-white font-montserrat truncate">{image.title}</h3>
                           <p className="text-gray-300 text-xs font-inter truncate">{image.category}</p>
                         </div>
                       </div>
-                      <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="w-4 h-4 rounded-full bg-gold-gradient flex items-center justify-center shadow-sm">
-                          <ZoomIn className="w-2 h-2 text-charcoal" />
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
+                        <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${accentColor} flex items-center justify-center shadow-lg animate-bounce-slow`}>
+                          <ZoomIn className="w-4 h-4 text-white" />
                         </div>
                       </div>
                     </div>

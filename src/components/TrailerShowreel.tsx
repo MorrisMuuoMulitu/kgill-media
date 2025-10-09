@@ -1,60 +1,67 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Play, Pause, Volume2, VolumeX, Tv, Camera, Mic } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Tv, Camera, Mic, ExternalLink } from 'lucide-react';
+import YouTubePlayerModal from './YouTubePlayerModal';
 
-const TrailerShowreel = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+interface Trailer {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: string;
+  videoId: string;
+  duration: string;
+  category: string;
+  views: string;
+}
+
+interface TrailerShowreelProps {
+  videos?: Trailer[];
+}
+
+const TrailerShowreel: React.FC<TrailerShowreelProps> = ({ videos }) => {
   const [currentTrailer, setCurrentTrailer] = useState(0);
   const [trailerChange, setTrailerChange] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<Trailer | null>(null);
 
-  // Sample trailer data - in a real app, this would come from an API
-  const trailers = [
+  // Default trailers with real YouTube videos from KGILL TV
+  const defaultTrailers: Trailer[] = [
     {
       id: 1,
-      title: "The Real People Show",
-      description: "Pure, honest conversations addressing real issues that matter to Kenyan communities",
-      thumbnail: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "3:45",
-      category: "KGILL TV"
+      title: "Kick Off S02 Ep 1 (We are back ~ the reunion)",
+      description: "The game is back — and so is the drama. Papa, Candy, Kevo, and Coco return for a brand-new season filled with football fever, messy relationships, and ghetto hustle.",
+      thumbnail: "https://img.youtube.com/vi/Z6BPF8gbquY/maxresdefault.jpg",
+      videoId: "Z6BPF8gbquY",
+      duration: "14:15",
+      category: "Web Series",
+      views: "1.2K"
     },
     {
       id: 2,
-      title: "Voices of Kibera",
-      description: "Empowering young creatives from our home community through authentic storytelling",
-      thumbnail: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "5:22",
-      category: "Documentary"
+      title: "A Sinema Mtaani | AUMA Short film",
+      description: "Story of a 12-year-old girl in Kibera experiencing her first period. Addresses menstrual health, dignity, and the 65% of Kenyan females who cannot afford sanitary pads.",
+      thumbnail: "https://img.youtube.com/vi/bp_BnrK-hOo/maxresdefault.jpg",
+      videoId: "bp_BnrK-hOo",
+      duration: "12:54",
+      category: "Short Film",
+      views: "2.7K"
     },
     {
       id: 3,
-      title: "Sinema Mtaani",
-      description: "Bringing cinema to the streets - community film projects across Nairobi",
-      thumbnail: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-      duration: "4:18",
-      category: "Community Project"
+      title: "A Sinema Mtaani | Dark Valentine Short Film",
+      description: "A haunting tale inspired by real femicide cases - bringing awareness to critical social issues through powerful storytelling.",
+      thumbnail: "https://img.youtube.com/vi/NWPQemVFUXQ/maxresdefault.jpg",
+      videoId: "NWPQemVFUXQ",
+      duration: "16:23",
+      category: "Short Film",
+      views: "8K"
     }
   ];
+  
+  const trailers = videos || defaultTrailers;
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
+  const openVideo = (trailer: Trailer) => {
+    setSelectedVideo(trailer);
+    setIsModalOpen(true);
   };
 
   const nextTrailer = useCallback(() => {
@@ -73,30 +80,26 @@ const TrailerShowreel = () => {
     }, 300);
   }, [trailers.length]);
 
-  // Auto-advance trailers every 10 seconds
+  // Auto-advance trailers every 8 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      if (isPlaying) {
-        nextTrailer();
-      }
-    }, 10000);
+      nextTrailer();
+    }, 8000);
     
     return () => clearInterval(interval);
-  }, [isPlaying, nextTrailer]);
+  }, [nextTrailer]);
 
   const current = trailers[currentTrailer];
 
   return (
+    <>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden premium-bg pt-20 md:pt-0">
-      {/* Background video */}
+      {/* Background image from YouTube thumbnail */}
       <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
+        <img
+          src={current.thumbnail}
+          alt={current.title}
           className="w-full h-full object-cover"
-          src={current.videoUrl}
-          muted={isMuted}
-          loop
-          onEnded={nextTrailer}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/95"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-transparent to-transparent"></div>
@@ -131,25 +134,20 @@ const TrailerShowreel = () => {
             
             <div className="flex flex-wrap gap-4 mb-8">
               <button 
-                onClick={togglePlay}
+                onClick={() => openVideo(current)}
                 className="btn-primary flex items-center gap-3 premium-hover-gold"
               >
-                {isPlaying ? (
-                  <>
-                    <Pause className="w-5 h-5" />
-                    <span>Pause Showreel</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-5 h-5" />
-                    <span>Play Showreel</span>
-                  </>
-                )}
+                <Play className="w-5 h-5" />
+                <span>Watch Video</span>
               </button>
               
-              <button className="btn-secondary flex items-center gap-3">
-                <span>View All Projects</span>
-              </button>
+              <a 
+                href="/kgill-tv"
+                className="btn-secondary flex items-center gap-3"
+              >
+                <span>View All Videos</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
             
             {/* Stats */}
@@ -194,15 +192,9 @@ const TrailerShowreel = () => {
                   className={`flex gap-4 p-4 rounded-2xl cursor-pointer transition-all duration-300 premium-hover ${
                     index === currentTrailer 
                       ? 'bg-gold-gradient/20 border border-gold-gradient/30 scale-[1.02]' 
-                      : 'hover:bg-white/5'
+                      : 'hover:bg-slate-800/50 hover:border-slate-700/50 border border-transparent'
                   }`}
-                  onClick={() => {
-                    setTrailerChange(true);
-                    setTimeout(() => {
-                      setCurrentTrailer(index);
-                      setTrailerChange(false);
-                    }, 300);
-                  }}
+                  onClick={() => openVideo(trailer)}
                 >
                   <div className="relative flex-shrink-0">
                     <img 
@@ -211,11 +203,7 @@ const TrailerShowreel = () => {
                       className="w-24 h-16 object-cover rounded-xl"
                     />
                     <div className="absolute inset-0 bg-black/50 rounded-xl flex items-center justify-center">
-                      {index === currentTrailer && isPlaying ? (
-                        <Pause className="w-6 h-6 text-white" />
-                      ) : (
-                        <Play className="w-6 h-6 text-white" />
-                      )}
+                      <Play className="w-6 h-6 text-white" />
                     </div>
                     <span className="absolute bottom-1 right-1 text-xs bg-black/80 text-white px-2 py-1 rounded-full font-bold">
                       {trailer.duration}
@@ -251,18 +239,24 @@ const TrailerShowreel = () => {
         </div>
       </div>
 
-      {/* Volume control */}
+      {/* Watch CTA badge */}
       <button 
-        onClick={toggleMute}
-        className="absolute bottom-8 right-8 z-10 p-4 rounded-full bg-charcoal/70 backdrop-blur-lg border border-white/20 hover:bg-charcoal/90 transition-all premium-hover epic-glow"
+        onClick={() => openVideo(current)}
+        className="absolute bottom-8 right-8 z-10 px-6 py-3 rounded-full bg-gold-gradient text-white backdrop-blur-lg border border-gold-gradient-start/30 hover:scale-105 transition-all premium-hover epic-glow font-bold flex items-center gap-2"
       >
-        {isMuted ? (
-          <VolumeX className="w-6 h-6" />
-        ) : (
-          <Volume2 className="w-6 h-6" />
-        )}
+        <Play className="w-5 h-5" />
+        <span>Watch Now</span>
       </button>
     </section>
+
+    {/* YouTube Player Modal */}
+    <YouTubePlayerModal
+      videoId={selectedVideo?.videoId || ''}
+      title={selectedVideo?.title || ''}
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+    />
+    </>
   );
 };
 

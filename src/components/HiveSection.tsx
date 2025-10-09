@@ -88,62 +88,25 @@ const HiveSection = () => {
           ))}
         </div>
         
-        <div className="premium-card animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <div>
-              <h3 className="display-3 font-montserrat mb-2">Upcoming Events</h3>
-              <p className="text-gray-400 font-inter">Join our community in creating the new narrative</p>
+        <div className="premium-card animate-fade-in-up text-center py-16" style={{ animationDelay: '400ms' }}>
+          <div className="max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gold-gradient/10 rounded-full border border-gold-gradient-start/30">
+              <Calendar className="w-5 h-5 text-gold-gradient-start" />
+              <span className="text-gold-gradient-start font-bold text-sm tracking-wider">UPCOMING EVENTS</span>
             </div>
-            <button className="btn-secondary flex items-center gap-2 mt-4 md:mt-0">
-              <span>View All Events</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event, index) => (
-              <div 
-                key={event.id} 
-                className="bg-charcoal/50 rounded-2xl p-6 border border-white/10 premium-hover-gold"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <span className="px-3 py-1 bg-gold-gradient text-charcoal rounded-full text-sm font-bold">
-                    {event.type}
-                  </span>
-                  <div className="text-right">
-                    <div className="text-xl font-bold font-montserrat">
-                      {new Date(event.date).toLocaleDateString('en-US', { day: 'numeric' })}
-                    </div>
-                    <div className="text-sm text-gray-400">
-                      {new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}
-                    </div>
-                  </div>
-                </div>
-                
-                <h4 className="text-xl font-bold font-montserrat mb-3">{event.title}</h4>
-                <p className="text-gray-400 font-inter mb-6 line-clamp-2">{event.description}</p>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <Clock className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{event.time}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <MapPin className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-gray-300">
-                    <Users className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{event.attendees} attending</span>
-                  </div>
-                </div>
-                
-                <button className="w-full mt-6 btn-accent">
-                  Register Now
-                </button>
-              </div>
-            ))}
+            <h3 className="display-3 font-montserrat mb-4">Events Coming Soon</h3>
+            <p className="text-xl text-gray-400 font-inter mb-8">
+              We're planning some amazing workshops, meetups, and creative sessions. Stay tuned!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="btn-primary flex items-center justify-center gap-2">
+                <span>Get Notified</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a href="/workshops" className="btn-secondary flex items-center justify-center gap-2">
+                <span>Browse Past Events</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

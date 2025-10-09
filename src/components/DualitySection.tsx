@@ -30,12 +30,12 @@ const DualitySection = () => {
                 <Monitor className="w-8 h-8 text-charcoal" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold font-montserrat epic-text">KGILL TV</h3>
+                <h3 className="text-2xl font-bold font-montserrat text-white">KGILL TV</h3>
                 <p className="text-gold-gradient-start font-bold">Creative Home</p>
               </div>
             </div>
             
-            <p className="text-gray-300 font-inter mb-8">
+            <p className="text-white font-inter mb-8">
               Our streaming destination - a curated world of original films and documentaries. 
               This isn't just a platform; it's a destination. A direct line to our original films 
               and a showcase of our creative vision.
@@ -50,7 +50,7 @@ const DualitySection = () => {
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-3 premium-staggered animate" style={{ animationDelay: `${200 + index * 100}ms` }}>
                   <div className="w-3 h-3 rounded-full bg-gold-gradient"></div>
-                  <span className="text-gray-300">{item}</span>
+                  <span className="text-white">{item}</span>
                 </div>
               ))}
             </div>
@@ -68,12 +68,12 @@ const DualitySection = () => {
                 <Camera className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold font-montserrat epic-text-3">PROFESSIONAL SERVICES</h3>
+                <h3 className="text-2xl font-bold font-montserrat text-white">PROFESSIONAL SERVICES</h3>
                 <p className="text-cyan font-bold">Craft for Hire</p>
               </div>
             </div>
             
-            <p className="text-gray-300 font-inter mb-8">
+            <p className="text-white font-inter mb-8">
               Our professional arm - capturing moments and creating visual legacies. 
               From single shots to full-scale productions, we deliver high-quality 
               visual storytelling for clients who want a piece of our creative prowess.

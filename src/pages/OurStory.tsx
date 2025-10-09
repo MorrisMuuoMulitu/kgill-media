@@ -40,9 +40,9 @@ const OurStory = () => {
             </div>
             <div className="relative">
               <img 
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Community Workshop"
-                className="rounded-2xl shadow-2xl"
+                src="https://img.youtube.com/vi/scdj1xKxDqs/maxresdefault.jpg"
+                alt="Community Workshop - Behind the Scenes"
+                className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent rounded-2xl"></div>
             </div>

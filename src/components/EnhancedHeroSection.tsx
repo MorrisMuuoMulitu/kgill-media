@@ -12,7 +12,6 @@ const EnhancedHeroSection: React.FC = () => {
   const [userIntent, setUserIntent] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [followersCount, setFollowersCount] = useState(470);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Scroll animation refs
   const heroRef = useScrollAnimation();
@@ -49,12 +48,8 @@ const EnhancedHeroSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Preload hero video for better performance
-  useEffect(() => {
-    const video = document.createElement('video');
-    video.src = 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4';
-    video.onloadeddata = () => setIsVideoLoaded(true);
-  }, []);
+  // Hero background image is already loaded via standard img tag
+  // No video preloading needed as we're using static YouTube thumbnails
 
   const handleIntentSelect = (intent: string) => {
     setUserIntent(intent);
@@ -102,7 +97,6 @@ const EnhancedHeroSection: React.FC = () => {
     {
       title: "Youth Voices in Climate Action",
       description: "Documentary series empowering young environmental activists across Kenya",
-      image: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Film",
       impact: "50K+ Views",
       featured: true
@@ -110,14 +104,12 @@ const EnhancedHeroSection: React.FC = () => {
     {
       title: "Innovation Podcast Series",
       description: "Conversations with Africa's leading tech entrepreneurs and changemakers",
-      image: "https://images.pexels.com/photos/7551667/pexels-photo-7551667.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Podcast",
       impact: "25+ Episodes"
     },
     {
       title: "Community Tech Training",
       description: "Digital literacy workshops in underserved communities",
-      image: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Education",
       impact: "500+ Trained"
     }
@@ -147,11 +139,7 @@ const EnhancedHeroSection: React.FC = () => {
           <div className="w-full h-full bg-gradient-to-br from-black/90 via-charcoal/80 to-black/90 z-20 absolute animate-gradient-move"></div>
           <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-marigold/10 to-transparent z-20 absolute animate-gradient-move"></div>
           <img 
-            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            srcSet="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400 400w,
-                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800 800w,
-                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200 1200w,
-                    https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920 1920w"
+            src="https://img.youtube.com/vi/Z6BPF8gbquY/maxresdefault.jpg"
             sizes="(max-width: 640px) 400px, (max-width: 768px) 800px, (max-width: 1024px) 1200px, 1920px"
             alt="Creative Workshop"
             className="w-full h-full object-cover scale-110 animate-slow-zoom animate-fade-in"

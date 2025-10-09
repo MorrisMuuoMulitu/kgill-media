@@ -36,8 +36,6 @@ const PerformanceOptimizer: React.FC<PerformanceOptimizerProps> = ({ children })
     // Preload critical resources
     const preloadCriticalImages = () => {
       const criticalImages = [
-        'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-        'https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=800'
       ];
 
       criticalImages.forEach(src => {

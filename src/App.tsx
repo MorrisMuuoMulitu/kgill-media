@@ -12,14 +12,9 @@ import Home from './pages/Home';
 import OurStory from './pages/OurStory';
 import OurLeaders from './pages/OurLeaders';
 import WhatWeDo from './pages/WhatWeDo';
-import TheMovement from './pages/TheMovement';
-import TheFeed from './pages/TheFeed';
-import GetInvolved from './pages/GetInvolved';
+
 import KGTVPg from './pages/KGTVPg';
 import PhotographyVideographyPg from './pages/PhotographyVideographyPg';
-import WorkshopsPg from './pages/WorkshopsPg';
-import BlogPage from './pages/BlogPage';
-import BlogPostDetail from './pages/BlogPostDetail';
 import SocialProofTicker from './components/SocialProofTicker';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
@@ -43,14 +38,9 @@ function App() {
                     <Route path="/our-story" element={<OurStory />} />
                     <Route path="/our-leaders" element={<OurLeaders />} />
                     <Route path="/what-we-do" element={<WhatWeDo />} />
-                    <Route path="/the-movement" element={<TheMovement />} />
-                    <Route path="/the-feed" element={<TheFeed />} />
-                    <Route path="/get-involved" element={<GetInvolved />} />
+
                     <Route path="/kgill-tv" element={<KGTVPg />} />
                     <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
-                    <Route path="/workshops" element={<WorkshopsPg />} />
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/blog/:slug" element={<BlogPostDetail />} />
                   </Routes>
                 </PageTransition>
               </main>

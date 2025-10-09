@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
 
-import CompactGridGallery from '../components/CompactGridGallery';
 import ImmersiveGallery from '../components/ImmersiveGallery';
 import SkeletonLoader from '../components/SkeletonLoader';
 
@@ -870,6 +869,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EXCLUSIVE HEADSHOT COLLECTION</h4>
                 <ImmersiveGallery 
+                  title="Exclusive Headshot Collection"
+                  accentColor="from-purple-gradient-start to-pink-gradient-start"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot10.jpg", title: "Corporate Headshot", category: "headshots", description: "Professional corporate headshot" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot9.jpg", title: "Artist Portrait", category: "headshots", description: "Creative artistic portrait" },
@@ -882,7 +883,6 @@ const PhotographyVideographyPg = () => {
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg", title: "Artistic Portrait", category: "headshots", description: "Artistic portrait" },
                     { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg", title: "Executive Headshot", category: "headshots", description: "Executive headshot" }
                   ]} 
-                  title="Exclusive Headshot Collection"
                 />
               </div>
             </div>
@@ -909,6 +909,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EVENT HIGHLIGHTS</h4>
                 <ImmersiveGallery 
+                  title="Event Highlights"
+                  accentColor="from-marigold to-terracotta"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event1.jpg", title: "Kenya Fashion Awards", category: "events", description: "Covering the prestigious Kenya Fashion Awards" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event2.jpg", title: "Laikipia Fashion Gala", category: "events", description: "Laikipia County Fashion Gala event coverage" },
@@ -932,7 +934,6 @@ const PhotographyVideographyPg = () => {
                     { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival", category: "events", description: "Festival event coverage" },
                     { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event", category: "events", description: "Special event photography" }
                   ]} 
-                  title="Event Highlights"
                 />
               </div>
             </div>
@@ -991,6 +992,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-12">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-12 text-center epic-text">Wedding Highlights</h4>
                 <ImmersiveGallery 
+                  title="Wedding Highlights"
+                  accentColor="from-pink-gradient-start to-terracotta"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed.jpg", title: "Wedding Moments", category: "wedding", description: "Beautiful wedding moments captured" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed7.jpg", title: "Couple Love", category: "wedding", description: "Romantic couple moments" },
@@ -1031,6 +1034,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">CORPORATE PHOTOGRAPHY GALLERY</h4>
                 <ImmersiveGallery 
+                  title="Corporate Photography Gallery"
+                  accentColor="from-cyan to-slate-blue"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE1.jpg", title: "Corporate Team Photo", category: "corporate", description: "Professional corporate team photography" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE10.jpg", title: "Board Meeting", category: "corporate", description: "Board meeting photography" },
@@ -1057,7 +1062,6 @@ const PhotographyVideographyPg = () => {
                     { id: 23, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg", title: "Office Team", category: "corporate", description: "Office team photography" },
                     { id: 24, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg", title: "Business Professionals", category: "corporate", description: "Business professionals photography" }
                   ]} 
-                  title="Corporate Photography Gallery"
                 />
               </div>
             </div>
@@ -1081,6 +1085,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PREMIUM PROPERTY SHOWCASE</h4>
                 <ImmersiveGallery 
+                  title="Premium Property Showcase"
+                  accentColor="from-green to-cyan"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate1.png", title: "Modern Living Room", category: "real-estate", description: "Modern living room real estate photography" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate2.png", title: "Luxury Kitchen", category: "real-estate", description: "Luxury kitchen real estate photography" },
@@ -1090,7 +1096,6 @@ const PhotographyVideographyPg = () => {
                     { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden", category: "real-estate", description: "Beautiful garden real estate photography" },
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space", category: "real-estate", description: "Modern office space real estate photography" }
                   ]} 
-                  title="Premium Property Showcase"
                 />
               </div>
             </div>
@@ -1114,6 +1119,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">GRADUATION MEMORIES</h4>
                 <ImmersiveGallery 
+                  title="Graduation Memories"
+                  accentColor="from-gold-gradient-start to-marigold"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation1.jpg", title: "Academic Achievement", category: "graduation", description: "Celebrating academic achievement" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation2.jpg", title: "Cap & Gown", category: "graduation", description: "Traditional cap and gown photography" },
@@ -1125,7 +1132,6 @@ const PhotographyVideographyPg = () => {
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg", title: "Academic Success", category: "graduation", description: "Academic success celebration" },
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg", title: "Future Ahead", category: "graduation", description: "Looking forward to the future" }
                   ]} 
-                  title="Graduation Memories"
                 />
               </div>
 
@@ -1153,6 +1159,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">AFRICANISM</h4>
                 <ImmersiveGallery 
+                  title="Africanism"
+                  accentColor="from-terracotta to-marigold"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism2.jpg", title: "African Culture", category: "africanism", description: "Celebrating African culture" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism.jpg", title: "African Heritage", category: "africanism", description: "Honoring African heritage" },
@@ -1187,6 +1195,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">FASHION MEET N GREET</h4>
                 <ImmersiveGallery 
+                  title="Fashion Meet N Greet"
+                  accentColor="from-purple-gradient-start to-cyan"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion1.jpg", title: "Fashion Forward", category: "fashion", description: "Forward-thinking fashion photography" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion2.jpg", title: "Style Icon", category: "fashion", description: "Style icon photography session" },
@@ -1204,7 +1214,6 @@ const PhotographyVideographyPg = () => {
                     { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion13.jpg", title: "Style Community", category: "fashion", description: "Style community photography" },
                     { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion14.jpg", title: "Fashion Hangout", category: "fashion", description: "Fashion hangout photography" }
                   ]} 
-                  title="Fashion Meet n Greet Hangout"
                 />
               </div>
             </div>
@@ -1228,6 +1237,8 @@ const PhotographyVideographyPg = () => {
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PRODUCT PHOTOGRAPHY</h4>
                 <ImmersiveGallery 
+                  title="Product Photography"
+                  accentColor="from-slate-blue to-purple-gradient-start"
                   images={[
                     { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product1.jpg", title: "Product Showcase", category: "product", description: "Professional product showcase photography" },
                     { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product2.jpg", title: "Commercial Photography", category: "product", description: "Commercial product photography" },
@@ -1238,7 +1249,6 @@ const PhotographyVideographyPg = () => {
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product7.jpg", title: "Marketing Visuals", category: "product", description: "Marketing-focused product photography" },
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product8.jpg", title: "Product Presentation", category: "product", description: "Product presentation photography" }
                   ]} 
-                  title="Product Photography"
                 />
               </div>
             </div>

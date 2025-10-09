@@ -25,26 +25,7 @@ const PremiumShowcase = () => {
     }
   ];
 
-  const testimonials = [
-    {
-      name: "Sarah K.",
-      role: "Film Director",
-      content: "Kgill+ Media transformed our storytelling approach and elevated our production quality significantly.",
-      avatar: "SK"
-    },
-    {
-      name: "James M.",
-      role: "Community Leader",
-      content: "Their workshops empowered our youth with real skills and confidence to tell their stories.",
-      avatar: "JM"
-    },
-    {
-      name: "Aisha O.",
-      role: "Social Entrepreneur",
-      content: "The impact of their content reaches far beyond what we imagined possible.",
-      avatar: "AO"
-    }
-  ];
+
 
   return (
     <div className="py-20 bg-gradient-to-b from-slate-900 to-charcoal">
@@ -139,40 +120,7 @@ const PremiumShowcase = () => {
           ))}
         </ComponentInView>
 
-        {/* Testimonials */}
-        <ComponentInView 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          animation={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="premium-card group"
-            >
-              <div className="p-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan to-slate-blue flex items-center justify-center font-bold text-white">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <h4 className="font-bold font-montserrat text-white">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-400 font-inter">{testimonial.role}</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-300 font-inter italic leading-relaxed">"{testimonial.content}"</p>
-                
-                <div className="mt-6 flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-marigold fill-current" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </ComponentInView>
+
 
         {/* CTA Section */}
         <ComponentInView 
@@ -191,7 +139,7 @@ const PremiumShowcase = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="group relative overflow-hidden bg-gradient-to-r from-marigold to-terracotta text-charcoal px-8 py-4 rounded-full font-inter font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
+                <button className="group relative overflow-hidden bg-gradient-to-r from-marigold to-terracotta text-white px-8 py-4 rounded-full font-inter font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105">
                   <span className="relative z-10 flex items-center gap-2">
                     <Play className="w-5 h-5" />
                     Get Started Today

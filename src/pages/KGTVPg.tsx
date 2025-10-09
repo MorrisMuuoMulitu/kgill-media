@@ -3,7 +3,7 @@ import { Play, Clock, Eye, Star, ChevronRight, ChevronLeft, Camera, TrendingUp, 
 import { Link } from 'react-router-dom';
 import LoadingState from '../components/LoadingState';
 import OptimizedImage from '../components/OptimizedImage';
-import ImmersiveGallery from '../components/ImmersiveGallery';
+
 import YouTubePlayerModal from '../components/YouTubePlayerModal';
 
 const KGTVPg = () => {
@@ -22,7 +22,6 @@ const KGTVPg = () => {
       id: 1,
       title: "Voices of the Youth",
       description: "Documentary series featuring young African changemakers who are reshaping their communities through innovation and activism",
-      thumbnail: "https://images.pexels.com/photos/9324350/pexels-photo-9324350.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Documentary",
       duration: "45 min",
       views: "125K",
@@ -36,7 +35,6 @@ const KGTVPg = () => {
       id: 2,
       title: "Sinema Mtaani",
       description: "Community filmmaking projects from Nairobi's streets, showcasing authentic stories told by local residents",
-      thumbnail: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Community",
       duration: "30 min",
       views: "89K",
@@ -49,7 +47,6 @@ const KGTVPg = () => {
       id: 3,
       title: "Digital Griot",
       description: "Exploring African storytelling in the digital age, bridging traditional oral narratives with modern technology",
-      thumbnail: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Culture",
       duration: "52 min",
       views: "156K",
@@ -62,7 +59,6 @@ const KGTVPg = () => {
       id: 4,
       title: "Innovation Hub",
       description: "Tech entrepreneurs reshaping Africa's future through groundbreaking startups and disruptive technologies",
-      thumbnail: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Technology",
       duration: "38 min",
       views: "92K",
@@ -75,7 +71,6 @@ const KGTVPg = () => {
       id: 5,
       title: "Climate Warriors",
       description: "Young activists fighting for environmental justice and sustainable solutions across the continent",
-      thumbnail: "https://images.pexels.com/photos/3184330/pexels-photo-3184330.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Environment",
       duration: "41 min",
       views: "78K",
@@ -88,7 +83,6 @@ const KGTVPg = () => {
       id: 6,
       title: "Artisan Stories",
       description: "Traditional crafts in the modern world, celebrating the artisans keeping cultural heritage alive",
-      thumbnail: "https://images.pexels.com/photos/3184320/pexels-photo-3184320.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Culture",
       duration: "35 min",
       views: "65K",
@@ -101,7 +95,6 @@ const KGTVPg = () => {
       id: 7,
       title: "Urban Legends",
       description: "Mythical tales and folklore from city streets, reimagined for contemporary audiences",
-      thumbnail: "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Entertainment",
       duration: "28 min",
       views: "112K",
@@ -114,7 +107,6 @@ const KGTVPg = () => {
       id: 8,
       title: "Health Matters",
       description: "Medical innovations and healthcare heroes transforming lives in underserved communities",
-      thumbnail: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
       category: "Health",
       duration: "33 min",
       views: "98K",
@@ -292,93 +284,8 @@ const KGTVPg = () => {
     { key: 'views', label: 'Most Viewed' }
   ];
 
-  // Behind the Scenes Gallery - Specific to our production content
-  const behindTheScenesImages = [
-    {
-      id: 1,
-      src: "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "On Set Magic",
-      category: "production",
-      description: "Capturing authentic moments during our documentary shoots"
-    },
-    {
-      id: 2,
-      src: "https://images.pexels.com/photos/7991721/pexels-photo-7991721.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Interview Setup",
-      category: "production",
-      description: "Setting up for an intimate conversation with changemakers"
-    },
-    {
-      id: 3,
-      src: "https://images.pexels.com/photos/7262775/pexels-photo-7262775.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Creative Direction",
-      category: "production",
-      description: "Our team bringing stories to life"
-    },
-    {
-      id: 4,
-      src: "https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Studio Sessions",
-      category: "production",
-      description: "Behind the scenes of our latest series"
-    },
-    {
-      id: 5,
-      src: "https://images.pexels.com/photos/8112090/pexels-photo-8112090.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Team Collaboration",
-      category: "production",
-      description: "Creative minds working together"
-    },
-    {
-      id: 6,
-      src: "https://images.pexels.com/photos/7991665/pexels-photo-7991665.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Field Production",
-      category: "production",
-      description: "Documenting stories in remote locations"
-    },
-    {
-      id: 7,
-      src: "https://images.pexels.com/photos/7991680/pexels-photo-7991680.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Camera Ready",
-      category: "production",
-      description: "Perfecting every shot for our viewers"
-    },
-    {
-      id: 8,
-      src: "https://images.pexels.com/photos/5699477/pexels-photo-5699477.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Post-Production",
-      category: "production",
-      description: "Editing magic in our creative suite"
-    },
-    {
-      id: 9,
-      src: "https://images.pexels.com/photos/7991602/pexels-photo-7991602.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Equipment Setup",
-      category: "production",
-      description: "Preparing gear for the perfect shot"
-    },
-    {
-      id: 10,
-      src: "https://images.pexels.com/photos/8111202/pexels-photo-8111202.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Director's View",
-      category: "production",
-      description: "Behind the monitor during crucial scene filming"
-    },
-    {
-      id: 11,
-      src: "https://images.pexels.com/photos/7991560/pexels-photo-7991560.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Lighting Setup",
-      category: "production",
-      description: "Perfecting the lighting for that cinematic look"
-    },
-    {
-      id: 12,
-      src: "https://images.pexels.com/photos/1279819/pexels-photo-1279819.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      title: "Sound Check",
-      category: "production",
-      description: "Ensuring crystal clear audio for our audience"
-    }
-  ];
+  // Behind the Scenes Video
+  const behindTheScenesVideo = youtubeVideos.find(video => video.id === 8);
 
   // Simulate loading
   useEffect(() => {
@@ -408,7 +315,8 @@ const KGTVPg = () => {
   }
 
   const featuredShow = shows.find(show => show.featured) || shows[0];
-  const featuredShows = shows.filter(show => show.featured || show.rating >= 4.7);
+  // Featured Videos - show top 8 videos
+  const featuredShows = shows.slice(0, 8);
   const trendingShows = [...shows].sort((a, b) => parseInt(b.views) - parseInt(a.views)).slice(0, 6);
 
   const filteredShows = shows.filter(show => {
@@ -453,10 +361,24 @@ const KGTVPg = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)] animate-pulse-slow"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 h-full flex items-center py-20">
+        {/* KGILL TV Logo - Centered at Top */}
+        <div className="absolute top-8 md:top-12 left-1/2 -translate-x-1/2 z-20">
+          <div className="relative group">
+            <img 
+              src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Logos/tvlog.png?updatedAt=1760027625818&tr=f-webp" 
+              alt="KGILL TV Logo" 
+              className="h-24 md:h-40 lg:h-56 w-auto object-contain animate-fade-in-up drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+            />
+            {/* Glow effect */}
+            <div className="absolute inset-0 bg-gold-gradient/20 blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+          </div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 h-full flex items-center py-20 pt-40 md:pt-56">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
             {/* Text Content */}
             <div className="max-w-3xl">
+              
               <div className="mb-8 flex flex-wrap items-center gap-4">
                 <span className="inline-flex items-center gap-2 px-6 py-3 bg-gold-gradient/20 text-gold-gradient-start rounded-full text-sm font-bold tracking-wider border border-gold-gradient-start/30 backdrop-blur-sm shadow-lg">
                   <Sparkles className="w-5 h-5 animate-pulse" />
@@ -785,26 +707,68 @@ const KGTVPg = () => {
         </div>
       </section>
 
-      {/* Behind the Scenes Gallery */}
-      <section className="py-24 bg-charcoal relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start/5 via-transparent to-blue-gradient-start/5"></div>
-        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-slate-900/80 backdrop-blur-xl rounded-full border border-gold-gradient-start/30">
-              <Camera className="w-5 h-5 text-gold-gradient-start" />
-              <span className="text-gold-gradient-start font-bold text-sm tracking-wider">EXCLUSIVE</span>
+      {/* Behind the Scenes Video */}
+      {behindTheScenesVideo && (
+        <section className="py-24 bg-charcoal relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-gold-gradient-start/5 via-transparent to-blue-gradient-start/5"></div>
+          <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-slate-900/80 backdrop-blur-xl rounded-full border border-gold-gradient-start/30">
+                <Camera className="w-5 h-5 text-gold-gradient-start" />
+                <span className="text-gold-gradient-start font-bold text-sm tracking-wider">EXCLUSIVE</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-black font-montserrat mb-6 epic-text">
+                Behind the Scenes
+              </h2>
+              <p className="text-xl md:text-2xl text-gray-400 font-inter max-w-3xl mx-auto leading-relaxed">
+                Step into our world of storytelling and discover the magic that brings our shows to life
+              </p>
             </div>
-            <h2 className="text-5xl md:text-6xl font-black font-montserrat mb-6 epic-text">
-              Behind the Scenes
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-400 font-inter max-w-3xl mx-auto leading-relaxed">
-              Step into our world of storytelling and discover the magic that brings our shows to life
-            </p>
-          </div>
 
-          <ImmersiveGallery images={behindTheScenesImages} title="Behind the Scenes" />
-        </div>
-      </section>
+            <div className="max-w-5xl mx-auto">
+              <div className="relative group cursor-pointer rounded-3xl overflow-hidden shadow-2xl">
+                <OptimizedImage 
+                  src={behindTheScenesVideo.thumbnail} 
+                  alt={behindTheScenesVideo.title}
+                  className="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent opacity-70 group-hover:opacity-50 transition-opacity"></div>
+                
+                {/* Play Button Overlay */}
+                <button 
+                  onClick={() => {
+                    setSelectedVideo(behindTheScenesVideo);
+                    setIsModalOpen(true);
+                  }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <div className="w-32 h-32 bg-gold-gradient rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-16 h-16 text-charcoal ml-2" />
+                  </div>
+                </button>
+                
+                {/* Video Info Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="px-4 py-2 bg-gold-gradient text-charcoal rounded-lg text-sm font-bold">
+                      {behindTheScenesVideo.category}
+                    </span>
+                    <span className="px-4 py-2 bg-slate-900/80 text-white rounded-lg text-sm font-semibold border border-slate-700/50">
+                      {behindTheScenesVideo.views} views
+                    </span>
+                  </div>
+                  <h3 className="text-3xl font-bold font-montserrat text-white mb-3">
+                    {behindTheScenesVideo.title}
+                  </h3>
+                  <p className="text-lg text-gray-300 font-inter max-w-3xl">
+                    {behindTheScenesVideo.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* All Shows Section */}
       <section className="py-24 bg-slate-900">
