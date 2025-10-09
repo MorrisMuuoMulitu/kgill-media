@@ -41,7 +41,7 @@ const Navigation = () => {
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20 md:h-24">
+          <div className="flex justify-between items-center h-24 md:h-28 lg:h-32">
             {/* Logo - Hidden on TV page */}
             {!isKGILLTVPage && (
               <Link 
