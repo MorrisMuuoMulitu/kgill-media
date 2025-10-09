@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Zap, Circle } from 'lucide-react';
+import { Menu, X, Sparkles, Zap, Camera, Tv, Users } from 'lucide-react';
 import Logo from './Logo';
 import MobileMenu from './MobileMenu';
 
@@ -20,9 +20,9 @@ const Navigation = () => {
   const mainNavLinks = [
     { path: '/our-story', label: 'Story', icon: Sparkles },
     { path: '/what-we-do', label: 'Services', icon: Zap },
-    { path: '/photography-videography', label: 'Studio', icon: Circle },
-    { path: '/kgill-tv', label: 'TV', icon: Circle },
-    { path: '/our-leaders', label: 'Team', icon: Circle }
+    { path: '/photography-videography', label: 'Studio', icon: Camera },
+    { path: '/kgill-tv', label: 'TV', icon: Tv },
+    { path: '/our-leaders', label: 'Team', icon: Users }
   ];
 
   useEffect(() => {
