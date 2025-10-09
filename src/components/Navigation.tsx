@@ -29,6 +29,9 @@ const Navigation = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  // Check if on TV page to show TV logo instead of main logo
+  const isKGILLTVPage = location.pathname === '/kgill-tv';
+
   return (
     <>
       {/* Navigation */}
@@ -39,12 +42,20 @@ const Navigation = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 md:h-24 lg:h-28">
-            {/* Logo */}
+            {/* Logo - TV logo on TV page, main logo elsewhere */}
             <Link 
               to="/" 
               className="group relative"
             >
-              <Logo size="lg" showText={false} />
+              {isKGILLTVPage ? (
+                <img 
+                  src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Logos/tvlog.png?updatedAt=1760027625818&tr=f-webp"
+                  alt="KGILL TV Logo"
+                  className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                />
+              ) : (
+                <Logo size="lg" showText={false} />
+              )}
             </Link>
 
             {/* Desktop Navigation */}
