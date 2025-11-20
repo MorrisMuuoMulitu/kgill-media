@@ -413,16 +413,16 @@ const PhotographyVideographyPg = () => {
     },
   ];
 
-  const filteredItems = activeCategory === 'all' 
-    ? portfolioItems 
-    : services.some(s => s.id === activeCategory) 
+  const filteredItems = activeCategory === 'all'
+    ? portfolioItems
+    : services.some(s => s.id === activeCategory)
       // If activeCategory is a service id, filter by that specific service
       ? portfolioItems.filter(item => item.category === activeCategory)
       // If activeCategory is a category name, filter by all services in that category
       : portfolioItems.filter(item => {
-          const service = services.find(s => s.id === item.category);
-          return service && service.category.toLowerCase() === activeCategory.toLowerCase();
-        });
+        const service = services.find(s => s.id === item.category);
+        return service && service.category.toLowerCase() === activeCategory.toLowerCase();
+      });
 
   return (
     <div className="min-h-screen bg-charcoal">
@@ -432,23 +432,23 @@ const PhotographyVideographyPg = () => {
           <div className="w-full h-full bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/95"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)]"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="display-1 font-orbitron mb-6 leading-tight text-cyan animate-fade-in-up">
               <span className="block">KGILL+ STUDIO</span>
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-gray-300 font-inter mb-10 max-w-3xl mx-auto animate-fade-in-up-delayed">
               Professional photography and videography services for individuals and businesses
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-4">
               <button className="btn-primary flex items-center gap-3 premium-hover-gold">
                 <span>Book a Session</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
-              
+
               <button className="btn-secondary flex items-center gap-3 premium-hover-gold">
                 <span>View Portfolio</span>
               </button>
@@ -467,19 +467,19 @@ const PhotographyVideographyPg = () => {
                   OUR STUDIO
                 </span>
               </div>
-              
+
               <h2 className="display-2 font-montserrat mb-6 epic-text">Professional Studio Experience</h2>
-              
+
               <p className="text-gray-300 font-inter mb-6 text-lg">
                 Professional, comfortable shoots for exceptional results.
               </p>
-              
+
               <p className="text-gray-300 font-inter mb-8">
                 State-of-the-art equipment and editing software for quality images.
               </p>
-              
+
             </div>
-            
+
             <div className="relative rounded-2xl overflow-hidden">
               <div className="aspect-video bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-2xl flex items-center justify-center">
                 <div className="text-center p-8">
@@ -506,13 +506,13 @@ const PhotographyVideographyPg = () => {
             </linearGradient>
           </defs>
         </svg>
-        
+
         {/* Subtle animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold-gradient/5 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-terracotta/5 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="display-2 font-montserrat mb-6 epic-text">Capture Your Moments, Tell Your Story</h2>
@@ -520,15 +520,14 @@ const PhotographyVideographyPg = () => {
               Professional photography services tailored to your unique needs
             </p>
           </div>
-          
+
           {/* Service Buttons List */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {services.filter(service => portfolioItems.some(item => item.category === service.id)).map((service) => (
               <button
                 key={service.id}
-                className={`btn-primary premium-hover-gold flex items-center gap-3 ${
-                  activeService === service.id ? 'bg-gold-gradient text-charcoal' : ''
-                }`}
+                className={`btn-primary premium-hover-gold flex items-center gap-3 ${activeService === service.id ? 'bg-gold-gradient text-charcoal' : ''
+                  }`}
                 onClick={() => setActiveService(activeService === service.id ? 'all' : service.id)}
               >
                 {service.icon}
@@ -536,7 +535,7 @@ const PhotographyVideographyPg = () => {
               </button>
             ))}
           </div>
-          
+
           {/* Expanded Service Details Panel */}
           {activeService !== 'all' && (
             <div className="relative z-20 bg-gradient-to-br from-slate-800/70 to-slate-900/70 backdrop-blur-xl border border-gold-gradient/30 rounded-3xl p-8 mb-16 animate-fade-in">
@@ -560,17 +559,17 @@ const PhotographyVideographyPg = () => {
                         <p className="text-gold-gradient text-sm font-bold tracking-wider">{service.category}</p>
                       </div>
                     </div>
-                    
+
                     <div className="prose prose-invert max-w-none">
                       <p className="text-gray-300 font-inter text-lg mb-8 leading-relaxed">
                         {service.details}
                       </p>
-                      
+
                       <h4 className="text-xl font-bold font-montserrat text-gold-gradient mb-6 tracking-wider">WHAT WE OFFER:</h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                         {service.features.map((feature, idx) => (
-                          <div 
-                            key={idx} 
+                          <div
+                            key={idx}
                             className="flex items-start gap-4 p-4 bg-slate-700/30 rounded-xl border border-slate-600/30 hover:border-gold-gradient/30 transition-all duration-300"
                           >
                             <div className="w-3 h-3 rounded-full bg-gold-gradient mt-2 flex-shrink-0 animate-pulse"></div>
@@ -579,7 +578,7 @@ const PhotographyVideographyPg = () => {
                         ))}
                       </div>
                       <div className="text-center pt-6 border-t border-slate-700/50">
-                        <button 
+                        <button
                           className="btn-secondary premium-hover-gold flex items-center gap-3 mx-auto"
                           onClick={() => {
                             let sectionId = 'portfolio-section';
@@ -619,7 +618,7 @@ const PhotographyVideographyPg = () => {
                           <Camera className="w-5 h-5" />
                         </button>
                       </div>
-                      
+
                       <div className="text-center pt-6 border-t border-slate-700/50">
                         <h4 className="text-xl font-bold font-montserrat text-gold-gradient mb-6 tracking-wider">PACKAGES</h4>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -655,12 +654,12 @@ const PhotographyVideographyPg = () => {
               ))}
             </div>
           )}
-          
+
           {/* Call to Action */}
           <div className="text-center mt-8">
             <div className="relative inline-block">
               <div className="absolute -inset-4 bg-gold-gradient blur-lg opacity-75 rounded-full animate-pulse"></div>
-              <button 
+              <button
                 className="btn-primary px-10 py-5 premium-hover-gold relative flex items-center gap-3 text-xl font-bold"
                 onClick={() => {
                   // Scroll to contact section or open booking modal
@@ -679,15 +678,21 @@ const PhotographyVideographyPg = () => {
       </section>
 
       {/* Studio Sessions Gallery */}
-      <section className="py-20 bg-charcoal texture-subtle">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
+      <section className="py-20 bg-charcoal texture-subtle relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 -right-40 w-96 h-96 bg-gold-gradient/5 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-40 -left-40 w-80 h-80 bg-terracotta/5 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="display-2 font-montserrat mb-6 epic-text">Craft Your Image, Define Your Brand</h2>
             <p className="text-2xl text-gray-400 font-inter max-w-3xl mx-auto">
               Create a strong professional brand image that showcases your unique style and personality
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <div className="mb-6">
@@ -695,19 +700,19 @@ const PhotographyVideographyPg = () => {
                   BOOK YOUR SLOT
                 </span>
               </div>
-              
+
               <h3 className="text-3xl font-bold font-montserrat mb-6 text-white">Professional Studio Experience</h3>
-              
+
               <p className="text-gray-300 font-inter mb-6 text-lg">
                 Experienced photographers capturing your essence with tailored, high-quality images.
               </p>
-              
+
               <p className="text-gray-300 font-inter mb-8">
                 From LinkedIn headshots to e-commerce product photos, we've got you covered with professional guidance.
               </p>
-              
+
             </div>
-            
+
             <div className="relative rounded-2xl overflow-hidden">
               <div className="aspect-video bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-2xl flex items-center justify-center">
                 <div className="text-center p-8">
@@ -718,29 +723,32 @@ const PhotographyVideographyPg = () => {
               </div>
             </div>
           </div>
-          
-          {/* Studio Sessions Gallery */}
+
+          {/* Studio Sessions Gallery Header */}
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold font-montserrat mb-4 text-white">Explore Our Work</h3>
+            <h3 className="text-3xl font-bold font-montserrat mb-4 text-white epic-text">Studio Sessions Gallery</h3>
             <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
               State-of-the-art equipment, cutting-edge editing, exceptional results.
             </p>
           </div>
-          
-          {/* Studio Sessions Grid - More compact layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 p-2 sm:p-4">
-            {/* Each card is now a masterpiece */}
-            {[ 
-              { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
-              { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
-              { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
-              { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
-              { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
-              { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
-            ].map((session) => (
+
+          {/* Modern Bento Grid Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px]">
+            {[
+              { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass", span: "md:col-span-2 md:row-span-2" },
+              { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers", span: "md:col-span-1 md:row-span-1" },
+              { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams", span: "md:col-span-1 md:row-span-1" },
+              { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery", span: "md:col-span-1 md:row-span-2" },
+              { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul", span: "md:col-span-2 md:row-span-1" },
+              { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic", span: "md:col-span-1 md:row-span-1" }
+            ].map((session, index) => (
               <div
                 key={session.id}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 ease-out hover:scale-[1.02] shadow-lg hover:shadow-2xl hover:shadow-gold/20 bg-gradient-to-br from-slate-900/50 to-slate-800/70 border border-slate-700/50"
+                className={`group relative overflow-hidden rounded-3xl cursor-pointer transform transition-all duration-700 ease-out hover:scale-[1.02] hover:-translate-y-2 shadow-xl hover:shadow-2xl hover:shadow-gold/30 ${session.span}`}
+                style={{
+                  perspective: '1000px',
+                  transformStyle: 'preserve-3d'
+                }}
                 onClick={() => {
                   setSelectedImage({
                     title: session.title,
@@ -751,69 +759,77 @@ const PhotographyVideographyPg = () => {
                   setShowModal(true);
                 }}
               >
-                {/* Background Image Container - Full size, not cropped */}
-                <div 
-                  className="w-full h-80 md:h-96 bg-cover bg-center bg-no-repeat rounded-2xl transition-all duration-500 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${session.src})` }}
-                  aria-label={`Studio Session: ${session.title}`}
-                >
-                  {/* Loading indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-12 h-12 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
+                {/* Glassmorphism Card Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/80 backdrop-blur-sm border border-white/10 rounded-3xl"></div>
+
+                {/* Image Container with Parallax */}
+                <div className="relative w-full h-full overflow-hidden rounded-3xl">
+                  <img
+                    src={`${session.src}?tr=w-800,h-800,fo-auto`}
+                    alt={session.title}
+                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
+                    loading={index > 2 ? "lazy" : "eager"}
+                  />
+
+                  {/* Gradient Overlay - Animated */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500"></div>
+
+                  {/* Animated Gold Border Glow */}
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-xl opacity-0 group-hover:opacity-60 animate-pulse"></div>
                   </div>
-                </div>
-                
-                {/* Animated Gold Border Glow (Pulsing) */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="w-full h-full rounded-2xl border-4 border-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 blur-2xl opacity-0 group-hover:opacity-70 animate-pulse"></div>
-                </div>
 
-                {/* Subtle Audio Waveform Overlay (SVG Background) */}
-                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-                    <path d="M0,50 C20,30 40,70 60,40 C80,10 100,60 100,50 L100,100 L0,100 Z" fill="currentColor" className="text-yellow-300/30" />
-                  </svg>
-                </div>
-
-                {/* Dark Overlay with Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-60 transition-all duration-600 ease-out rounded-2xl"></div>
-
-                {/* Floating Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-0 opacity-100 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
-                  <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide mb-1 drop-shadow-2xl">
-                    {session.title}
-                  </h3>
-                  <p className="text-yellow-200 text-sm md:text-base font-light tracking-wide drop-shadow-lg">
-                    Studio Session
-                  </p>
-                </div>
-
-                {/* Sparkling Camera Icon */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 scale-90 group-hover:scale-125">
-                  <div className="relative">
-                    <Camera className="w-12 h-12 md:w-16 md:h-16 text-white drop-shadow-2xl" />
-                    {/* Animated Sparkles */}
-                    {[...Array(6)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-1.5 h-1.5 bg-yellow-300 rounded-full animate-bounce"
-                        style={{
-                          top: `${-15 + Math.random() * 30}%`,
-                          left: `${-15 + Math.random() * 30}%`,
-                          animationDelay: `${i * 0.1}s`,
-                          animationDuration: '1.5s',
-                        }}
-                      ></div>
-                    ))}
+                  {/* Shimmer Effect on Hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
                 </div>
 
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gold/30 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-2xl"></div>
+                {/* Content Overlay */}
+                <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                  {/* Camera Icon - Appears on Hover */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 scale-50 group-hover:scale-100">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gold-gradient rounded-full blur-2xl opacity-50"></div>
+                      <Camera className="w-16 h-16 md:w-20 md:h-20 text-white drop-shadow-2xl relative z-10" />
+                    </div>
+                  </div>
+
+                  {/* Title and Metadata */}
+                  <div className="transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-wide mb-2 drop-shadow-2xl font-montserrat">
+                      {session.title}
+                    </h3>
+                    <div className="flex items-center gap-3 text-gold-gradient">
+                      <span className="text-sm md:text-base font-semibold tracking-wider">STUDIO SESSION</span>
+                      <span className="w-2 h-2 rounded-full bg-gold-gradient animate-pulse"></span>
+                      <span className="text-sm md:text-base font-semibold">2024</span>
+                    </div>
+                  </div>
+
+                  {/* Hover Indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
+                    <div className="bg-white/20 backdrop-blur-md rounded-full p-3 border border-white/30">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Decorative Corner Accents */}
+                <div className="absolute top-0 left-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute top-4 left-4 w-12 h-0.5 bg-gradient-to-r from-gold-gradient to-transparent"></div>
+                  <div className="absolute top-4 left-4 w-0.5 h-12 bg-gradient-to-b from-gold-gradient to-transparent"></div>
+                </div>
+                <div className="absolute bottom-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute bottom-4 right-4 w-12 h-0.5 bg-gradient-to-l from-gold-gradient to-transparent"></div>
+                  <div className="absolute bottom-4 right-4 w-0.5 h-12 bg-gradient-to-t from-gold-gradient to-transparent"></div>
+                </div>
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-16">
             <div className="relative inline-block">
               <div className="absolute -inset-4 bg-gold-gradient blur-lg opacity-75 rounded-full animate-pulse"></div>
@@ -864,11 +880,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
                 A valuable tool for creating a strong first impression, showcasing professionalism, and building trust with potential clients or employers. An essential marketing tool for individuals and businesses alike.
               </p>
-              
+
               {/* Massive Full-Screen Headshots Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EXCLUSIVE HEADSHOT COLLECTION</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Exclusive Headshot Collection"
                   accentColor="from-purple-gradient-start to-pink-gradient-start"
                   images={[
@@ -882,11 +898,11 @@ const PhotographyVideographyPg = () => {
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/HeadShot1.jpg", title: "Corporate Executive", category: "headshots", description: "Corporate executive headshot" },
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot2.jpg", title: "Artistic Portrait", category: "headshots", description: "Artistic portrait" },
                     { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Headshots/Headshot7.jpg", title: "Executive Headshot", category: "headshots", description: "Executive headshot" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
-            
+
             {/* Event Photography */}
             <div className="w-full" id="portfolio-events">
               <div className="flex items-start gap-6 mb-8">
@@ -904,11 +920,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter text-lg animate-fade-in-up max-w-3xl">
                 Our experience includes Kenya Fashion Awards 2018, Laikipia County Fashion Gala 2018, Kenya Colour Run Festival, Clever Art Event, Pawa Festival, Jkuat Awards & Mr & Miss Jkuat 2018, Dream Kona Events, Tuvibe Festival, Weddings, Baby Showers, Birthday Parties, Kibera Talent Search, Mr & Miss Kibera, The Millenials, and many other special occasions.
               </p>
-              
+
               {/* Event Photography Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">EVENT HIGHLIGHTS</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Event Highlights"
                   accentColor="from-marigold to-terracotta"
                   images={[
@@ -923,7 +939,6 @@ const PhotographyVideographyPg = () => {
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg", title: "Tuvibe Festival", category: "events", description: "Tuvibe Festival event photography" },
                     { id: 10, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg", title: "Wedding Ceremony", category: "events", description: "Wedding Ceremony photography" },
                     { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg", title: "Baby Shower", category: "events", description: "Baby Shower event coverage" },
-                    { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg", title: "Birthday Party", category: "events", description: "Birthday party photography" },
                     { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg", title: "Kibera Talent Search", category: "events", description: "Kibera Talent Search event coverage" },
                     { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg", title: "Mr & Miss Kibera", category: "events", description: "Mr & Miss Kibera event photography" },
                     { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg", title: "The Millenials", category: "events", description: "The Millenials event coverage" },
@@ -933,11 +948,11 @@ const PhotographyVideographyPg = () => {
                     { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event19.jpg", title: "Celebration", category: "events", description: "Celebration event photography" },
                     { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event20.jpg", title: "Festival", category: "events", description: "Festival event coverage" },
                     { id: 21, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event21.jpg", title: "Special Event", category: "events", description: "Special event photography" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
-            
+
             {/* Wedding Photography & Videography */}
             <div className="w-full" id="portfolio-wedding">
               <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
@@ -967,7 +982,7 @@ const PhotographyVideographyPg = () => {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="md:w-1/2 relative">
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                     <div className="aspect-video bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-3xl flex items-center justify-center">
@@ -978,7 +993,7 @@ const PhotographyVideographyPg = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Floating badge */}
                   <div className="absolute -bottom-6 -right-6 bg-gold-gradient text-charcoal px-6 py-3 rounded-full font-bold shadow-xl">
                     <span className="flex items-center gap-2">
@@ -987,11 +1002,11 @@ const PhotographyVideographyPg = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Wedding Gallery */}
               <div className="mt-12">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-12 text-center epic-text">Wedding Highlights</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Wedding Highlights"
                   accentColor="from-pink-gradient-start to-terracotta"
                   images={[
@@ -1010,11 +1025,11 @@ const PhotographyVideographyPg = () => {
                     { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg", title: "Forever Love", category: "wedding", description: "Everlasting love" },
                     { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg", title: "Forever Love", category: "wedding", description: "Timeless wedding love" },
                     { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg", title: "Forever Love", category: "wedding", description: "Forever in love" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
-            
+
             {/* Corporate Photography */}
             <div className="w-full">
               <div className="flex items-start gap-6 mb-8">
@@ -1029,11 +1044,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 Professional corporate photography that captures your brand essence and showcases your team.
               </p>
-              
+
               {/* Corporate Photography Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">CORPORATE PHOTOGRAPHY GALLERY</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Corporate Photography Gallery"
                   accentColor="from-cyan to-slate-blue"
                   images={[
@@ -1061,7 +1076,7 @@ const PhotographyVideographyPg = () => {
                     { id: 22, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE7.jpg", title: "Corporate Presentation", category: "corporate", description: "Corporate presentation photography" },
                     { id: 23, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE8.jpg", title: "Office Team", category: "corporate", description: "Office team photography" },
                     { id: 24, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Corporate/CORPORATE9.jpg", title: "Business Professionals", category: "corporate", description: "Business professionals photography" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
@@ -1080,11 +1095,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 High-quality property images that attract buyers. We highlight your property's best features to maximize appeal and selling potential.
               </p>
-              
+
               {/* Real Estate Photography Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PREMIUM PROPERTY SHOWCASE</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Premium Property Showcase"
                   accentColor="from-green to-cyan"
                   images={[
@@ -1095,7 +1110,7 @@ const PhotographyVideographyPg = () => {
                     { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate5.png", title: "Stunning Exterior", category: "real-estate", description: "Stunning property exterior photography" },
                     { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate6.png", title: "Beautiful Garden", category: "real-estate", description: "Beautiful garden real estate photography" },
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/RealEstate/RealEstate7.png", title: "Modern Office Space", category: "real-estate", description: "Modern office space real estate photography" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
@@ -1114,11 +1129,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-4 text-lg animate-fade-in-up max-w-3xl">
                 Kgill Plus Studio offers professional and high-quality graduation photography services to help capture and celebrate this milestone achievement.
               </p>
-              
+
               {/* Graduation Shoots Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">GRADUATION MEMORIES</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Graduation Memories"
                   accentColor="from-gold-gradient-start to-marigold"
                   images={[
@@ -1131,7 +1146,7 @@ const PhotographyVideographyPg = () => {
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation7.jpg", title: "Graduation Joy", category: "graduation", description: "Joyful graduation moment" },
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation8.jpg", title: "Academic Success", category: "graduation", description: "Academic success celebration" },
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Graduation/Graduation9.jpg", title: "Future Ahead", category: "graduation", description: "Looking forward to the future" }
-                  ]} 
+                  ]}
                 />
               </div>
 
@@ -1154,11 +1169,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
                 It's obvious that the rest of the world loves high African culture - African culture, period.
               </p>
-              
+
               {/* Africanism Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">AFRICANISM</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Africanism"
                   accentColor="from-terracotta to-marigold"
                   images={[
@@ -1171,7 +1186,7 @@ const PhotographyVideographyPg = () => {
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism4.jpg", title: "Cultural Richness", category: "africanism", description: "Rich African culture" },
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism9.jpg", title: "African Identity", category: "africanism", description: "African identity celebration" },
                     { id: 9, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Africanism/Africanism5.jpg", title: "Cultural Heritage", category: "africanism", description: "African cultural heritage" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
@@ -1190,11 +1205,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
                 It's all about fashion culture - identifying your fashion style & bringing it out to be an outstanding fashionista. Join us in celebrating individual style, self-expression, and the art of fashion.
               </p>
-              
+
               {/* Fashion Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">FASHION MEET N GREET</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Fashion Meet N Greet"
                   accentColor="from-purple-gradient-start to-cyan"
                   images={[
@@ -1213,7 +1228,7 @@ const PhotographyVideographyPg = () => {
                     { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion15.jpg", title: "Fashion Meets", category: "fashion", description: "Fashion meets photography" },
                     { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion13.jpg", title: "Style Community", category: "fashion", description: "Style community photography" },
                     { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Fashion/Fashion14.jpg", title: "Fashion Hangout", category: "fashion", description: "Fashion hangout photography" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
@@ -1232,11 +1247,11 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-200 font-inter mb-8 text-lg animate-fade-in-up max-w-3xl">
                 High-quality product photography that showcases your items in the best light. From e-commerce listings to marketing campaigns, we create stunning visuals that highlight your product's unique features and drive sales.
               </p>
-              
+
               {/* Product Photography Gallery */}
               <div className="mt-8 relative z-20">
                 <h4 className="text-2xl md:text-3xl font-bold font-montserrat text-white mb-8 text-center epic-text">PRODUCT PHOTOGRAPHY</h4>
-                <ImmersiveGallery 
+                <ImmersiveGallery
                   title="Product Photography"
                   accentColor="from-slate-blue to-purple-gradient-start"
                   images={[
@@ -1248,13 +1263,13 @@ const PhotographyVideographyPg = () => {
                     { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product6.jpg", title: "Brand Photography", category: "product", description: "Brand-focused product photography" },
                     { id: 7, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product7.jpg", title: "Marketing Visuals", category: "product", description: "Marketing-focused product photography" },
                     { id: 8, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Product/Product8.jpg", title: "Product Presentation", category: "product", description: "Product presentation photography" }
-                  ]} 
+                  ]}
                 />
               </div>
             </div>
 
-            </div>
           </div>
+        </div>
       </section>
 
 
@@ -1270,9 +1285,9 @@ const PhotographyVideographyPg = () => {
               Everything you need to know about our services and booking process
             </p>
           </div>
-          
+
           <div className="space-y-6">
-            {[ 
+            {[
               {
                 question: "How far in advance should I book a session?",
                 answer: "We recommend booking at least 2-3 weeks in advance for regular sessions and 1-2 months for weddings or large events. During peak seasons, we may book up to 2 months in advance."
@@ -1307,7 +1322,7 @@ const PhotographyVideographyPg = () => {
               }
             ].map((faq, index) => (
               <div key={index} className="glass-morphism border border-gold-gradient/30 rounded-xl overflow-hidden">
-                <button 
+                <button
                   className="w-full p-6 text-left flex justify-between items-center focus:outline-none"
                   onClick={() => {
                     const newOpenFAQs = [...openFAQs];
@@ -1316,10 +1331,10 @@ const PhotographyVideographyPg = () => {
                   }}
                 >
                   <h3 className="text-lg font-bold font-montserrat text-white">{faq.question}</h3>
-                  <svg 
+                  <svg
                     className={`w-6 h-6 text-gold-gradient transform transition-transform ${openFAQs[index] ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    stroke="currentColor" 
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -1345,7 +1360,7 @@ const PhotographyVideographyPg = () => {
               Compare our different service packages to find the perfect match for your needs
             </p>
           </div>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-white">
               <thead>
@@ -1385,9 +1400,9 @@ const PhotographyVideographyPg = () => {
                   <td className="py-4 px-6 font-medium">Delivery Time</td>
                   {services.map(service => (
                     <td key={service.id} className="py-4 px-6 text-center">
-                      {service.id.includes('wedding') ? '3-4 weeks' : 
-                       service.id.includes('event') ? '2-3 weeks' : 
-                       service.id.includes('sports') ? '1-2 weeks' : '1-2 weeks'}
+                      {service.id.includes('wedding') ? '3-4 weeks' :
+                        service.id.includes('event') ? '2-3 weeks' :
+                          service.id.includes('sports') ? '1-2 weeks' : '1-2 weeks'}
                     </td>
                   ))}
                 </tr>
@@ -1395,12 +1410,12 @@ const PhotographyVideographyPg = () => {
                   <td className="py-4 px-6 font-medium">Photos/Videos</td>
                   {services.map(service => (
                     <td key={service.id} className="py-4 px-6 text-center">
-                      {service.id.includes('wedding') ? '500+ images' : 
-                       service.id.includes('event') ? '100-300 images' : 
-                       service.id.includes('portrait') ? '20-50 edited' : 
-                       service.id.includes('fashion') ? '30-80 edited' : 
-                       service.id.includes('real-estate') ? '20-60 images' : 
-                       service.id.includes('sports') ? '200+ action shots' : '10-50 images'}
+                      {service.id.includes('wedding') ? '500+ images' :
+                        service.id.includes('event') ? '100-300 images' :
+                          service.id.includes('portrait') ? '20-50 edited' :
+                            service.id.includes('fashion') ? '30-80 edited' :
+                              service.id.includes('real-estate') ? '20-60 images' :
+                                service.id.includes('sports') ? '200+ action shots' : '10-50 images'}
                     </td>
                   ))}
                 </tr>
@@ -1420,7 +1435,7 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
-      
+
 
       {/* Contact Section - Premium, Animated, Accessible */}
       <section className="py-24 bg-gradient-to-br from-charcoal via-slate-900 to-black relative overflow-x-hidden">
@@ -1477,7 +1492,7 @@ const PhotographyVideographyPg = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Additional Contact Options */}
                 <div className="pt-8 border-t border-gray-700">
                   <h4 className="font-bold text-white mb-4">Quick Connect</h4>
@@ -1498,13 +1513,13 @@ const PhotographyVideographyPg = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Booking Form */}
             <div className="lg:col-span-1">
               <div className="glass-morphism border border-gold-gradient/30 shadow-2xl rounded-3xl p-8 h-full">
                 <h3 className="text-2xl font-bold font-montserrat mb-6 text-white drop-shadow-lg">Quick Booking</h3>
-                <form 
-                  className="space-y-4" 
+                <form
+                  className="space-y-4"
                   autoComplete="off"
                   aria-label="Book your studio session"
                   onSubmit={(e) => {
@@ -1533,31 +1548,31 @@ const PhotographyVideographyPg = () => {
                   <div className="space-y-4">
                     <div className="relative">
                       <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="name">Full Name</label>
-                      <input 
+                      <input
                         id="name"
-                        type="text" 
+                        type="text"
                         className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-gold-gradient transition-all duration-300"
                         placeholder="Your name"
                         required
                         aria-required="true"
                       />
                     </div>
-                    
+
                     <div className="relative">
                       <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="email">Email</label>
-                      <input 
+                      <input
                         id="email"
-                        type="email" 
+                        type="email"
                         className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-gold-gradient transition-all duration-300"
                         placeholder="Your email"
                         required
                         aria-required="true"
                       />
                     </div>
-                    
+
                     <div className="relative">
                       <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="service">Service Interest</label>
-                      <select 
+                      <select
                         id="service"
                         value={bookingService}
                         onChange={(e) => setBookingService(e.target.value)}
@@ -1573,10 +1588,10 @@ const PhotographyVideographyPg = () => {
                         ))}
                       </select>
                     </div>
-                    
+
                     <div className="relative">
                       <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="package">Package</label>
-                      <select 
+                      <select
                         id="package"
                         value={bookingPackage}
                         onChange={(e) => setBookingPackage(e.target.value)}
@@ -1595,13 +1610,13 @@ const PhotographyVideographyPg = () => {
                         )}
                       </select>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="relative">
                         <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="date">Date</label>
-                        <input 
+                        <input
                           id="date"
-                          type="date" 
+                          type="date"
                           value={bookingDate}
                           onChange={(e) => setBookingDate(e.target.value)}
                           className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-gold-gradient transition-all duration-300"
@@ -1609,12 +1624,12 @@ const PhotographyVideographyPg = () => {
                           aria-required="true"
                         />
                       </div>
-                      
+
                       <div className="relative">
                         <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="time">Time</label>
-                        <input 
+                        <input
                           id="time"
-                          type="time" 
+                          type="time"
                           value={bookingTime}
                           onChange={(e) => setBookingTime(e.target.value)}
                           className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-gold-gradient transition-all duration-300"
@@ -1623,12 +1638,12 @@ const PhotographyVideographyPg = () => {
                         />
                       </div>
                     </div>
-                    
+
                     <div className="relative">
                       <label className="block text-gray-300 font-inter mb-2 text-sm" htmlFor="phone">Phone</label>
-                      <input 
+                      <input
                         id="phone"
-                        type="tel" 
+                        type="tel"
                         className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-gold-gradient transition-all duration-300"
                         placeholder="Your phone number"
                         required
@@ -1636,12 +1651,12 @@ const PhotographyVideographyPg = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <button type="submit" className="btn-primary w-full py-4 premium-hover-gold">
                     Request Callback
                   </button>
                 </form>
-                
+
                 <div className="mt-6 pt-6 border-t border-slate-700">
                   <p className="text-sm text-gray-400 text-center">
                     Or call us directly:<br />
@@ -1651,7 +1666,7 @@ const PhotographyVideographyPg = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Mobile-specific features */}
           <div className="mt-12 md:hidden">
             <div className="glass-morphism border border-gold-gradient/30 rounded-2xl p-6 text-center">
@@ -1667,138 +1682,323 @@ const PhotographyVideographyPg = () => {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
+      {/* Enhanced Lightbox Modal with Navigation */}
       {showModal && (
-        <div 
-          className="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-4"
+        <div
+          className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setShowModal(false)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') setShowModal(false);
+            if (e.key === 'ArrowLeft') {
+              // Navigate to previous image
+              const studioSessions = [
+                { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+              ];
+              const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+              if (currentIndex > 0) {
+                const prevSession = studioSessions[currentIndex - 1];
+                setSelectedImage({
+                  title: prevSession.title,
+                  image: prevSession.src,
+                  type: 'Studio Session',
+                  year: '2024'
+                });
+              }
+            }
+            if (e.key === 'ArrowRight') {
+              // Navigate to next image
+              const studioSessions = [
+                { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+              ];
+              const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+              if (currentIndex < studioSessions.length - 1) {
+                const nextSession = studioSessions[currentIndex + 1];
+                setSelectedImage({
+                  title: nextSession.title,
+                  image: nextSession.src,
+                  type: 'Studio Session',
+                  year: '2024'
+                });
+              }
+            }
+          }}
+          tabIndex={0}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
         >
-          <div className="relative max-w-6xl w-full max-h-[90vh]">
+          <div className="relative max-w-7xl w-full max-h-[90vh]">
+            {/* Close Button */}
             <button
-              onClick={() => setShowModal(false)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowModal(false);
+              }}
+              className="absolute -top-16 right-0 text-white hover:text-gold-gradient transition-all duration-300 z-20 bg-white/10 backdrop-blur-md rounded-full p-3 hover:bg-white/20 hover:scale-110"
+              aria-label="Close lightbox"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            {/* Image Counter */}
+            <div className="absolute -top-16 left-0 text-white bg-white/10 backdrop-blur-md rounded-full px-6 py-3 font-montserrat font-bold">
+              {(() => {
+                const studioSessions = [
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+                ];
+                const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+                return `${currentIndex + 1} / ${studioSessions.length}`;
+              })()}
+            </div>
+
+            {/* Previous Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const studioSessions = [
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+                ];
+                const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+                if (currentIndex > 0) {
+                  const prevSession = studioSessions[currentIndex - 1];
+                  setSelectedImage({
+                    title: prevSession.title,
+                    image: prevSession.src,
+                    type: 'Studio Session',
+                    year: '2024'
+                  });
+                }
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gold-gradient transition-all duration-300 z-20 bg-white/10 backdrop-blur-md rounded-full p-4 hover:bg-white/20 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Previous image"
+              disabled={(() => {
+                const studioSessions = [
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+                ];
+                const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+                return currentIndex === 0;
+              })()}
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const studioSessions = [
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+                ];
+                const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+                if (currentIndex < studioSessions.length - 1) {
+                  const nextSession = studioSessions[currentIndex + 1];
+                  setSelectedImage({
+                    title: nextSession.title,
+                    image: nextSession.src,
+                    type: 'Studio Session',
+                    year: '2024'
+                  });
+                }
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gold-gradient transition-all duration-300 z-20 bg-white/10 backdrop-blur-md rounded-full p-4 hover:bg-white/20 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Next image"
+              disabled={(() => {
+                const studioSessions = [
+                  { id: 1, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions1.jpg", title: "Midnight Bass" },
+                  { id: 2, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions2.jpg", title: "Vocal Layers" },
+                  { id: 3, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions3.jpg", title: "Synth Dreams" },
+                  { id: 4, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions4.jpg", title: "Drum Mastery" },
+                  { id: 5, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions5.jpg", title: "Acoustic Soul" },
+                  { id: 6, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Studio_Sessions/Sessions6.jpg", title: "Mixing Magic" }
+                ];
+                const currentIndex = studioSessions.findIndex(s => s.src === selectedImage.image);
+                return currentIndex === studioSessions.length - 1;
+              })()}
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Image Container */}
+            <div
+              className="relative rounded-2xl overflow-hidden bg-slate-900/50 backdrop-blur-md border border-white/10 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative">
+                {/* Loading indicator */}
+                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/90 z-10 transition-opacity duration-300" id="lightbox-loader">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="w-16 h-16 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-white font-montserrat">Loading high-res image...</p>
+                  </div>
+                </div>
+
+                <img
+                  src={getHighResImageUrl(selectedImage.image)}
+                  alt={`${selectedImage.title} - ${selectedImage.type} by KGILL+ Studio`}
+                  className="w-full h-full object-contain max-h-[75vh] transition-opacity duration-500"
+                  onLoad={(e) => {
+                    const loader = document.getElementById('lightbox-loader');
+                    if (loader) {
+                      loader.style.opacity = '0';
+                      setTimeout(() => {
+                        loader.style.display = 'none';
+                      }, 300);
+                    }
+                  }}
+                />
+              </div>
+
+              {/* Image Info Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-8 backdrop-blur-sm">
+                <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-white mb-3 drop-shadow-lg">
+                  {selectedImage.title}
+                </h3>
+                <div className="flex flex-wrap gap-6 text-gray-300">
+                  <span className="flex items-center gap-2 text-lg">
+                    <span className="w-2 h-2 rounded-full bg-gold-gradient animate-pulse"></span>
+                    <span className="font-semibold">{selectedImage.type}</span>
+                  </span>
+                  <span className="flex items-center gap-2 text-lg">
+                    <span className="w-2 h-2 rounded-full bg-gold-gradient animate-pulse"></span>
+                    <span className="font-semibold">{selectedImage.year}</span>
+                  </span>
+                  <span className="flex items-center gap-2 text-lg">
+                    <Camera className="w-5 h-5 text-gold-gradient" />
+                    <span className="font-semibold">KGILL+ Studio</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Keyboard Hints */}
+            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-4 text-white/60 text-sm font-inter">
+              <span className="flex items-center gap-2">
+                <kbd className="px-2 py-1 bg-white/10 rounded">←</kbd>
+                <span>Previous</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <kbd className="px-2 py-1 bg-white/10 rounded">→</kbd>
+                <span>Next</span>
+              </span>
+              <span className="flex items-center gap-2">
+                <kbd className="px-2 py-1 bg-white/10 rounded">ESC</kbd>
+                <span>Close</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Full Wedding Collection Modal */}
+      {showFullCollectionModal && (
+        <div
+          className="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex items-center justify-center p-4"
+          onClick={() => setShowFullCollectionModal(false)}
+        >
+          <div className="relative max-w-7xl w-full max-h-[95vh] overflow-y-auto bg-slate-900/90 rounded-3xl border border-slate-700/50 backdrop-blur-xl">
+            <button
+              onClick={() => setShowFullCollectionModal(false)}
               className="absolute -top-12 right-0 text-white hover:text-gold-gradient transition-colors z-10"
             >
               <X className="w-10 h-10" />
             </button>
-            
-            <div 
-              className="relative rounded-xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative">
-                <img 
-                  src={getHighResImageUrl(selectedImage.image)} 
-                  alt={`${selectedImage.title} - ${selectedImage.type} by KGILL+ Studio`}
-                  className="w-full h-full object-contain max-h-[80vh]"
-                  onLoad={(e) => {
-                    // Hide loading indicator when image loads
-                    const loadingIndicator = e.currentTarget.previousElementSibling;
-                    if (loadingIndicator) {
-                      loadingIndicator.classList.add('opacity-0');
-                      loadingIndicator.classList.add('pointer-events-none');
-                    }
-                  }}
-                />
-                {/* Loading indicator for lightbox image */}
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/70">
-                  <div className="w-16 h-16 border-4 border-gold-gradient border-t-transparent rounded-full animate-spin"></div>
-                </div>
+
+            <div className="p-8">
+              <div className="text-center mb-12">
+                <h2 className="display-2 font-montserrat mb-6 epic-text">Full Wedding Collection</h2>
+                <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+                  Explore our complete portfolio of wedding photography, capturing every precious moment from ceremonies to celebrations.
+                </p>
               </div>
-              
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-charcoal/90 to-transparent p-6">
-                <h3 className="text-2xl font-bold font-montserrat text-white mb-2">{selectedImage.title}</h3>
-                <div className="flex flex-wrap gap-4 text-gray-300">
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-gold-gradient"></span>
-                    {selectedImage.type}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-gold-gradient"></span>
-                    {selectedImage.year}
-                  </span>
-                </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg", title: "Elegant Ceremony" },
+                  { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg", title: "Bridal Portrait" },
+                  { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg", title: "Reception Highlights" },
+                  { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg", title: "Garden Ceremony" },
+                  { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg", title: "Vintage Style" },
+                  { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed12.jpg", title: "Beach Wedding" },
+                  { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed13.jpg", title: "Cultural Celebration" },
+                  { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed14.jpg", title: "Rustic Theme" },
+                  { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed15.jpg", title: "Luxury Venue" },
+                  { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed16.jpg", title: "Evening Glamour" }
+                ].map((photo) => (
+                  <div
+                    key={photo.id}
+                    className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 ease-out hover:scale-105 shadow-xl hover:shadow-2xl"
+                    onClick={() => {
+                      setSelectedImage({
+                        title: photo.title,
+                        image: photo.src,
+                        type: 'Wedding Photography',
+                        year: '2024'
+                      });
+                      setShowFullCollectionModal(false);
+                      setShowModal(true);
+                    }}
+                  >
+                    <div className="aspect-[3/4]">
+                      <img
+                        src={photo.src}
+                        alt={photo.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h5 className="text-white font-bold text-sm truncate">{photo.title}</h5>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center mt-12">
+                <button
+                  className="btn-primary px-8 py-4 premium-hover-gold inline-flex items-center gap-3 text-lg font-bold"
+                  onClick={() => setShowFullCollectionModal(false)}
+                >
+                  <span>Close Collection</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
-      
-      {/* Full Wedding Collection Modal */}
-      {showFullCollectionModal && (
-  <div 
-    className="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex items-center justify-center p-4"
-    onClick={() => setShowFullCollectionModal(false)}
-  >
-    <div className="relative max-w-7xl w-full max-h-[95vh] overflow-y-auto bg-slate-900/90 rounded-3xl border border-slate-700/50 backdrop-blur-xl">
-      <button
-        onClick={() => setShowFullCollectionModal(false)}
-        className="absolute -top-12 right-0 text-white hover:text-gold-gradient transition-colors z-10"
-      >
-        <X className="w-10 h-10" />
-      </button>
-      
-      <div className="p-8">
-        <div className="text-center mb-12">
-          <h2 className="display-2 font-montserrat mb-6 epic-text">Full Wedding Collection</h2>
-          <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
-            Explore our complete portfolio of wedding photography, capturing every precious moment from ceremonies to celebrations.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[ 
-            { id: 11, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding10.jpg", title: "Elegant Ceremony" },
-            { id: 12, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding11.jpg", title: "Bridal Portrait" },
-            { id: 13, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding31.jpg", title: "Reception Highlights" },
-            { id: 14, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding5.jpg", title: "Garden Ceremony" },
-            { id: 15, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wedding30.jpg", title: "Vintage Style" },
-            { id: 16, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed12.jpg", title: "Beach Wedding" },
-            { id: 17, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed13.jpg", title: "Cultural Celebration" },
-            { id: 18, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed14.jpg", title: "Rustic Theme" },
-            { id: 19, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed15.jpg", title: "Luxury Venue" },
-            { id: 20, src: "https://ik.imagekit.io/5zp8ovb7c/Kgill/Wedding/Wed16.jpg", title: "Evening Glamour" }
-          ].map((photo) => (
-            <div 
-              key={photo.id} 
-              className="group relative overflow-hidden rounded-2xl cursor-pointer transform transition-all duration-500 ease-out hover:scale-105 shadow-xl hover:shadow-2xl"
-              onClick={() => {
-                setSelectedImage({
-                  title: photo.title,
-                  image: photo.src,
-                  type: 'Wedding Photography',
-                  year: '2024'
-                });
-                setShowFullCollectionModal(false);
-                setShowModal(true);
-              }}
-            >
-              <div className="aspect-[3/4]">
-                <img 
-                  src={photo.src} 
-                  alt={photo.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h5 className="text-white font-bold text-sm truncate">{photo.title}</h5>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <button 
-            className="btn-primary px-8 py-4 premium-hover-gold inline-flex items-center gap-3 text-lg font-bold"
-            onClick={() => setShowFullCollectionModal(false)}
-          >
-            <span>Close Collection</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
 
     </div>
 
