@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Aperture, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight } from 'lucide-react';
+import { Aperture, Award, Bike, Building2, CalendarDays, Camera, Heart, HeartHandshake, Home, Mail, MapPin, Phone, Shirt, User, Users, X, ArrowRight, Zap } from 'lucide-react';
 
 import ImmersiveGallery from '../components/ImmersiveGallery';
 import SkeletonLoader from '../components/SkeletonLoader';
@@ -426,72 +426,222 @@ const PhotographyVideographyPg = () => {
 
   return (
     <div className="min-h-screen bg-charcoal">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden premium-bg" aria-label="Hero section">
+      {/* Hero Section - Enhanced */}
+      <section className="relative py-24 md:py-40 overflow-hidden" aria-label="Hero section">
+        {/* Animated Background */}
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-gradient-to-r from-charcoal/95 via-charcoal/70 to-charcoal/95"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,215,0,0.1)_0%,transparent_70%)]"></div>
+          <div className="w-full h-full bg-gradient-to-br from-charcoal via-slate-900 to-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,215,0,0.15)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(6,182,212,0.15)_0%,transparent_50%)]"></div>
+
+          {/* Floating Orbs */}
+          <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-cyan/20 to-slate-blue/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-gradient-to-br from-purple-gradient-start/10 to-pink-gradient-start/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="display-1 font-orbitron mb-6 leading-tight text-cyan animate-fade-in-up">
-              <span className="block">KGILL+ STUDIO</span>
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-gradient/20 to-terracotta/20 backdrop-blur-sm border border-gold-gradient/30 rounded-full px-6 py-3 mb-8 animate-fade-in">
+              <Award className="w-5 h-5 text-gold-gradient" />
+              <span className="text-gold-gradient font-bold text-sm tracking-wider">AWARD-WINNING STUDIO</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat mb-6 leading-tight animate-fade-in-up">
+              <span className="block bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">KGILL+</span>
+              <span className="block bg-gradient-to-r from-gold-gradient-start via-marigold to-terracotta bg-clip-text text-transparent mt-2">STUDIO</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-300 font-inter mb-10 max-w-3xl mx-auto animate-fade-in-up-delayed">
-              Professional photography and videography services for individuals and businesses
+            <p className="text-xl md:text-3xl text-gray-300 font-inter mb-4 max-w-3xl mx-auto animate-fade-in-up-delayed leading-relaxed">
+              Where <span className="text-gold-gradient font-bold">Moments</span> Become <span className="text-cyan font-bold">Masterpieces</span>
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="btn-primary flex items-center gap-3 premium-hover-gold">
-                <span>Book a Session</span>
-                <ArrowRight className="w-5 h-5" />
+            <p className="text-lg md:text-xl text-gray-400 font-inter mb-12 max-w-2xl mx-auto animate-fade-in-up-delayed">
+              Professional photography and videography services that capture your story with artistic excellence
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in-up-delayed">
+              <button
+                className="group relative px-8 py-4 bg-gradient-to-r from-gold-gradient-start via-marigold to-terracotta text-charcoal font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-gold-gradient/50"
+                onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <Camera className="w-6 h-6" />
+                  <span>Book Your Session</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-terracotta via-marigold to-gold-gradient-start opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
 
-              <button className="btn-secondary flex items-center gap-3 premium-hover-gold">
+              <button
+                className="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-bold text-lg rounded-full border-2 border-white/20 hover:border-gold-gradient hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center gap-3"
+                onClick={() => document.getElementById('portfolio-section')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Aperture className="w-6 h-6" />
                 <span>View Portfolio</span>
               </button>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Studio Introduction Section */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 gap-6 sm:gap-8 md:gap-12 items-center">
-            <div>
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-gold-gradient text-charcoal rounded-full text-sm font-bold tracking-wider">
-                  OUR STUDIO
-                </span>
-              </div>
-
-              <h2 className="display-2 font-montserrat mb-6 epic-text">Professional Studio Experience</h2>
-
-              <p className="text-gray-300 font-inter mb-6 text-lg">
-                Professional, comfortable shoots for exceptional results.
-              </p>
-
-              <p className="text-gray-300 font-inter mb-8">
-                State-of-the-art equipment and editing software for quality images.
-              </p>
-
-            </div>
-
-            <div className="relative rounded-2xl overflow-hidden">
-              <div className="aspect-video bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-2xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Camera className="w-16 h-16 text-gold-gradient mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold font-montserrat text-white mb-2">KGILL+ STUDIO</h3>
-                  <p className="text-gray-300">Professional Photography & Videography</p>
+            {/* Floating Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in-up">
+              {[
+                { icon: <Users className="w-8 h-8" />, value: '500+', label: 'Happy Clients', color: 'from-cyan to-slate-blue' },
+                { icon: <Camera className="w-8 h-8" />, value: '10K+', label: 'Photos Captured', color: 'from-marigold to-terracotta' },
+                { icon: <Award className="w-8 h-8" />, value: '15+', label: 'Awards Won', color: 'from-gold-gradient-start to-marigold' },
+                { icon: <Heart className="w-8 h-8" />, value: '4+', label: 'Years Experience', color: 'from-pink-gradient-start to-terracotta' }
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-slate-900/80 to-slate-800/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-gold-gradient/50 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="text-charcoal">{stat.icon}</div>
+                  </div>
+                  <div className="text-3xl md:text-4xl font-bold font-montserrat text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-400 font-inter">{stat.label}</div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-2 bg-gold-gradient rounded-full animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Studio Introduction Section - Enhanced */}
+      <section className="py-24 bg-gradient-to-b from-slate-900 to-charcoal relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left Content */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-gradient/20 to-terracotta/20 backdrop-blur-sm border border-gold-gradient/30 rounded-full px-6 py-3 mb-6">
+                <Aperture className="w-5 h-5 text-gold-gradient" />
+                <span className="text-gold-gradient font-bold text-sm tracking-wider">OUR STUDIO</span>
               </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold font-montserrat mb-6 text-white">
+                Professional Studio <span className="bg-gradient-to-r from-gold-gradient-start to-terracotta bg-clip-text text-transparent">Experience</span>
+              </h2>
+
+              <p className="text-gray-300 font-inter mb-6 text-lg leading-relaxed">
+                Step into our state-of-the-art studio where creativity meets technology. We provide a professional, comfortable environment designed to bring out the best in every shoot.
+              </p>
+
+              <p className="text-gray-400 font-inter mb-8 leading-relaxed">
+                Equipped with cutting-edge cameras, professional lighting, and advanced editing software, we ensure every image captures your vision with exceptional quality and artistic excellence.
+              </p>
+
+              {/* Feature List */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {[
+                  { icon: <Camera className="w-5 h-5" />, text: "Pro Equipment" },
+                  { icon: <Users className="w-5 h-5" />, text: "Expert Team" },
+                  { icon: <Zap className="w-5 h-5" />, text: "Fast Turnaround" },
+                  { icon: <Heart className="w-5 h-5" />, text: "Client Focused" }
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-3 text-gray-300">
+                    <div className="p-2 bg-gradient-to-br from-gold-gradient/20 to-terracotta/20 rounded-lg text-gold-gradient">
+                      {feature.icon}
+                    </div>
+                    <span className="font-inter font-semibold">{feature.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                className="group px-8 py-4 bg-gradient-to-r from-gold-gradient-start to-terracotta text-charcoal font-bold rounded-full hover:shadow-2xl hover:shadow-gold-gradient/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-3"
+                onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span>Schedule a Visit</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Right Content - Feature Cards Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                {
+                  icon: <Camera className="w-8 h-8" />,
+                  title: "Professional Gear",
+                  desc: "Canon & Sony full-frame cameras",
+                  gradient: "from-cyan to-slate-blue"
+                },
+                {
+                  icon: <Zap className="w-8 h-8" />,
+                  title: "Studio Lighting",
+                  desc: "Professional lighting setups",
+                  gradient: "from-marigold to-terracotta"
+                },
+                {
+                  icon: <Aperture className="w-8 h-8" />,
+                  title: "Editing Suite",
+                  desc: "Advanced post-production",
+                  gradient: "from-purple-gradient-start to-pink-gradient-start"
+                },
+                {
+                  icon: <Heart className="w-8 h-8" />,
+                  title: "Comfort First",
+                  desc: "Relaxed, professional atmosphere",
+                  gradient: "from-gold-gradient-start to-marigold"
+                }
+              ].map((card, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-gold-gradient/50 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                >
+                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${card.gradient} mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="text-charcoal">{card.icon}</div>
+                  </div>
+                  <h3 className="font-bold text-white font-montserrat mb-2">{card.title}</h3>
+                  <p className="text-sm text-gray-400 font-inter">{card.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Sticky Booking CTA - NEW */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 transform translate-y-full transition-transform duration-300" id="sticky-cta">
+        <div className="bg-gradient-to-r from-charcoal via-slate-900 to-charcoal backdrop-blur-xl border-t border-gold-gradient/30 shadow-2xl">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="text-center md:text-left">
+                <h3 className="text-xl font-bold font-montserrat text-white mb-1">Ready to Create Something Amazing?</h3>
+                <p className="text-gray-400 font-inter text-sm">Book your session today and let's bring your vision to life</p>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  className="px-6 py-3 bg-gradient-to-r from-gold-gradient-start to-terracotta text-charcoal font-bold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
+                  onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <Camera className="w-5 h-5" />
+                  <span>Book Now</span>
+                </button>
+                <a
+                  href="tel:0797553148"
+                  className="px-6 py-3 bg-white/10 backdrop-blur-md text-white font-bold rounded-full border border-white/20 hover:border-gold-gradient hover:bg-white/20 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span className="hidden sm:inline">Call Us</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Services Showcase - Majestic Service Buttons */}
       <section className="py-24 bg-gradient-to-br from-charcoal via-slate-900 to-black relative overflow-x-hidden" id="services-section">
@@ -1347,6 +1497,197 @@ const PhotographyVideographyPg = () => {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section - NEW */}
+      <section className="py-24 bg-gradient-to-br from-charcoal via-slate-900 to-charcoal relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-gold-gradient/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-cyan/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-gradient/20 to-terracotta/20 backdrop-blur-sm border border-gold-gradient/30 rounded-full px-6 py-3 mb-6">
+              <Heart className="w-5 h-5 text-gold-gradient" />
+              <span className="text-gold-gradient font-bold text-sm tracking-wider">CLIENT TESTIMONIALS</span>
+            </div>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">What Our Clients Say</h2>
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              Don't just take our word for it - hear from the people we've had the privilege to work with
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah & James",
+                role: "Wedding Clients",
+                image: "https://ui-avatars.com/api/?name=Sarah+James&background=FFD700&color=1F2937&size=128",
+                rating: 5,
+                text: "KGILL+ Studio captured our wedding day beautifully! Every moment was documented with such care and artistry. The photos are absolutely stunning and we'll treasure them forever.",
+                service: "Wedding Photography"
+              },
+              {
+                name: "Michael Chen",
+                role: "Corporate Client",
+                image: "https://ui-avatars.com/api/?name=Michael+Chen&background=06B6D4&color=1F2937&size=128",
+                rating: 5,
+                text: "Professional, creative, and efficient. The team headshots they produced for our company were exceptional. Highly recommend for any corporate photography needs!",
+                service: "Corporate Photography"
+              },
+              {
+                name: "Amina Hassan",
+                role: "Fashion Designer",
+                image: "https://ui-avatars.com/api/?name=Amina+Hassan&background=FF5E62&color=1F2937&size=128",
+                rating: 5,
+                text: "Working with KGILL+ was an absolute pleasure. They understood my vision perfectly and brought my fashion collection to life through their lens. True professionals!",
+                service: "Fashion Photography"
+              }
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="group relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-gold-gradient/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+              >
+                {/* Quote Icon */}
+                <div className="absolute top-6 right-6 text-gold-gradient/20 group-hover:text-gold-gradient/40 transition-colors duration-300">
+                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                {/* Rating Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-gold-gradient" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Testimonial Text */}
+                <p className="text-gray-300 font-inter text-lg mb-6 leading-relaxed">
+                  "{testimonial.text}"
+                </p>
+
+                {/* Service Badge */}
+                <div className="inline-block px-3 py-1 bg-gold-gradient/20 border border-gold-gradient/30 rounded-full mb-6">
+                  <span className="text-gold-gradient text-xs font-bold tracking-wider">{testimonial.service}</span>
+                </div>
+
+                {/* Client Info */}
+                <div className="flex items-center gap-4 pt-6 border-t border-white/10">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-14 h-14 rounded-full border-2 border-gold-gradient/50"
+                  />
+                  <div>
+                    <h4 className="font-bold text-white font-montserrat">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-400 font-inter">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* More Reviews CTA */}
+          <div className="text-center mt-12">
+            <p className="text-gray-400 font-inter mb-4">Join hundreds of satisfied clients</p>
+            <div className="flex items-center justify-center gap-2 text-gold-gradient">
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4, 5].map(i => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-charcoal bg-gradient-to-br from-gold-gradient to-terracotta flex items-center justify-center text-charcoal font-bold text-xs">
+                    {String.fromCharCode(64 + i)}
+                  </div>
+                ))}
+              </div>
+              <span className="font-bold">500+ Happy Clients</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Awards & Recognition Section - NEW */}
+      <section className="py-24 bg-slate-900 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-gradient/20 to-terracotta/20 backdrop-blur-sm border border-gold-gradient/30 rounded-full px-6 py-3 mb-6">
+              <Award className="w-5 h-5 text-gold-gradient" />
+              <span className="text-gold-gradient font-bold text-sm tracking-wider">AWARDS & RECOGNITION</span>
+            </div>
+            <h2 className="display-2 font-montserrat mb-6 epic-text">Industry Recognition</h2>
+            <p className="text-xl text-gray-400 font-inter max-w-3xl mx-auto">
+              Our commitment to excellence has been recognized by leading industry organizations
+            </p>
+          </div>
+
+          {/* Awards Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {[
+              { name: "SOYA Awards", year: "2023", icon: "🏆" },
+              { name: "Nairobi Photographer of the Year", year: "2023", icon: "📸" },
+              { name: "Nabla Awards", year: "2022", icon: "⭐" },
+              { name: "35 Awards", year: "2022", icon: "🎖️" }
+            ].map((award, index) => (
+              <div
+                key={index}
+                className="group relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-gold-gradient/50 transition-all duration-300 hover:scale-105 text-center"
+              >
+                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{award.icon}</div>
+                <h3 className="font-bold text-white font-montserrat mb-2">{award.name}</h3>
+                <p className="text-gold-gradient text-sm font-bold">{award.year}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Client Logos */}
+          <div className="border-t border-white/10 pt-16">
+            <h3 className="text-2xl font-bold font-montserrat text-center text-white mb-12">
+              Trusted by Leading Brands
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+              {[
+                "Mac & More",
+                "Tononoka Steels",
+                "Kenya Fashion Awards",
+                "Global Peace Foundation",
+                "Stirling University",
+                "Kenya Colour Run"
+              ].map((client, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-gold-gradient/50 transition-all duration-300 hover:scale-105"
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-2 opacity-50 group-hover:opacity-100 transition-opacity">🏢</div>
+                    <p className="text-sm text-gray-400 group-hover:text-white font-inter font-semibold transition-colors">{client}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Bar */}
+          <div className="mt-16 bg-gradient-to-r from-gold-gradient/10 via-cyan/10 to-terracotta/10 backdrop-blur-xl border border-white/10 rounded-2xl p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { value: "250K+", label: "Social Media Views" },
+                { value: "500+", label: "Events Covered" },
+                { value: "100%", label: "Client Satisfaction" },
+                { value: "4+", label: "Years Excellence" }
+              ].map((stat, index) => (
+                <div key={index}>
+                  <div className="text-4xl md:text-5xl font-bold font-montserrat bg-gradient-to-r from-gold-gradient-start via-marigold to-terracotta bg-clip-text text-transparent mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-400 font-inter text-sm">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
