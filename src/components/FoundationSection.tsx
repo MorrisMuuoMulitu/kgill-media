@@ -59,7 +59,7 @@ const FoundationSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold font-montserrat mb-1">Email</h4>
-                  <p className="text-gray-400 font-inter">hello@kgillmedia.co.ke</p>
+                  <p className="text-gray-400 font-inter">hello@kgillplusmedia.com</p>
                 </div>
               </div>
             </div>

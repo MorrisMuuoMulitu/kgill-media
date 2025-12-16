@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.kgillplusmedia.com/sitemap.xml
+
+# Host directive (optional, specifies preferred domain)
+Host: https://www.kgillplusmedia.com/
+
+# Crawling settings
+Crawl-delay: 1
+
+# Specific file exclusions if needed
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /private/

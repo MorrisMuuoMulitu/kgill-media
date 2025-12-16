@@ -59,7 +59,7 @@ class ErrorBoundary extends Component<Props, State> {
               </button>
               
               <a
-                href="mailto:hello@kgillmedia.co.ke"
+                href="mailto:hello@kgillplusmedia.com"
                 className="border-2 border-white/30 text-white px-6 py-3 rounded-full font-inter font-semibold hover:bg-white/10 transition-all duration-300 text-center"
               >
                 Contact Support

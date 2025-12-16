@@ -41,7 +41,7 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-charcoal z-10 relative" />
               </a>
               <a 
-                href="mailto:hello@kgillmedia.co.ke"
+                href="mailto:hello@kgillplusmedia.com"
                 className="group relative w-12 h-12 bg-slate-800/50 hover:bg-gradient-to-br hover:from-cyan hover:to-slate-blue rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-3 focus:ring-cyan/50 backdrop-blur-sm border border-slate-700/50 hover:border-cyan/30 overflow-hidden"
                 aria-label="Send us an email"
               >
@@ -90,10 +90,10 @@ const Footer = () => {
                 <div>
                   <p className="text-gray-400 font-inter text-xs sm:text-sm">Email</p>
                   <a 
-                    href="mailto:hello@kgillmedia.co.ke"
+                    href="mailto:hello@kgillplusmedia.com"
                     className="text-gray-300 hover:text-marigold transition-colors font-inter focus:outline-none focus:text-marigold focus:underline text-sm sm:text-base"
                   >
-                    hello@kgillmedia.co.ke
+                    hello@kgillplusmedia.com
                   </a>
                 </div>
               </div>
