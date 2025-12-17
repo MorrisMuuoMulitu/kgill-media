@@ -18,11 +18,11 @@ const EnhancedHeroSection: React.FC = () => {
   const impactRef = useScrollAnimation();
   const servicesRef = useScrollAnimation();
   const storiesRef = useScrollAnimation();
-  
+
   // Particle background
   // More vibrant floating particles
   const particleCanvasRef = useParticles(75, {
-    colors: ['#FFE066', '#FF7847', '#00E5FF', '#A78BFA', '#F472B6', '#3B82F6'],
+    colors: ['#00E5FF', '#FFFFFF', '#00E5FF', '#A78BFA', '#F472B6', '#3B82F6'],
     size: [1, 3, 5],
     speed: [0.3, 2],
     opacity: [0.2, 0.8],
@@ -32,7 +32,7 @@ const EnhancedHeroSection: React.FC = () => {
   useEffect(() => {
     const hasVisited = localStorage.getItem('kgill_visited');
     const savedIntent = localStorage.getItem('user_intent');
-    
+
     if (savedIntent) {
       setUserIntent(savedIntent);
     } else if (!hasVisited) {
@@ -128,17 +128,17 @@ const EnhancedHeroSection: React.FC = () => {
       {/* Hero Section with Dynamic Background */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden texture-subtle opacity-0 pt-16 md:pt-20 lg:pt-0">
         {/* Particle Background */}
-        <canvas 
-          ref={particleCanvasRef} 
+        <canvas
+          ref={particleCanvasRef}
           className="absolute inset-0 w-full h-full z-10"
           aria-hidden="true"
         />
-        
+
         {/* Dynamic Video/Image Background */}
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full bg-gradient-to-br from-black/90 via-charcoal/80 to-black/90 z-20 absolute animate-gradient-move"></div>
           <div className="w-full h-full bg-gradient-to-t from-charcoal/90 via-marigold/10 to-transparent z-20 absolute animate-gradient-move"></div>
-          <img 
+          <img
             src="https://img.youtube.com/vi/Z6BPF8gbquY/maxresdefault.jpg"
             sizes="(max-width: 640px) 400px, (max-width: 768px) 800px, (max-width: 1024px) 1200px, 1920px"
             alt="Creative Workshop"
@@ -173,7 +173,7 @@ const EnhancedHeroSection: React.FC = () => {
               <span className="text-sm font-inter font-medium text-marigold">Africa's Leading Creative Hub</span>
             </div>
           </div>
-          
+
           <div className="mb-10 animate-fade-in-up">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-montserrat leading-tight mb-6">
               <span className="block text-white/90 animate-fade-in-up">{personalizedContent.headline.split(' ').slice(0, 3).join(' ')}</span>
@@ -186,7 +186,7 @@ const EnhancedHeroSection: React.FC = () => {
               {personalizedContent.subtext}
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10 sm:mb-16">
             <button className="group relative overflow-hidden btn-primary w-full sm:w-auto min-w-[240px] min-h-[56px] py-4 px-8">
               <span className="flex items-center justify-center gap-3 relative z-10">
@@ -231,7 +231,7 @@ const EnhancedHeroSection: React.FC = () => {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFC72C' fill-opacity='0.1'%3E%3Cpath d='M30 30l15-15v30l-15-15zm0 0l-15 15h30l-15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
         </div>
-        
+
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat mb-4 gradient-text">
@@ -239,7 +239,7 @@ const EnhancedHeroSection: React.FC = () => {
             </h2>
             <p className="text-lg sm:text-xl text-gray-400 font-inter">Real change, measured results</p>
           </div>
-          
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
             {[
               { icon: Users, value: 250, suffix: '+', label: 'Young Creatives Empowered', color: 'marigold' },
@@ -291,21 +291,21 @@ const EnhancedHeroSection: React.FC = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            <ServiceCard 
+            <ServiceCard
               title="Film Production"
               description="Documentary films that amplify youth voices and social causes"
               icon={<Camera className="w-8 h-8" />}
               gradient="from-marigold to-terracotta"
               projects="25+ Projects"
             />
-            <ServiceCard 
+            <ServiceCard
               title="Podcast Creation"
               description="Audio narratives exploring innovation and social impact"
               icon={<Mic className="w-8 h-8" />}
               gradient="from-cyan to-slate-blue"
               projects="75+ Episodes"
             />
-            <ServiceCard 
+            <ServiceCard
               title="Community Workshops"
               description="Skill-building sessions empowering the next generation"
               icon={<Users className="w-8 h-8" />}
@@ -327,12 +327,12 @@ const EnhancedHeroSection: React.FC = () => {
               Discover the impactful projects reshaping narratives across Kenya.
             </p>
           </div>
-          
+
           {/* Featured Story */}
           <div className="mb-12 sm:mb-16">
             <FeaturedStory {...featuredStories[0]} />
           </div>
-          
+
           {/* Regular Stories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
             {featuredStories.slice(1).map((story, index) => (
@@ -347,7 +347,7 @@ const EnhancedHeroSection: React.FC = () => {
 
       {/* User Intent Modal */}
       {showModal && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
           role="dialog"
           aria-modal="true"
@@ -361,7 +361,7 @@ const EnhancedHeroSection: React.FC = () => {
             >
               <X className="w-5 h-5 text-gray-400" />
             </button>
-            
+
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-gradient-to-br from-marigold to-terracotta rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="w-8 h-8 text-charcoal" />
@@ -373,7 +373,7 @@ const EnhancedHeroSection: React.FC = () => {
                 What brings you to our creative hub today?
               </p>
             </div>
-            
+
             <div className="space-y-4">
               {[
                 {
@@ -414,7 +414,7 @@ const EnhancedHeroSection: React.FC = () => {
                 </button>
               ))}
             </div>
-            
+
             <button
               onClick={() => setShowModal(false)}
               className="w-full mt-6 text-gray-500 hover:text-gray-300 transition-colors font-inter text-sm underline focus:outline-none focus:text-gray-300"

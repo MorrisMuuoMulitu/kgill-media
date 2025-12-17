@@ -12,7 +12,7 @@ const spinnerVariants = {
   },
 };
 
-const LoadingSpinner: React.FC<{ size?: number; color?: string }> = ({ size = 48, color = '#FFE066' }) => (
+const LoadingSpinner: React.FC<{ size?: number; color?: string }> = ({ size = 48, color = '#00E5FF' }) => (
   <motion.div
     variants={spinnerVariants}
     animate="animate"

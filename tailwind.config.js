@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        charcoal: '#1A1A1A',
-        marigold: '#FFC72C',
-        terracotta: '#E2725B',
-        'slate-blue': '#4A5568',
-        cyan: '#00FFFF',
+        charcoal: '#050505',
+        marigold: '#00E5FF', // Mapped to Cyan for reskin
+        terracotta: '#FFFFFF', // Mapped to White for reskin
+        'slate-blue': '#0A2540',
+        cyan: '#00E5FF',
       },
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
@@ -42,11 +42,11 @@ export default {
       },
       keyframes: {
         'pulse-glow': {
-          '0%, 100%': { 
+          '0%, 100%': {
             transform: 'scale(1)',
             boxShadow: '0 0 20px rgba(255, 199, 44, 0.4)',
           },
-          '50%': { 
+          '50%': {
             transform: 'scale(1.05)',
             boxShadow: '0 0 40px rgba(255, 199, 44, 0.6)',
           },
@@ -149,7 +149,7 @@ export default {
         },
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #1A1A1A 0%, rgba(26, 26, 26, 0.9) 50%, rgba(26, 26, 26, 0.8) 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #050505 0%, rgba(5, 5, 5, 0.95) 50%, rgba(10, 37, 64, 0.8) 100%)',
         'section-gradient': 'linear-gradient(180deg, #1A1A1A 0%, #0f172a 100%)',
       },
       backdropBlur: {

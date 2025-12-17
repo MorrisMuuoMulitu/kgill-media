@@ -11,14 +11,14 @@ interface OptimizedImageProps {
   [key: string]: string | number | boolean | undefined;
 }
 
-const OptimizedImage: React.FC<OptimizedImageProps> = ({ 
-  src, 
-  alt, 
-  className = '', 
+const OptimizedImage: React.FC<OptimizedImageProps> = ({
+  src,
+  alt,
+  className = '',
   width,
   height,
   lazy = true,
-  ...props 
+  ...props
 }) => {
   const optimizedSrc = useOptimizedImage(src, width, height);
   const [loaded, setLoaded] = useState(false);
@@ -44,7 +44,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       <img
         src={displaySrc}
         alt={alt}
-        className={`${className} block w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'} hover:shadow-[0_0_24px_#FFE066]`}
+        className={`${className} block w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'} hover:shadow-[0_0_24px_#00E5FF]`}
         onLoad={handleLoad}
         onError={handleError}
         loading={lazy ? 'lazy' : 'eager'}
@@ -54,7 +54,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       />
     </div>
   );
-// Add shimmer animation and premium hover glow to index.css
+  // Add shimmer animation and premium hover glow to index.css
 };
 
 export default OptimizedImage;

@@ -16,8 +16,8 @@ export const useParticles = (count: number = 50) => {
 
     // Create particles
     const particles: Particle[] = [];
-    const colors = ['#FFC72C', '#E2725B', '#00FFFF'];
-    
+    const colors = ['#00E5FF', '#FFFFFF', '#0A2540'];
+
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -31,39 +31,39 @@ export const useParticles = (count: number = 50) => {
 
     // Animation loop
     let animationFrameId: number;
-    
+
     const animate = () => {
       if (!ctx) return;
-      
+
       // Clear canvas with a semi-transparent background for trail effect
       ctx.fillStyle = 'rgba(26, 26, 26, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
+
       // Update and draw particles
       particles.forEach(particle => {
         // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
-        
+
         // Boundary check - wrap around
         if (particle.x > canvas.width) particle.x = 0;
         else if (particle.x < 0) particle.x = canvas.width;
-        
+
         if (particle.y > canvas.height) particle.y = 0;
         else if (particle.y < 0) particle.y = canvas.height;
-        
+
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fillStyle = particle.color;
         ctx.fill();
       });
-      
+
       animationFrameId = requestAnimationFrame(animate);
     };
-    
+
     animate();
-    
+
     // Handle resize
     const handleResize = () => {
       if (canvas) {
@@ -71,9 +71,9 @@ export const useParticles = (count: number = 50) => {
         canvas.height = canvas.offsetHeight;
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
