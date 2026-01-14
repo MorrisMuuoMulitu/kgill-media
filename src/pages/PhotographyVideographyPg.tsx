@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Aperture, Bike, Building2, CalendarDays, Camera,
+  Aperture, Award, Bike, Building2, CalendarDays, Camera,
   HeartHandshake, Home, Shirt, User, X, ArrowRight, Palette, Package, Sparkles
 } from 'lucide-react';
 
