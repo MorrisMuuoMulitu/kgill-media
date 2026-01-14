@@ -6,6 +6,7 @@ const OurLeaders = () => {
     {
       name: "Kevinne Mullick O.",
       title: "Founder/Ceo",
+      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Founder & CEO of Kgill+ Media. Visionary leader passionate about amplifying African voices through innovative storytelling. With deep roots in Kibera, Kevinne has over 4 years in media production and community development.",
       quote: "Stories are not just to be told - they are tools to awaken, to challenge, and to build the Africa we deserve.",
       linkedin: "#",
@@ -14,6 +15,7 @@ const OurLeaders = () => {
     {
       name: "Gillian Akinyi",
       title: "Hr/Admin",
+      image: "https://images.pexels.com/photos/4158292/pexels-photo-4158292.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Human Resources and Administration lead responsible for managing organizational operations, employee relations, and administrative functions to ensure smooth day-to-day operations.",
       quote: "Strong organizations are built on strong foundations of people and processes.",
       linkedin: "#",
@@ -22,6 +24,7 @@ const OurLeaders = () => {
     {
       name: "Alex Omiele",
       title: "Communication Director",
+      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Communication Director responsible for developing and implementing strategic communication plans, managing public relations, and ensuring consistent messaging across all platforms.",
       quote: "Effective communication is the bridge between confusion and clarity.",
       linkedin: "#",
@@ -30,6 +33,7 @@ const OurLeaders = () => {
     {
       name: "Debbie Atieno",
       title: "Programs Director",
+      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Programs Director overseeing the development, implementation, and evaluation of all organizational programs and initiatives to ensure alignment with mission and goals.",
       quote: "Programs that matter create lasting impact in communities.",
       linkedin: "#",
@@ -38,6 +42,7 @@ const OurLeaders = () => {
     {
       name: "Bernard Maingi",
       title: "Production Lead",
+      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Production Lead managing all aspects of media production including filming, editing, and post-production to deliver high-quality content for all platforms.",
       quote: "Quality production brings stories to life in powerful ways.",
       linkedin: "#",
@@ -46,6 +51,7 @@ const OurLeaders = () => {
     {
       name: "Diana Osale Atsula",
       title: "Partnership Director",
+      image: "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Partnership Director responsible for building and maintaining strategic relationships with organizations, sponsors, and collaborators to expand our reach and impact.",
       quote: "Strong partnerships multiply our ability to create change.",
       linkedin: "#",
@@ -62,7 +68,7 @@ const OurLeaders = () => {
             OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">TEAM</span>
           </h1>
           <p className="text-xl text-gray-300 font-inter leading-relaxed">
-            Meet the passionate individuals driving our mission to transform communities through 
+            Meet the passionate individuals driving our mission to transform communities through
             innovative storytelling and youth empowerment.
           </p>
         </div>
@@ -93,13 +99,12 @@ const OurLeaders = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="space-y-20">
             {leaders.map((leader, index) => (
-              <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${
-                index % 2 === 1 ? 'md:grid-flow-col-dense' : ''
-              }`}>
+              <div key={index} className={`grid md:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'md:grid-flow-col-dense' : ''
+                }`}>
                 <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
                   <div className="relative group">
-                    <img 
-                      src={leader.image} 
+                    <img
+                      src={leader.image}
                       alt={leader.name}
                       className="w-full h-96 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                     />
@@ -129,7 +134,7 @@ const OurLeaders = () => {
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {leader.skills.map((skill, skillIndex) => (
-                          <span 
+                          <span
                             key={skillIndex}
                             className="bg-slate-800 text-gray-300 px-3 py-1 rounded-full text-sm font-inter"
                           >
@@ -138,7 +143,7 @@ const OurLeaders = () => {
                         ))}
                       </div>
                     </div>
-                    <a 
+                    <a
                       href={leader.linkedin}
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-marigold to-terracotta text-white px-6 py-3 rounded-full font-inter font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
                     >
@@ -196,7 +201,7 @@ const OurLeaders = () => {
               Our Growth Creative Economy In Media & Entertainment Industry
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12">
             <div className="p-8 bg-slate-900 rounded-2xl border border-slate-700">
               <h3 className="text-2xl font-bold font-montserrat mb-6 text-marigold">Industry Recognition</h3>
@@ -207,7 +212,7 @@ const OurLeaders = () => {
                 We have been nominated and won various prizes, including SOYA awards, Nairobi Photographer of the Year, Nabla awards, and 35awards.
               </p>
             </div>
-            
+
             <div className="p-8 bg-slate-900 rounded-2xl border border-slate-700">
               <h3 className="text-2xl font-bold font-montserrat mb-6 text-cyan">Client Success</h3>
               <p className="text-gray-300 font-inter leading-relaxed mb-6">
@@ -218,7 +223,7 @@ const OurLeaders = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="mt-12 p-8 bg-gradient-to-br from-slate-900 to-charcoal rounded-2xl border border-slate-700">
             <div className="grid md:grid-cols-3 gap-8">
               <div>
@@ -227,14 +232,14 @@ const OurLeaders = () => {
                   Proposed Revenue: Kshs.7.87 Million for the financial year 2025/2027. The revenue will be from profits, grants, crowdfunding & seedings.
                 </p>
               </div>
-              
+
               <div>
                 <h4 className="text-xl font-bold font-montserrat mb-4 text-cyan">Infrastructure Development</h4>
                 <p className="text-gray-300 font-inter leading-relaxed">
                   Building an Ultra modern creative & Innovation Hub, fully equipped with resources to produce world class level productions & a capacity to support creatives.
                 </p>
               </div>
-              
+
               <div>
                 <h4 className="text-xl font-bold font-montserrat mb-4 text-terracotta">Equipment Investment</h4>
                 <p className="text-gray-300 font-inter leading-relaxed">

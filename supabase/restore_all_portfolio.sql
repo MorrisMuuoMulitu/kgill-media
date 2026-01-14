@@ -39,7 +39,7 @@ VALUES
 ('Tuvibe Festival', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event9.jpg', 'Events', '2024', 800, 1200),
 ('Wedding Ceremony', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event10.jpg', 'Events', '2024', 800, 1200),
 ('Baby Shower', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event11.jpg', 'Events', '2024', 800, 1200),
-('Birthday Party', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event12.jpg', 'Events', '2024', 800, 1200),
+('Birthday Party', 'events', 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1200', 'Events', '2024', 800, 1200),
 ('Kibera Talent Search', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event13.jpg', 'Events', '2024', 800, 1200),
 ('Mr & Miss Kibera', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event14.jpg', 'Events', '2024', 800, 1200),
 ('The Millenials', 'events', 'https://ik.imagekit.io/5zp8ovb7c/Kgill/Events/Event15.jpg', 'Events', '2024', 800, 1200),
