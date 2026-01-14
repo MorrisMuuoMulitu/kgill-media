@@ -60,7 +60,7 @@ const PortfolioManager = () => {
         const { data: itemsData } = await supabase
             .from('portfolio_items')
             .select('*')
-            .order('id', { ascending: false });
+            .order('category', { ascending: true });
 
         if (itemsData) setItems(itemsData);
 
@@ -83,7 +83,7 @@ const PortfolioManager = () => {
         const { data } = await supabase
             .from('portfolio_items')
             .select('*')
-            .order('id', { ascending: false });
+            .order('category', { ascending: true });
 
         if (data) setItems(data);
     };

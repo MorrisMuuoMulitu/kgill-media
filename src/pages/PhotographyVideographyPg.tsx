@@ -76,7 +76,7 @@ const PhotographyVideographyPg = () => {
         { data: packagesData }
       ] = await Promise.all([
         supabase.from('services').select('*').order('title'),
-        supabase.from('portfolio_items').select('*').order('id'),
+        supabase.from('portfolio_items').select('*').order('category'),
         supabase.from('packages').select('*').order('id')
       ]);
 
