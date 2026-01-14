@@ -7,10 +7,9 @@ import {
     Edit2,
     Trash2,
     X,
-    Loader2,
-    Filter,
-    ExternalLink
+    Loader2
 } from 'lucide-react';
+import ConfirmDialog from '../../components/admin/ConfirmDialog';
 
 interface PortfolioItem {
     id: number;
@@ -30,6 +29,11 @@ const PortfolioManager = () => {
     const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState('all');
+    const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; itemId: number | null; itemTitle: string }>({
+        isOpen: false,
+        itemId: null,
+        itemTitle: ''
+    });
 
     const [availableCategories, setAvailableCategories] = useState<{ id: string, label: string }[]>([]);
 
@@ -118,10 +122,18 @@ const PortfolioManager = () => {
     };
 
     const handleDelete = async (id: number) => {
-        if (window.confirm('Are you sure you want to delete this portfolio item?')) {
-            await supabase.from('portfolio_items').delete().eq('id', id);
-            fetchItems();
-        }
+        setLoading(true);
+        await supabase.from('portfolio_items').delete().eq('id', id);
+        await fetchItems();
+        setLoading(false);
+    };
+
+    const openDeleteConfirm = (item: PortfolioItem) => {
+        setDeleteConfirm({
+            isOpen: true,
+            itemId: item.id,
+            itemTitle: item.title
+        });
     };
 
     const openEdit = (item: PortfolioItem) => {
@@ -241,7 +253,7 @@ const PortfolioManager = () => {
                                         <Edit2 className="w-4 h-4" /> Edit
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(item.id)}
+                                        onClick={() => openDeleteConfirm(item)}
                                         className="p-3 bg-red-500/5 hover:bg-red-500/10 rounded-xl text-red-400/70 hover:text-red-400 transition-all"
                                     >
                                         <Trash2 className="w-4 h-4" />
@@ -360,6 +372,18 @@ const PortfolioManager = () => {
                     </div>
                 </div>
             )}
+
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                isOpen={deleteConfirm.isOpen}
+                title="Delete Portfolio Item?"
+                message={`Are you sure you want to delete "${deleteConfirm.itemTitle}"? This action cannot be undone.`}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isDangerous={true}
+                onConfirm={() => deleteConfirm.itemId && handleDelete(deleteConfirm.itemId)}
+                onCancel={() => setDeleteConfirm({ isOpen: false, itemId: null, itemTitle: '' })}
+            />
         </div>
     );
 };

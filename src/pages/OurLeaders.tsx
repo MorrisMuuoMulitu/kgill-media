@@ -6,7 +6,6 @@ const OurLeaders = () => {
     {
       name: "Kevinne Mullick O.",
       title: "Founder/Ceo",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Founder & CEO of Kgill+ Media. Visionary leader passionate about amplifying African voices through innovative storytelling. With deep roots in Kibera, Kevinne has over 4 years in media production and community development.",
       quote: "Stories are not just to be told - they are tools to awaken, to challenge, and to build the Africa we deserve.",
       linkedin: "#",
@@ -15,7 +14,6 @@ const OurLeaders = () => {
     {
       name: "Gillian Akinyi",
       title: "Hr/Admin",
-      image: "https://images.pexels.com/photos/4158292/pexels-photo-4158292.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Human Resources and Administration lead responsible for managing organizational operations, employee relations, and administrative functions to ensure smooth day-to-day operations.",
       quote: "Strong organizations are built on strong foundations of people and processes.",
       linkedin: "#",
@@ -24,7 +22,6 @@ const OurLeaders = () => {
     {
       name: "Alex Omiele",
       title: "Communication Director",
-      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Communication Director responsible for developing and implementing strategic communication plans, managing public relations, and ensuring consistent messaging across all platforms.",
       quote: "Effective communication is the bridge between confusion and clarity.",
       linkedin: "#",
@@ -33,7 +30,6 @@ const OurLeaders = () => {
     {
       name: "Debbie Atieno",
       title: "Programs Director",
-      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Programs Director overseeing the development, implementation, and evaluation of all organizational programs and initiatives to ensure alignment with mission and goals.",
       quote: "Programs that matter create lasting impact in communities.",
       linkedin: "#",
@@ -42,7 +38,6 @@ const OurLeaders = () => {
     {
       name: "Bernard Maingi",
       title: "Production Lead",
-      image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Production Lead managing all aspects of media production including filming, editing, and post-production to deliver high-quality content for all platforms.",
       quote: "Quality production brings stories to life in powerful ways.",
       linkedin: "#",
@@ -51,7 +46,6 @@ const OurLeaders = () => {
     {
       name: "Diana Osale Atsula",
       title: "Partnership Director",
-      image: "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=800",
       bio: "Partnership Director responsible for building and maintaining strategic relationships with organizations, sponsors, and collaborators to expand our reach and impact.",
       quote: "Strong partnerships multiply our ability to create change.",
       linkedin: "#",
@@ -103,12 +97,13 @@ const OurLeaders = () => {
                 }`}>
                 <div className={index % 2 === 1 ? 'md:col-start-2' : ''}>
                   <div className="relative group">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-96 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="w-full h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl flex flex-col items-center justify-center border-2 border-dashed border-slate-700 group-hover:border-marigold/50 transition-all duration-500">
+                      <div className="w-24 h-24 bg-gradient-to-br from-marigold to-terracotta rounded-full flex items-center justify-center mb-4 opacity-50">
+                        <User className="w-12 h-12 text-charcoal" />
+                      </div>
+                      <p className="text-gray-400 font-inter font-semibold text-lg">Photo Coming Soon</p>
+                      <p className="text-gray-500 font-inter text-sm mt-2">Professional headshot in progress</p>
+                    </div>
                   </div>
                 </div>
                 <div className={index % 2 === 1 ? 'md:col-start-1' : ''}>
