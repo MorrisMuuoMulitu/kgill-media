@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Camera, Users, Play, ArrowRight, Tv, Film, BookOpen, Megaphone, Monitor, Loader2 } from 'lucide-react';
+import { Camera, Users, Play, ArrowRight, Tv, Film, BookOpen, Megaphone, Monitor, Loader2, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
@@ -65,23 +65,62 @@ const WhatWeDo = () => {
   }
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-charcoal to-slate-900">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold font-montserrat mb-6">
-            WHAT WE <span className="text-transparent bg-clip-text bg-gradient-to-r from-marigold to-terracotta">CREATE</span>
-          </h1>
-          <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
-            Kgill+ Media Hub is a creative and innovation hub using film, media, and art to tell powerful African stories, empower youth, and drive social change.
-          </p>
-          <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
-            From films, podcasts, and community programs to workshops, advocacy, and media services, we create platforms where underrepresented voices are heard and celebrated.
-          </p>
-          <Link to="/kgill-tv" className="bg-gradient-to-r from-marigold to-terracotta text-white px-8 py-4 rounded-full font-inter font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto w-fit">
-            <Play className="w-5 h-5" />
-            Watch Our Reel
-          </Link>
+    <div className="min-h-screen bg-charcoal">
+      {/* Hero Section - Premium Redesign */}
+      <section className="relative py-32 md:py-48 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="w-full h-full bg-gradient-to-br from-charcoal via-slate-900 to-black"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,215,0,0.15)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_left,rgba(6,182,212,0.15)_0%,transparent_50%)]"></div>
+          <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan/20 to-slate-blue/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gold-gradient/20 to-terracotta/20 backdrop-blur-sm border border-gold-gradient/30 rounded-full px-6 py-3 mb-8 animate-fade-in">
+              <Sparkles className="w-5 h-5 text-gold-gradient" />
+              <span className="text-gold-gradient font-bold text-sm tracking-wider">CREATIVE INNOVATION HUB</span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat mb-8 leading-tight">
+              <span className="block text-white mb-2">What We</span>
+              <span className="block bg-gradient-to-r from-gold-gradient-start via-marigold to-terracotta bg-clip-text text-transparent">Create</span>
+            </h1>
+
+            {/* Description */}
+            <p className="text-xl md:text-2xl text-gray-300 font-inter mb-6 max-w-4xl mx-auto leading-relaxed">
+              A creative and innovation hub using <span className="text-gold-gradient font-bold">film</span>, <span className="text-cyan font-bold">media</span>, and <span className="text-terracotta font-bold">art</span> to tell powerful African stories, empower youth, and drive social change.
+            </p>
+
+            <p className="text-lg text-gray-400 font-inter mb-12 max-w-3xl mx-auto leading-relaxed">
+              From films and podcasts to community programs, workshops, and advocacy—we create platforms where underrepresented voices are heard and celebrated.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                to="/kgill-tv"
+                className="group relative px-8 py-4 bg-gradient-to-r from-gold-gradient-start via-marigold to-terracotta text-charcoal font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-gold-gradient/50"
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <Play className="w-6 h-6" />
+                  <span>Watch Our Reel</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-terracotta via-marigold to-gold-gradient-start opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
+
+              <Link
+                to="/photography-videography"
+                className="px-8 py-4 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white font-bold text-lg rounded-full hover:bg-white/10 hover:border-gold-gradient/50 transition-all duration-300 flex items-center gap-3"
+              >
+                <Camera className="w-6 h-6" />
+                <span>View Portfolio</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

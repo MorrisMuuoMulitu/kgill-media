@@ -256,17 +256,44 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-500 font-bold uppercase tracking-widest mt-2">Finest Captures & Cinematic Stories</p>
             </div>
 
-            <div className="flex bg-[#0f0f12]/80 backdrop-blur-xl p-1 border border-white/5 rounded-2xl overflow-x-auto no-scrollbar">
-              {['all', ...Array.from(new Set(portfolioItems.map(i => i.category)))].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${activeCategory === cat ? 'bg-gold-gradient text-charcoal' : 'text-gray-500 hover:text-white'
-                    }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              {['all', 'studio', 'wedding', 'events', 'corporate', 'fashion', 'graduation', 'headshots', 'products', 'real-estate', 'sports', 'africanism'].map((cat) => {
+                const count = cat === 'all' ? portfolioItems.length : portfolioItems.filter(i => i.category === cat).length;
+                if (count === 0 && cat !== 'all') return null;
+
+                const labels: Record<string, string> = {
+                  'all': 'All Work',
+                  'studio': 'Studio',
+                  'wedding': 'Weddings',
+                  'events': 'Events',
+                  'corporate': 'Corporate',
+                  'fashion': 'Fashion',
+                  'graduation': 'Graduation',
+                  'headshots': 'Headshots',
+                  'products': 'Products',
+                  'real-estate': 'Real Estate',
+                  'sports': 'Sports',
+                  'africanism': 'African Culture'
+                };
+
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`group px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat
+                        ? 'bg-gold-gradient text-charcoal shadow-lg scale-105'
+                        : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
+                      }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {labels[cat]}
+                      <span className={`text-xs ${activeCategory === cat ? 'text-charcoal/70' : 'text-gray-500'}`}>
+                        ({count})
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
