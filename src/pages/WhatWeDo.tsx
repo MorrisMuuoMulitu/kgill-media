@@ -137,31 +137,39 @@ const WhatWeDo = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="group">
-                <div className="bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-slate-600 transition-all duration-300 h-full">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient || 'from-marigold to-terracotta'} rounded-full flex items-center justify-center mb-6`}>
-                    <div className="text-charcoal">
-                      {iconMap[service.icon] || <Camera className="w-8 h-8" />}
+              <div key={index} className="group relative">
+                <div className="absolute inset-0 bg-gold-gradient-start/20 rounded-[40px] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative bg-[#0f0f12]/80 backdrop-blur-xl rounded-[40px] p-10 border border-white/5 group-hover:border-gold-gradient-start/30 transition-all duration-500 h-full flex flex-col shadow-2xl">
+                  <div className={`w-20 h-20 bg-white/5 rounded-3xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-white/10`}>
+                    <div className="text-gold-gradient-start">
+                      {iconMap[service.icon] || <Camera className="w-10 h-10" />}
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold font-montserrat text-white mb-4">
-                    {service.title}
+
+                  <h3 className="text-3xl font-black font-montserrat text-white mb-4 italic uppercase tracking-tight">
+                    {service.title.split(' ')[0]} <span className="text-gold-gradient-start">{service.title.split(' ').slice(1).join(' ')}</span>
                   </h3>
-                  <p className="text-gray-400 font-inter mb-6 leading-relaxed">
+
+                  <p className="text-gray-400 font-inter mb-8 leading-relaxed text-lg flex-1">
                     {service.description}
                   </p>
-                  <div className="space-y-2 mb-6">
+
+                  <div className="space-y-3 mb-10">
                     {(service.features || []).map((feature: string, featureIndex: number) => (
-                      <div key={featureIndex} className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-marigold rounded-full"></div>
-                        <span className="text-gray-300 font-inter text-sm">{feature}</span>
+                      <div key={featureIndex} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
+                        <div className="w-1.5 h-1.5 bg-gold-gradient-start rounded-full shadow-[0_0_8px_rgba(255,179,71,0.6)]"></div>
+                        <span className="text-gray-300 font-inter text-sm font-medium">{feature}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-700">
-                    <span className="text-terracotta font-inter font-semibold text-sm">
-                      {service.stats || 'Impactful Results'}
-                    </span>
+
+                  <div className="flex items-center justify-between pt-8 border-t border-white/5">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em] mb-1">Impact</span>
+                      <span className="text-gold-gradient-start font-black text-sm uppercase">
+                        {service.stats || 'Premium Delivery'}
+                      </span>
+                    </div>
                     <Link
                       to={
                         service.title.includes("Media Production") || service.title.includes("Documentary")
@@ -172,9 +180,9 @@ const WhatWeDo = () => {
                               ? "/workshops"
                               : "/what-we-do"
                       }
-                      className="text-cyan hover:text-marigold transition-colors flex items-center gap-2 font-inter font-semibold"
+                      className="w-12 h-12 bg-white/5 hover:bg-gold-gradient rounded-full flex items-center justify-center text-white hover:text-charcoal transition-all duration-300 border border-white/10"
                     >
-                      Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-5 h-5" />
                     </Link>
                   </div>
                 </div>
@@ -345,57 +353,57 @@ const WhatWeDo = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-marigold to-terracotta rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Film className="w-6 h-6 text-charcoal" />
+            <div className="p-10 bg-[#0f0f12]/80 backdrop-blur-xl rounded-[40px] border border-white/5 hover:border-gold-gradient-start/30 transition-all duration-500 shadow-2xl group">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/10 group-hover:border-gold-gradient-start/50 transition-all">
+                  <Film className="w-8 h-8 text-gold-gradient-start" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold font-montserrat text-white">Sinema Mtaani #ShortFilmSundays</h3>
-                  <p className="text-gray-400 font-inter text-xs uppercase tracking-widest mt-1">Grassroots film program</p>
+                  <h3 className="text-xl font-black font-montserrat text-white uppercase italic leading-tight">Sinema Mtaani <br /><span className="text-gold-gradient-start">#ShortFilmSundays</span></h3>
+                  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mt-2">Grassroots Cinema</p>
                 </div>
               </div>
-              <p className="text-gray-300 font-inter leading-relaxed">
+              <p className="text-gray-400 font-inter leading-relaxed text-lg mb-8">
                 A grassroots film program showcasing short films created by local creatives, providing a platform for youth to screen their work and engage with the community.
               </p>
-              <div className="mt-4 pt-4 border-t border-slate-700">
-                <p className="text-terracotta font-inter font-semibold">Planned: Sinema Mtaani Festival in 2026</p>
+              <div className="mt-auto pt-6 border-t border-white/5">
+                <p className="text-gold-gradient-start font-black text-xs uppercase tracking-widest">Roadmap: Sinema Mtaani Festival 2026</p>
               </div>
             </div>
 
-            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-slate-blue rounded-xl flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-white" />
+            <div className="p-10 bg-[#0f0f12]/80 backdrop-blur-xl rounded-[40px] border border-white/5 hover:border-gold-gradient-start/30 transition-all duration-500 shadow-2xl group">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/10 group-hover:border-gold-gradient-start/50 transition-all">
+                  <BookOpen className="w-8 h-8 text-gold-gradient-start" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold font-montserrat text-white">Future Storytellers Creative Program</h3>
-                  <p className="text-gray-400 font-inter text-xs uppercase tracking-widest mt-1">Mentorship and training program</p>
+                  <h3 className="text-xl font-black font-montserrat text-white uppercase italic leading-tight">Future <br /><span className="text-gold-gradient-start">Storytellers</span></h3>
+                  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mt-2">Mentorship Program</p>
                 </div>
               </div>
-              <p className="text-gray-300 font-inter leading-relaxed">
+              <p className="text-gray-400 font-inter leading-relaxed text-lg mb-8">
                 A mentorship and training program equipping young people with skills in filmmaking, digital storytelling, and advocacy.
               </p>
-              <div className="mt-4 pt-4 border-t border-slate-700">
-                <p className="text-cyan font-inter font-semibold">Target: Strategic partnerships with 100+ companies in 2025/2027</p>
+              <div className="mt-auto pt-6 border-t border-white/5">
+                <p className="text-gold-gradient-start font-black text-xs uppercase tracking-widest">Target: 100+ Partnerships by 2027</p>
               </div>
             </div>
 
-            <div className="p-6 bg-slate-900 rounded-2xl border border-slate-700">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-terracotta to-marigold rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Users className="w-6 h-6 text-charcoal" />
+            <div className="p-10 bg-[#0f0f12]/80 backdrop-blur-xl rounded-[40px] border border-white/5 hover:border-gold-gradient-start/30 transition-all duration-500 shadow-2xl group">
+              <div className="flex items-start gap-6 mb-8">
+                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/10 group-hover:border-gold-gradient-start/50 transition-all">
+                  <Users className="w-8 h-8 text-gold-gradient-start" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold font-montserrat text-white">Workshops & Creative Events</h3>
-                  <p className="text-gray-400 font-inter text-xs uppercase tracking-widest mt-1">Training and networking</p>
+                  <h3 className="text-xl font-black font-montserrat text-white uppercase italic leading-tight">Creative <br /><span className="text-gold-gradient-start">Workshops</span></h3>
+                  <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mt-2">Co-creation</p>
                 </div>
               </div>
-              <p className="text-gray-300 font-inter leading-relaxed">
+              <p className="text-gray-400 font-inter leading-relaxed text-lg mb-8">
                 Training sessions, networking meetups, and film screenings that nurture collaboration and build capacity among young creatives.
               </p>
-              <div className="mt-4 pt-4 border-t border-slate-700">
-                <p className="text-terracotta font-inter font-semibold">Achievement: 250k views across social media platforms for Kgill Tv</p>
+              <div className="mt-auto pt-6 border-t border-white/5">
+                <p className="text-gold-gradient-start font-black text-xs uppercase tracking-widest">Achievement: 250k+ Impressions across KGILL TV</p>
               </div>
             </div>
           </div>

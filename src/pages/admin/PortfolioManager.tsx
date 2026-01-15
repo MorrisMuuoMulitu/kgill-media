@@ -7,9 +7,11 @@ import {
     Edit2,
     Trash2,
     X,
-    Loader2
+    Loader2,
+    Upload
 } from 'lucide-react';
 import ConfirmDialog from '../../components/admin/ConfirmDialog';
+import BulkUploadModal from '../../components/admin/BulkUploadModal';
 
 interface PortfolioItem {
     id: number;
@@ -22,18 +24,34 @@ interface PortfolioItem {
     year: string;
 }
 
+const PORTFOLIO_CATEGORIES = [
+    { id: 'studio', label: 'Studio Session' },
+    { id: 'wedding', label: 'Weddings' },
+    { id: 'events', label: 'Events' },
+    { id: 'corporate', label: 'Corporate' },
+    { id: 'fashion', label: 'Fashion' },
+    { id: 'graduation', label: 'Graduation' },
+    { id: 'headshots', label: 'Headshots' },
+    { id: 'products', label: 'Products' },
+    { id: 'real-estate', label: 'Real Estate' },
+    { id: 'sports', label: 'Sports' },
+    { id: 'africanism', label: 'African Culture' }
+];
+
 const PortfolioManager = () => {
     const [items, setItems] = useState<PortfolioItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
     const [activeCategory, setActiveCategory] = useState('all');
     const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; itemId: number | null; itemTitle: string }>({
         isOpen: false,
         itemId: null,
         itemTitle: ''
     });
+    const [uploading, setUploading] = useState(false);
 
     const [availableCategories, setAvailableCategories] = useState<{ id: string, label: string }[]>([]);
 
@@ -55,12 +73,6 @@ const PortfolioManager = () => {
     const fetchInitialData = async () => {
         setLoading(true);
 
-        // Fetch services to use as primary categories
-        const { data: servicesData } = await supabase
-            .from('services')
-            .select('id, title');
-
-        // Fetch items to get unique categories and the items themselves
         const { data: itemsData } = await supabase
             .from('portfolio_items')
             .select('*')
@@ -68,18 +80,13 @@ const PortfolioManager = () => {
 
         if (itemsData) setItems(itemsData);
 
-        // Combine categories from services and existing items
-        const serviceCats = (servicesData || []).map(s => ({ id: s.id, label: s.title }));
+        // Get unique categories from items that are NOT in our standard list
         const itemCats = itemsData ? Array.from(new Set(itemsData.map(i => i.category))) : [];
+        const extraCats = itemCats
+            .filter(id => !PORTFOLIO_CATEGORIES.find(c => c.id === id))
+            .map(id => ({ id, label: id.charAt(0).toUpperCase() + id.slice(1) }));
 
-        const combined = [...serviceCats];
-        itemCats.forEach(catId => {
-            if (!combined.find(c => c.id === catId)) {
-                combined.push({ id: catId, label: catId.charAt(0).toUpperCase() + catId.slice(1) });
-            }
-        });
-
-        setAvailableCategories(combined);
+        setAvailableCategories([...PORTFOLIO_CATEGORIES, ...extraCats]);
         setLoading(false);
     };
 
@@ -150,6 +157,35 @@ const PortfolioManager = () => {
         setIsModalOpen(true);
     };
 
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploading(true);
+        try {
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${Math.random()}.${fileExt}`;
+            const filePath = `uploads/${fileName}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from('portfolio')
+                .upload(filePath, file);
+
+            if (uploadError) throw uploadError;
+
+            const { data: { publicUrl } } = supabase.storage
+                .from('portfolio')
+                .getPublicUrl(filePath);
+
+            setFormData(prev => ({ ...prev, image: publicUrl }));
+        } catch (error: any) {
+            console.error('Upload error:', error);
+            alert('Upload failed: ' + error.message);
+        } finally {
+            setUploading(false);
+        }
+    };
+
     const filteredItems = items.filter(item =>
         (activeCategory === 'all' || item.category === activeCategory) &&
         (item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -165,55 +201,77 @@ const PortfolioManager = () => {
                     </h1>
                     <p className="text-gray-400 font-inter">Curate your photography and videography showcase.</p>
                 </div>
-                <button
-                    onClick={() => {
-                        setEditingItem(null);
-                        setFormData({
-                            title: '',
-                            category: 'studio',
-                            image: '',
-                            type: 'Studio Session',
-                            year: new Date().getFullYear().toString(),
-                            width: 320,
-                            height: 212
-                        });
-                        setIsModalOpen(true);
-                    }}
-                    className="flex items-center gap-2 bg-gold-gradient text-charcoal font-black px-6 py-4 rounded-2xl hover:shadow-2xl hover:shadow-gold-gradient-start/30 transition-all"
-                >
-                    <Plus className="w-5 h-5" />
-                    <span>ADD NEW ITEM</span>
-                </button>
+                <div className="flex flex-wrap gap-4">
+                    <button
+                        onClick={() => setIsBulkModalOpen(true)}
+                        className="flex items-center gap-2 bg-white/5 border border-white/10 text-white font-black px-6 py-4 rounded-2xl hover:bg-white/10 transition-all"
+                    >
+                        <Upload className="w-5 h-5" />
+                        <span>BULK UPLOAD</span>
+                    </button>
+                    <button
+                        onClick={() => {
+                            setEditingItem(null);
+                            setFormData({
+                                title: '',
+                                category: 'studio',
+                                image: '',
+                                type: 'Studio Session',
+                                year: new Date().getFullYear().toString(),
+                                width: 320,
+                                height: 212
+                            });
+                            setIsModalOpen(true);
+                        }}
+                        className="flex items-center gap-2 bg-gold-gradient text-charcoal font-black px-6 py-4 rounded-2xl hover:shadow-2xl hover:shadow-gold-gradient-start/30 transition-all"
+                    >
+                        <Plus className="w-5 h-5" />
+                        <span>ADD SINGLE ITEM</span>
+                    </button>
+                </div>
             </div>
 
             {/* Filters & Search */}
-            <div className="flex flex-col lg:flex-row gap-4">
-                <div className="relative flex-1">
+            <div className="space-y-6 bg-[#0f0f12]/50 p-6 rounded-3xl border border-white/5">
+                <div className="relative">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                     <input
                         type="text"
-                        placeholder="Search portfolio..."
+                        placeholder="Search portfolio by title, type or year..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-[#0f0f12]/80 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all"
+                        className="w-full bg-[#0f0f12] border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all font-inter"
                     />
                 </div>
-                <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide lg:pb-0">
-                    <button
-                        onClick={() => setActiveCategory('all')}
-                        className={`px-6 py-4 rounded-2xl font-bold transition-all whitespace-nowrap ${activeCategory === 'all' ? 'bg-gold-gradient text-charcoal' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
-                    >
-                        All Categories
-                    </button>
-                    {availableCategories.map(cat => (
+
+                <div>
+                    <div className="flex items-center justify-between mb-4">
+                        <label className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-1">Quick Category Filter</label>
+                        <span className="text-[10px] font-black text-gold-gradient-start uppercase tracking-widest">{filteredItems.length} items showing</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
                         <button
-                            key={cat.id}
-                            onClick={() => setActiveCategory(cat.id)}
-                            className={`px-6 py-4 rounded-2xl font-bold transition-all whitespace-nowrap ${activeCategory === cat.id ? 'bg-gold-gradient text-charcoal' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
+                            onClick={() => setActiveCategory('all')}
+                            className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all border uppercase tracking-widest ${activeCategory === 'all'
+                                ? 'bg-gold-gradient text-charcoal border-transparent shadow-[0_0_20px_rgba(255,179,71,0.2)]'
+                                : 'bg-white/5 text-gray-400 border-white/5 hover:border-white/20 hover:text-white'
+                                }`}
                         >
-                            {cat.label}
+                            All Work
                         </button>
-                    ))}
+                        {availableCategories.map(cat => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={`px-5 py-2.5 rounded-xl text-xs font-black transition-all border uppercase tracking-widest ${activeCategory === cat.id
+                                    ? 'bg-gold-gradient text-charcoal border-transparent shadow-[0_0_20px_rgba(255,179,71,0.2)]'
+                                    : 'bg-white/5 text-gray-400 border-white/5 hover:border-white/20 hover:text-white'
+                                    }`}
+                            >
+                                {cat.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -297,24 +355,38 @@ const PortfolioManager = () => {
                                     <label className="text-sm font-semibold text-gray-400 ml-1">Category</label>
                                     <select
                                         value={formData.category}
-                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all cursor-pointer"
+                                        onChange={(e) => {
+                                            const catId = e.target.value;
+                                            const label = availableCategories.find(c => c.id === catId)?.label || catId;
+                                            setFormData({
+                                                ...formData,
+                                                category: catId,
+                                                type: label
+                                            });
+                                        }}
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all cursor-pointer font-inter"
                                     >
                                         {availableCategories.map(cat => (
-                                            <option key={cat.id} value={cat.id}>{cat.label}</option>
+                                            <option key={cat.id} value={cat.id} className="bg-[#0f0f12] text-white py-2">{cat.label}</option>
                                         ))}
                                     </select>
                                 </div>
 
                                 <div className="col-span-full space-y-2">
-                                    <label className="text-sm font-semibold text-gray-400 ml-1">Image URL (ImageKit recommended)</label>
+                                    <div className="flex justify-between items-center ml-1">
+                                        <label className="text-sm font-semibold text-gray-400">Image URL / Upload</label>
+                                        <label className="cursor-pointer text-[10px] font-black text-gold-gradient-start hover:underline">
+                                            {uploading ? 'UPLOADING...' : 'UPLOAD TO STORAGE'}
+                                            <input type="file" className="hidden" accept="image/*" onChange={handleFileUpload} disabled={uploading} />
+                                        </label>
+                                    </div>
                                     <input
                                         type="text"
                                         required
-                                        placeholder="https://ik.imagekit.io/..."
+                                        placeholder="https://ik.imagekit.io/... or upload above"
                                         value={formData.image}
                                         onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all"
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 text-white focus:outline-none focus:border-gold-gradient-start/50 transition-all font-inter"
                                     />
                                 </div>
 
@@ -383,6 +455,13 @@ const PortfolioManager = () => {
                 isDangerous={true}
                 onConfirm={() => deleteConfirm.itemId && handleDelete(deleteConfirm.itemId)}
                 onCancel={() => setDeleteConfirm({ isOpen: false, itemId: null, itemTitle: '' })}
+            />
+            {/* Bulk Upload Modal */}
+            <BulkUploadModal
+                isOpen={isBulkModalOpen}
+                onClose={() => setIsBulkModalOpen(false)}
+                onComplete={fetchItems}
+                type="portfolio"
             />
         </div>
     );

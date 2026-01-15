@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Clock, Eye, Star, ChevronRight, ChevronLeft, Tv, ExternalLink } from 'lucide-react';
 import YouTubePlayerModal from './YouTubePlayerModal';
+import YouTubeThumbnail from './YouTubeThumbnail';
 
 interface Reel {
   id: number;
@@ -73,9 +74,13 @@ const FeaturedReels: React.FC<FeaturedReelsProps> = ({ reels }) => {
 
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 hover:border-gold-gradient-start/50 transition-all duration-500 mb-12">
-              <div className="aspect-video bg-gradient-to-br from-marigold/20 to-terracotta/20 rounded-3xl flex items-center justify-center">
-                <img src={currentReel?.thumbnail} alt={currentReel?.title} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-transparent opacity-60 hover:opacity-80 transition-opacity"></div>
+              <div className="aspect-video bg-slate-900 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                <YouTubeThumbnail
+                  videoId={currentReel?.video_id || currentReel?.videoId || ""}
+                  alt={currentReel?.title}
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
                 <button onClick={() => openVideo(currentReel)} className="absolute inset-0 flex items-center justify-center">
                   <div className="w-24 h-24 bg-gold-gradient rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform">
                     <Play className="w-10 h-10 text-charcoal ml-2" />
@@ -121,8 +126,12 @@ const FeaturedReels: React.FC<FeaturedReelsProps> = ({ reels }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {randomReels.map((reel) => (
                 <div key={reel.id} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl border border-white/10 hover:border-cyan/50 transition-all duration-300 cursor-pointer" onClick={() => openVideo(reel)}>
-                  <div className="relative aspect-video">
-                    <img src={reel.thumbnail} alt={reel.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="relative aspect-video bg-slate-900">
+                    <YouTubeThumbnail
+                      videoId={reel.video_id || reel.videoId || ""}
+                      alt={reel.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="w-16 h-16 bg-gold-gradient rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">

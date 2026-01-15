@@ -256,7 +256,7 @@ const PhotographyVideographyPg = () => {
               <p className="text-gray-500 font-bold uppercase tracking-widest mt-2">Finest Captures & Cinematic Stories</p>
             </div>
 
-            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+            <div className="flex flex-nowrap overflow-x-auto no-scrollbar gap-3 pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:pb-0 md:flex-wrap">
               {['all', 'studio', 'wedding', 'events', 'corporate', 'fashion', 'graduation', 'headshots', 'products', 'real-estate', 'sports', 'africanism'].map((cat) => {
                 const count = cat === 'all' ? portfolioItems.length : portfolioItems.filter(i => i.category === cat).length;
                 if (count === 0 && cat !== 'all') return null;
@@ -281,8 +281,8 @@ const PhotographyVideographyPg = () => {
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`group px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all duration-300 ${activeCategory === cat
-                        ? 'bg-gold-gradient text-charcoal shadow-lg scale-105'
-                        : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
+                      ? 'bg-gold-gradient text-charcoal shadow-lg scale-105'
+                      : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10'
                       }`}
                   >
                     <span className="flex items-center gap-2">

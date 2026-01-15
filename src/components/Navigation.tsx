@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sparkles, Zap, Camera, Tv, Users } from 'lucide-react';
+import { Menu, X, Sparkles, Zap, Camera, Tv, Users, Film } from 'lucide-react';
 import Logo from './Logo';
 import MobileMenu from './MobileMenu';
 
@@ -21,6 +21,7 @@ const Navigation = () => {
     { path: '/our-story', label: 'Story', icon: Sparkles },
     { path: '/what-we-do', label: 'Services', icon: Zap },
     { path: '/photography-videography', label: 'Studio', icon: Camera },
+    { path: '/movies', label: 'Movies', icon: Film },
     { path: '/kgill-tv', label: 'TV', icon: Tv },
     { path: '/our-leaders', label: 'Team', icon: Users }
   ];
@@ -35,20 +36,19 @@ const Navigation = () => {
   return (
     <>
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-charcoal/80 backdrop-blur-2xl shadow-lg shadow-black/20 border-b border-white/5' 
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+          ? 'bg-charcoal/80 backdrop-blur-2xl shadow-lg shadow-black/20 border-b border-white/5'
           : 'bg-transparent'
-      }`}>
+        }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 md:h-24 lg:h-28">
             {/* Logo - TV logo on TV page, main logo elsewhere */}
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="group relative"
             >
               {isKGILLTVPage ? (
-                <img 
+                <img
                   src="https://ik.imagekit.io/5zp8ovb7c/Kgill/Logos/tvlog.png?updatedAt=1760027625818&tr=f-webp"
                   alt="KGILL TV Logo"
                   className="w-40 h-40 md:w-48 h-48 lg:w-56 h-56 object-contain transition-transform duration-300 group-hover:scale-110"
@@ -67,16 +67,14 @@ const Navigation = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`group relative px-4 py-2 rounded-lg font-inter font-semibold text-sm transition-all duration-300 ${
-                      isActive 
-                        ? 'text-white bg-white/10' 
+                    className={`group relative px-4 py-2 rounded-lg font-inter font-semibold text-sm transition-all duration-300 ${isActive
+                        ? 'text-white bg-white/10'
                         : 'text-gray-300 hover:text-white hover:bg-white/5'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2">
-                      <Icon className={`w-4 h-4 transition-all duration-300 ${
-                        isActive ? 'text-gold-gradient-start' : 'text-gray-400 group-hover:text-gold-gradient-start'
-                      }`} />
+                      <Icon className={`w-4 h-4 transition-all duration-300 ${isActive ? 'text-gold-gradient-start' : 'text-gray-400 group-hover:text-gold-gradient-start'
+                        }`} />
                       <span>{link.label}</span>
                     </div>
                     {isActive && (

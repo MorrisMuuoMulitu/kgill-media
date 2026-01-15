@@ -6,26 +6,34 @@ import FoundationSection from '../components/FoundationSection';
 import PremiumShowcase from '../components/PremiumShowcase';
 import ComponentInView from '../components/ComponentInView';
 import FeaturedReels from '../components/FeaturedReels';
+import FeaturedMovies from '../components/FeaturedMovies';
 import { supabase } from '../lib/supabase';
 import LoadingState from '../components/LoadingState';
 
 const Home = () => {
   const [youtubeVideos, setYoutubeVideos] = useState<any[]>([]);
+  const [movies, setMovies] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchVideos = async () => {
+    const fetchData = async () => {
       setLoading(true);
-      const { data } = await supabase
+      const { data: videos } = await supabase
         .from('youtube_videos')
         .select('*')
         .order('id', { ascending: false });
 
-      if (data) setYoutubeVideos(data);
+      const { data: moviesData } = await supabase
+        .from('movies')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (videos) setYoutubeVideos(videos);
+      if (moviesData) setMovies(moviesData);
       setLoading(false);
     };
 
-    fetchVideos();
+    fetchData();
   }, []);
 
   // Select top 3 featured videos for the trailer showreel
@@ -56,6 +64,18 @@ const Home = () => {
       >
         <div id="featured-reels">
           <FeaturedReels reels={youtubeVideos} />
+        </div>
+      </ComponentInView>
+
+      {/* Featured Movies Section - Cinematic Experience */}
+      <ComponentInView
+        className="opacity-100"
+        animation={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div id="movies">
+          <FeaturedMovies movies={movies} />
         </div>
       </ComponentInView>
 

@@ -13,6 +13,7 @@ import {
     ExternalLink
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import ConfirmDialog from '../../components/admin/ConfirmDialog';
 
 interface CaseStudy {
     id: number;
@@ -38,6 +39,16 @@ const CaseStudiesManager = () => {
         impact: '',
         image: '',
         video_url: ''
+    });
+
+    const [deleteConfirm, setDeleteConfirm] = useState<{
+        isOpen: boolean;
+        id: number | null;
+        title: string;
+    }>({
+        isOpen: false,
+        id: null,
+        title: ''
     });
 
     useEffect(() => {
@@ -75,10 +86,18 @@ const CaseStudiesManager = () => {
     };
 
     const handleDelete = async (id: number) => {
-        if (!confirm('Are you sure you want to delete this case study?')) return;
         setLoading(true);
         await supabase.from('case_studies').delete().eq('id', id);
         await fetchStudies();
+        setLoading(false);
+    };
+
+    const openDeleteConfirm = (study: CaseStudy) => {
+        setDeleteConfirm({
+            isOpen: true,
+            id: study.id,
+            title: study.title
+        });
     };
 
     const startEdit = (study: CaseStudy) => {
@@ -268,7 +287,7 @@ const CaseStudiesManager = () => {
                                                 <Edit2 className="w-5 h-5" />
                                             </button>
                                             <button
-                                                onClick={() => handleDelete(study.id)}
+                                                onClick={() => openDeleteConfirm(study)}
                                                 className="p-3 bg-red-500/10 hover:bg-red-500/20 rounded-xl text-red-400 transition-all shadow-xl"
                                             >
                                                 <Trash2 className="w-5 h-5" />
@@ -308,6 +327,17 @@ const CaseStudiesManager = () => {
                     ))
                 )}
             </div>
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                isOpen={deleteConfirm.isOpen}
+                title="Delete Case Study?"
+                message={`Are you sure you want to delete "${deleteConfirm.title}"? This action cannot be undone.`}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isDangerous={true}
+                onConfirm={() => deleteConfirm.id && handleDelete(deleteConfirm.id)}
+                onCancel={() => setDeleteConfirm({ ...deleteConfirm, isOpen: false })}
+            />
         </div>
     );
 };

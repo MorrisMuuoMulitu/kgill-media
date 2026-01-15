@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Award, Users, Camera, Heart, Zap } from 'lucide-react';
+import { Linkedin, Award, Users, Camera, Heart, Zap, User } from 'lucide-react';
 
 const OurLeaders = () => {
   const leaders = [

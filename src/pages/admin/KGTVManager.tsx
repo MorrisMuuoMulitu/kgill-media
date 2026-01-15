@@ -10,10 +10,10 @@ import {
     ExternalLink,
     X,
     Loader2,
-    Youtube,
-    AlertCircle
+    Youtube
 } from 'lucide-react';
 import YouTubeThumbnail from '../../components/YouTubeThumbnail';
+import ConfirmDialog from '../../components/admin/ConfirmDialog';
 
 interface VideoItem {
     id: number;
@@ -35,6 +35,11 @@ const KGTVManager = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingVideo, setEditingVideo] = useState<VideoItem | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [deleteConfirm, setDeleteConfirm] = useState<{ isOpen: boolean; itemId: number | null; itemTitle: string }>({
+        isOpen: false,
+        itemId: null,
+        itemTitle: ''
+    });
 
     // Form State
     const [formData, setFormData] = useState({
@@ -107,10 +112,18 @@ const KGTVManager = () => {
     };
 
     const handleDelete = async (id: number) => {
-        if (window.confirm('Are you sure you want to delete this video?')) {
-            await supabase.from('youtube_videos').delete().eq('id', id);
-            fetchVideos();
-        }
+        setLoading(true);
+        await supabase.from('youtube_videos').delete().eq('id', id);
+        await fetchVideos();
+        setLoading(false);
+    };
+
+    const openDeleteConfirm = (video: VideoItem) => {
+        setDeleteConfirm({
+            isOpen: true,
+            itemId: video.id,
+            itemTitle: video.title
+        });
     };
 
     const toggleFeatured = async (video: VideoItem) => {
@@ -243,7 +256,7 @@ const KGTVManager = () => {
                                             <Star className={`w-4 h-4 ${video.featured ? 'fill-current' : ''}`} />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(video.id)}
+                                            onClick={() => openDeleteConfirm(video)}
                                             className="p-3 bg-red-500/5 hover:bg-red-500/10 rounded-xl text-red-400/70 hover:text-red-400 transition-all"
                                         >
                                             <Trash2 className="w-4 h-4" />
@@ -382,6 +395,18 @@ const KGTVManager = () => {
                     </div>
                 </div>
             )}
+
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                isOpen={deleteConfirm.isOpen}
+                title="Delete Video?"
+                message={`Are you sure you want to delete "${deleteConfirm.itemTitle}"? This action cannot be undone.`}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isDangerous={true}
+                onConfirm={() => deleteConfirm.itemId && handleDelete(deleteConfirm.itemId)}
+                onCancel={() => setDeleteConfirm({ isOpen: false, itemId: null, itemTitle: '' })}
+            />
         </div>
     );
 };

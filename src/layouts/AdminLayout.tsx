@@ -10,7 +10,8 @@ import {
     Briefcase,
     ExternalLink,
     MessageSquare,
-    Sparkles
+    Sparkles,
+    Film
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -29,6 +30,7 @@ const AdminLayout = () => {
         { to: '/admin/portfolio', icon: <ImageIcon className="w-5 h-5" />, label: 'Portfolio' },
         { to: '/admin/services', icon: <Briefcase className="w-5 h-5" />, label: 'Services' },
         { to: '/admin/case-studies', icon: <Sparkles className="w-5 h-5" />, label: 'Case Studies' },
+        { to: '/admin/movies', icon: <Film className="w-5 h-5" />, label: 'Movies' },
         { to: '/admin/messages', icon: <MessageSquare className="w-5 h-5" />, label: 'Messages' },
     ];
 

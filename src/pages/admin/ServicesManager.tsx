@@ -10,9 +10,9 @@ import {
     Package,
     ChevronDown,
     ChevronUp,
-    PlusCircle,
-    Scissors
+    PlusCircle
 } from 'lucide-react';
+import ConfirmDialog from '../../components/admin/ConfirmDialog';
 
 interface Service {
     id: string;
@@ -43,6 +43,19 @@ const ServicesManager = () => {
     const [editingService, setEditingService] = useState<Service | null>(null);
     const [editingPackage, setEditingPackage] = useState<ServicePackage | null>(null);
     const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
+
+    // Delete Confirmation State
+    const [deleteConfirm, setDeleteConfirm] = useState<{
+        isOpen: boolean;
+        type: 'service' | 'package';
+        id: string | number | null;
+        title: string;
+    }>({
+        isOpen: false,
+        type: 'service',
+        id: null,
+        title: ''
+    });
 
     // Service Form State
     const [serviceFormData, setServiceFormData] = useState({
@@ -113,17 +126,35 @@ const ServicesManager = () => {
     };
 
     const deleteService = async (id: string) => {
-        if (window.confirm('Delete this service and all its packages?')) {
-            await supabase.from('services').delete().eq('id', id);
-            fetchData();
-        }
+        setLoading(true);
+        await supabase.from('services').delete().eq('id', id);
+        await fetchData();
+        setLoading(false);
     };
 
     const deletePackage = async (id: number) => {
-        if (window.confirm('Delete this package?')) {
-            await supabase.from('packages').delete().eq('id', id);
-            fetchData();
-        }
+        setLoading(true);
+        await supabase.from('packages').delete().eq('id', id);
+        await fetchData();
+        setLoading(false);
+    };
+
+    const openServiceDeleteConfirm = (service: Service) => {
+        setDeleteConfirm({
+            isOpen: true,
+            type: 'service',
+            id: service.id,
+            title: service.title
+        });
+    };
+
+    const openPackageDeleteConfirm = (pkg: ServicePackage) => {
+        setDeleteConfirm({
+            isOpen: true,
+            type: 'package',
+            id: pkg.id,
+            title: pkg.name
+        });
     };
 
     return (
@@ -198,7 +229,7 @@ const ServicesManager = () => {
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            deleteService(service.id);
+                                            openServiceDeleteConfirm(service);
                                         }}
                                         className="p-3 bg-red-500/5 hover:bg-red-500/10 rounded-xl text-red-400/70 hover:text-red-400 transition-all"
                                     >
@@ -261,7 +292,7 @@ const ServicesManager = () => {
                                                             }} className="p-1.5 hover:bg-white/5 rounded text-gray-500 hover:text-white transition-colors">
                                                                 <Edit2 className="w-3.5 h-3.5" />
                                                             </button>
-                                                            <button onClick={() => deletePackage(pkg.id)} className="p-1.5 hover:bg-white/5 rounded text-gray-500 hover:text-red-400 transition-colors">
+                                                            <button onClick={() => openPackageDeleteConfirm(pkg)} className="p-1.5 hover:bg-white/5 rounded text-gray-500 hover:text-red-400 transition-colors">
                                                                 <Trash2 className="w-3.5 h-3.5" />
                                                             </button>
                                                         </div>
@@ -390,6 +421,27 @@ const ServicesManager = () => {
                     </div>
                 </div>
             )}
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                isOpen={deleteConfirm.isOpen}
+                title={deleteConfirm.type === 'service' ? "Delete Service?" : "Delete Package?"}
+                message={deleteConfirm.type === 'service'
+                    ? `Are you sure you want to delete "${deleteConfirm.title}" and all its pricing tiers? This action cannot be undone.`
+                    : `Are you sure you want to delete the "${deleteConfirm.title}" pricing tier? This action cannot be undone.`}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isDangerous={true}
+                onConfirm={() => {
+                    if (deleteConfirm.id) {
+                        if (deleteConfirm.type === 'service') {
+                            deleteService(deleteConfirm.id as string);
+                        } else {
+                            deletePackage(deleteConfirm.id as number);
+                        }
+                    }
+                }}
+                onCancel={() => setDeleteConfirm({ ...deleteConfirm, isOpen: false })}
+            />
         </div>
     );
 };

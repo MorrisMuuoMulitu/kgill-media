@@ -28,6 +28,8 @@ import PortfolioManager from './pages/admin/PortfolioManager';
 import ServicesManager from './pages/admin/ServicesManager';
 import CaseStudiesManager from './pages/admin/CaseStudiesManager';
 import MessagesManager from './pages/admin/MessagesManager';
+import MoviesManager from './pages/admin/MoviesManager';
+import MoviesPg from './pages/MoviesPg';
 
 import './index.css';
 
@@ -55,6 +57,7 @@ function AppContent() {
             <Route path="/what-we-do" element={<WhatWeDo />} />
             <Route path="/kgill-tv" element={<KGTVPg />} />
             <Route path="/photography-videography" element={<PhotographyVideographyPg />} />
+            <Route path="/movies" element={<MoviesPg />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />
@@ -65,6 +68,7 @@ function AppContent() {
                 <Route path="portfolio" element={<PortfolioManager />} />
                 <Route path="services" element={<ServicesManager />} />
                 <Route path="case-studies" element={<CaseStudiesManager />} />
+                <Route path="movies" element={<MoviesManager />} />
                 <Route path="messages" element={<MessagesManager />} />
               </Route>
             </Route>

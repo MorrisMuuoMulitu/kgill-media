@@ -13,6 +13,7 @@ import {
     Search,
     Filter
 } from 'lucide-react';
+import ConfirmDialog from '../../components/admin/ConfirmDialog';
 
 interface Submission {
     id: number;
@@ -30,6 +31,15 @@ const MessagesManager = () => {
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const [deleteConfirm, setDeleteConfirm] = useState<{
+        isOpen: boolean;
+        id: number | null;
+        title: string;
+    }>({
+        isOpen: false,
+        id: null,
+        title: ''
+    });
 
     useEffect(() => {
         fetchMessages();
@@ -52,10 +62,18 @@ const MessagesManager = () => {
     };
 
     const deleteMessage = async (id: number) => {
-        if (window.confirm('Permanently delete this message?')) {
-            await supabase.from('contact_submissions').delete().eq('id', id);
-            fetchMessages();
-        }
+        setLoading(true);
+        await supabase.from('contact_submissions').delete().eq('id', id);
+        await fetchMessages();
+        setLoading(false);
+    };
+
+    const openDeleteConfirm = (msg: Submission) => {
+        setDeleteConfirm({
+            isOpen: true,
+            id: msg.id,
+            title: msg.full_name
+        });
     };
 
     const filteredMessages = messages.filter(m => {
@@ -183,7 +201,7 @@ const MessagesManager = () => {
                                                 </button>
                                             )}
                                             <button
-                                                onClick={() => deleteMessage(msg.id)}
+                                                onClick={() => openDeleteConfirm(msg)}
                                                 className="p-3 bg-red-500/5 hover:bg-red-500/10 text-red-400/50 hover:text-red-400 rounded-xl transition-all"
                                                 title="Delete Permanently"
                                             >
@@ -197,6 +215,17 @@ const MessagesManager = () => {
                     ))
                 )}
             </div>
+            {/* Delete Confirmation Dialog */}
+            <ConfirmDialog
+                isOpen={deleteConfirm.isOpen}
+                title="Delete Message?"
+                message={`Are you sure you want to permanently delete the message from "${deleteConfirm.title}"? This action cannot be undone.`}
+                confirmText="Delete"
+                cancelText="Cancel"
+                isDangerous={true}
+                onConfirm={() => deleteConfirm.id && deleteMessage(deleteConfirm.id)}
+                onCancel={() => setDeleteConfirm({ ...deleteConfirm, isOpen: false })}
+            />
         </div>
     );
 };
